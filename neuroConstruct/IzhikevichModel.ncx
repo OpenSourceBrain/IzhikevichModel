@@ -70,17 +70,44 @@ part of NeuroML or any standardised XML specification. -->
     <void method="add">
      <object class="ucl.physiol.neuroconstruct.project.packing.RandomCellPackingAdapter"/>
     </void>
+    <void method="add">
+     <object class="ucl.physiol.neuroconstruct.project.packing.RandomCellPackingAdapter"/>
+    </void>
+    <void method="add">
+     <object class="ucl.physiol.neuroconstruct.project.packing.RandomCellPackingAdapter"/>
+    </void>
+    <void method="add">
+     <object class="ucl.physiol.neuroconstruct.project.packing.RandomCellPackingAdapter"/>
+    </void>
    </void>
    <void method="get">
     <string>Cell Type</string>
     <void method="add">
      <string>TonicSpiking</string>
     </void>
+    <void method="add">
+     <string>PhasicSpiking</string>
+    </void>
+    <void method="add">
+     <string>TonicBursting</string>
+    </void>
+    <void method="add">
+     <string>PhasicBursting</string>
+    </void>
    </void>
    <void method="get">
     <string>Priority</string>
     <void method="add">
      <int>10</int>
+    </void>
+    <void method="add">
+     <int>9</int>
+    </void>
+    <void method="add">
+     <int>8</int>
+    </void>
+    <void method="add">
+     <int>7</int>
     </void>
    </void>
    <void method="get">
@@ -93,9 +120,42 @@ part of NeuroML or any standardised XML specification. -->
       <int>255</int>
      </object>
     </void>
+    <void method="add">
+     <object class="java.awt.Color">
+      <int>123</int>
+      <int>118</int>
+      <int>224</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void method="add">
+     <object class="java.awt.Color">
+      <int>16</int>
+      <int>47</int>
+      <int>27</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void method="add">
+     <object class="java.awt.Color">
+      <int>255</int>
+      <int>102</int>
+      <int>102</int>
+      <int>255</int>
+     </object>
+    </void>
    </void>
    <void method="get">
     <string>Region Name</string>
+    <void method="add">
+     <string>Regions_1</string>
+    </void>
+    <void method="add">
+     <string>Regions_1</string>
+    </void>
+    <void method="add">
+     <string>Regions_1</string>
+    </void>
     <void method="add">
      <string>Regions_1</string>
     </void>
@@ -104,6 +164,15 @@ part of NeuroML or any standardised XML specification. -->
     <string>Cell Group Name</string>
     <void method="add">
      <string>A_TonicSpiking</string>
+    </void>
+    <void method="add">
+     <string>B_PhasicSpiking</string>
+    </void>
+    <void method="add">
+     <string>C_TonicBursting</string>
+    </void>
+    <void method="add">
+     <string>D_PhasicBursting</string>
     </void>
    </void>
   </void>
@@ -132,6 +201,90 @@ part of NeuroML or any standardised XML specification. -->
      </void>
      <void property="plotReference">
       <string>A_TonicSpiking_v</string>
+     </void>
+     <void property="segmentId">
+      <string>0</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.project.SimPlot">
+     <void property="cellGroup">
+      <string>B_PhasicSpiking</string>
+     </void>
+     <void property="cellNumber">
+      <string>*</string>
+     </void>
+     <void property="graphWindow">
+      <string>B_PhasicSpiking_v</string>
+     </void>
+     <void property="maxValue">
+      <float>50.0</float>
+     </void>
+     <void property="minValue">
+      <float>-90.0</float>
+     </void>
+     <void property="plotAndOrSave">
+      <string>Plot and save</string>
+     </void>
+     <void property="plotReference">
+      <string>B_PhasicSpiking_v</string>
+     </void>
+     <void property="segmentId">
+      <string>0</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.project.SimPlot">
+     <void property="cellGroup">
+      <string>C_TonicBursting</string>
+     </void>
+     <void property="cellNumber">
+      <string>*</string>
+     </void>
+     <void property="graphWindow">
+      <string>C_TonicBursting_v</string>
+     </void>
+     <void property="maxValue">
+      <float>50.0</float>
+     </void>
+     <void property="minValue">
+      <float>-90.0</float>
+     </void>
+     <void property="plotAndOrSave">
+      <string>Plot and save</string>
+     </void>
+     <void property="plotReference">
+      <string>C_TonicBursting_v</string>
+     </void>
+     <void property="segmentId">
+      <string>0</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.project.SimPlot">
+     <void property="cellGroup">
+      <string>D_PhasicBursting</string>
+     </void>
+     <void property="cellNumber">
+      <string>*</string>
+     </void>
+     <void property="graphWindow">
+      <string>D_PhasicBursting_v</string>
+     </void>
+     <void property="maxValue">
+      <float>50.0</float>
+     </void>
+     <void property="minValue">
+      <float>-90.0</float>
+     </void>
+     <void property="plotAndOrSave">
+      <string>Plot and save</string>
+     </void>
+     <void property="plotReference">
+      <string>D_PhasicBursting_v</string>
      </void>
      <void property="segmentId">
       <string>0</string>
@@ -173,7 +326,7 @@ part of NeuroML or any standardised XML specification. -->
    <float>100.0</float>
   </void>
   <void property="reference">
-   <string>Sim_10</string>
+   <string>Sim_11</string>
   </void>
   <void property="saveCopyGenSimFiles">
    <boolean>true</boolean>
@@ -207,6 +360,80 @@ part of NeuroML or any standardised XML specification. -->
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.IClampSettings">
+     <void property="amp">
+      <void property="fixedNum">
+       <float>0.5</float>
+      </void>
+     </void>
+     <void property="cellGroup">
+      <string>B_PhasicSpiking</string>
+     </void>
+     <void property="dur">
+      <void property="fixedNum">
+       <float>200.0</float>
+      </void>
+      <void property="numberType">
+       <int>11</int>
+      </void>
+     </void>
+     <void property="reference">
+      <string>Input_B</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.IClampSettings">
+     <void property="amp">
+      <void property="fixedNum">
+       <float>15.0</float>
+      </void>
+     </void>
+     <void property="cellGroup">
+      <string>C_TonicBursting</string>
+     </void>
+     <void property="del">
+      <void property="fixedNum">
+       <float>22.0</float>
+      </void>
+     </void>
+     <void property="dur">
+      <void property="fixedNum">
+       <float>200.0</float>
+      </void>
+      <void property="numberType">
+       <int>11</int>
+      </void>
+     </void>
+     <void property="reference">
+      <string>Input_C</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.IClampSettings">
+     <void property="amp">
+      <void property="fixedNum">
+       <float>0.6</float>
+      </void>
+     </void>
+     <void property="cellGroup">
+      <string>D_PhasicBursting</string>
+     </void>
+     <void property="dur">
+      <void property="fixedNum">
+       <float>200.0</float>
+      </void>
+      <void property="numberType">
+       <int>11</int>
+      </void>
+     </void>
+     <void property="reference">
+      <string>Input_D</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
  <object class="ucl.physiol.neuroconstruct.project.SimConfigInfo">
@@ -217,6 +444,15 @@ part of NeuroML or any standardised XML specification. -->
       <void method="add">
        <string>A_TonicSpiking</string>
       </void>
+      <void method="add">
+       <string>B_PhasicSpiking</string>
+      </void>
+      <void method="add">
+       <string>C_TonicBursting</string>
+      </void>
+      <void method="add">
+       <string>D_PhasicBursting</string>
+      </void>
      </void>
      <void property="description">
       <string>This is the default configuration of the Cell Groups, stimulations, plots, etc for this project</string>
@@ -225,6 +461,15 @@ part of NeuroML or any standardised XML specification. -->
       <void method="add">
        <string>Input_A</string>
       </void>
+      <void method="add">
+       <string>Input_B</string>
+      </void>
+      <void method="add">
+       <string>Input_C</string>
+      </void>
+      <void method="add">
+       <string>Input_D</string>
+      </void>
      </void>
      <void property="name">
       <string>Default Simulation Configuration</string>
@@ -232,6 +477,15 @@ part of NeuroML or any standardised XML specification. -->
      <void property="plots">
       <void method="add">
        <string>A_TonicSpiking_v</string>
+      </void>
+      <void method="add">
+       <string>B_PhasicSpiking_v</string>
+      </void>
+      <void method="add">
+       <string>C_TonicBursting_v</string>
+      </void>
+      <void method="add">
+       <string>D_PhasicBursting_v</string>
       </void>
      </void>
      <void property="simDuration">
