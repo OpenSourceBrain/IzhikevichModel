@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 http://neuroml.svn.sourceforge.net/viewvc/neuroml/NeuroML2/Schemas/NeuroML2/NeuroML_v2alpha.xsd"
+         id="STP_NML2">
+        
+        <notes>NeuroML 2 file containing a single synapse</notes>
+
+        <stpSynapse id="STP_NML2" gbase="100S" erev="0mV" tauRise="0.1ms" tauDecay="2ms">
+           <plasticity initReleaseProb="0.5" tauFac="0 ms" tauRec="120 ms" />
+        </stpSynapse>
+
+</neuroml>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.6.0_23" class="java.beans.XMLDecoder">
+
+<!-- Note that this XML is specific to the neuroConstruct Java cell object model and not any part of the NeuroML framework -->
+
+ <object class="ucl.physiol.neuroconstruct.cell.examples.OneSegment">
+  <void property="allSegments">
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.cell.Segment">
+     <void property="endPointPositionX">
+      <float>0.0</float>
+     </void>
+     <void property="endPointPositionY">
+      <float>0.0</float>
+     </void>
+     <void property="endPointPositionZ">
+      <float>0.0</float>
+     </void>
+     <void property="finiteVolume">
+      <boolean>true</boolean>
+     </void>
+     <void property="radius">
+      <float>8.920621</float>
+     </void>
+     <void property="section">
+      <object class="ucl.physiol.neuroconstruct.cell.Section">
+       <void property="groups">
+        <void method="add">
+         <string>soma_group</string>
+        </void>
+       </void>
+       <void property="sectionName">
+        <string>Soma</string>
+       </void>
+       <void property="startPointPositionX">
+        <float>0.0</float>
+       </void>
+       <void property="startPointPositionY">
+        <float>0.0</float>
+       </void>
+       <void property="startPointPositionZ">
+        <float>0.0</float>
+       </void>
+       <void property="startRadius">
+        <float>8.920621</float>
+       </void>
+      </object>
+     </void>
+     <void property="segmentId">
+      <int>0</int>
+     </void>
+     <void property="segmentName">
+      <string>Soma</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="cellDescription">
+   <string>A single segment/compartment cell</string>
+  </void>
+  <void property="chanMechsVsGroups">
+   <void method="put">
+    <object class="ucl.physiol.neuroconstruct.cell.ChannelMechanism">
+     <void property="name">
+      <string>IzhBurst</string>
+     </void>
+    </object>
+    <object class="java.util.Vector">
+     <void method="add">
+      <string>all</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="initialPotential">
+   <void property="fixedNum">
+    <float>-60.0</float>
+   </void>
+  </void>
+  <void property="instanceName">
+   <string>IzhBurst</string>
+  </void>
+  <void property="specCapVsGroups">
+   <void method="remove">
+    <float>1.0E-8</float>
+   </void>
+   <void method="put">
+    <float>1.0E-6</float>
+    <object class="java.util.Vector">
+     <void method="add">
+      <string>all</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="synapsesVsGroups">
+   <void method="put">
+    <string>STP_NML2</string>
+    <object class="java.util.Vector">
+     <void method="add">
+      <string>all</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

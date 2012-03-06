@@ -1,0 +1,14 @@
+# use glob syntax.
+syntax: glob
+
+*.pyc
+*i686
+*x86_64
+generatedNEURON
+generatedGENESIS
+generatedNeuroML
+generatedMOOSE
+generatedPSICS
+simulations
+*.bak
+*py.class
