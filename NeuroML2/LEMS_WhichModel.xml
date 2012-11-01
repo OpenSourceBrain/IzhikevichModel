@@ -1,0 +1,35 @@
+<Lems>
+
+    <!-- Specify which component to run -->
+    <DefaultRun component="sim1"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="NeuroML2CoreTypes/Cells.xml"/>
+    <Include file="NeuroML2CoreTypes/Networks.xml"/>
+    <Include file="NeuroML2CoreTypes/Inputs.xml"/>
+    <Include file="NeuroML2CoreTypes/Simulation.xml"/>
+
+    <Include file="WhichModel.nml"/>
+
+    <Simulation id="sim1" length="200ms" step="0.01ms" target="net1">
+
+        <Display id="A" title="(A) tonic spiking" timeScale="1ms">
+            <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF5555" save="iz_V_A.dat"/>
+            <Line id ="i0" quantity="popA[0]/iA/I" scale="1"  color="#222222" save="iz_i_A.dat"/>
+        </Display>
+        <Display id="B" title="(B) phasic spiking" timeScale="1ms">
+            <Line id ="iz1" quantity="popB[0]/v" scale="1mV"  color="#FF5555" save="iz_V_B.dat"/>
+            <Line id ="i0" quantity="popB[0]/iB/I" scale="1"  color="#222222" save="iz_i_B.dat"/>
+        </Display>
+        <Display id="C" title="(C) tonic bursting" timeScale="1ms">
+            <Line id ="iz1" quantity="popC[0]/v" scale="1mV"  color="#FF5555" save="iz_V_C.dat"/>
+            <Line id ="i0" quantity="popC[0]/iC/I" scale="1"  color="#222222" save="iz_i_C.dat"/>
+        </Display>
+        <Display id="D" title="(D) phasic bursting" timeScale="1ms">
+            <Line id ="iz1" quantity="popD[0]/v" scale="1mV"  color="#FF5555" save="iz_V_D.dat"/>
+            <Line id ="i0" quantity="popD[0]/iD/I" scale="1"  color="#222222" save="iz_i_D.dat"/>
+        </Display>
+        
+    </Simulation>
+    
+</Lems>
