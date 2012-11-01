@@ -21,34 +21,88 @@
     <izhikevichCell id="izPhasicBursting" v0 = "-64mV" thresh = "30mV" a ="0.02" b = "0.25" c = "-55" d = "0.05"/>
     <pulseGeneratorDL id="iD" delay="20ms" duration="180ms" amplitude="0.6" />
 
+    <!-- (E) mixed mode -->
+    <izhikevichCell id="izMixedMode" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-55" d = "4"/>
+    <pulseGeneratorDL id="iE" delay="16ms" duration="144ms" amplitude="10" />
+
+    <!-- (F) spike freq. adapt -->
+    <izhikevichCell id="izSpikeFreqAdapt" v0 = "-70mV" thresh = "30mV" a ="0.01" b = "0.2" c = "-65" d = "8"/>
+    <pulseGeneratorDL id="iF" delay="8.5ms" duration="76.5ms" amplitude="30" />
+
+    <!-- (G) Class 1 excitable -->
+    <izhikevichCell id="izClass1Exc" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55" d = "6"/>
+    <rampGeneratorDL id="iG" delay="30ms" duration="270ms" startAmplitude="-32" finishAmplitude="-11.75" baselineAmplitude="-32"/>
+    <!--
+         Note eqn for this cell is:
+            V = V + tau*(0.04*V^2+4.1*V+108-u+I);
+         as opposed to
+            V = V + tau*(0.04*V^2+5*V+140-u+I);
+         in figure1.m
+    -->
+
+    <!-- (H) Class 2 excitable -->
+    <izhikevichCell id="izClass2Exc" v0 = "-64mV" thresh = "30mV" a ="0.2" b = "0.26" c = "-65" d = "0"/>
+    <rampGeneratorDL id="iH" delay="30ms" duration="270ms" startAmplitude="-0.5" finishAmplitude="3.55" baselineAmplitude="-0.5"/>
+
+    <!-- (I) spike latency -->
+    <izhikevichCell id="izSpikeLatency" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-65" d = "6"/>
+    <pulseGeneratorDL id="iI" delay="10ms" duration="3ms" amplitude="7.04" />
+
+    <!-- (J) subthresh. osc. -->
+    <izhikevichCell id="izSubthreshOsc" v0 = "-62mV" thresh = "30mV" a ="0.05" b = "0.26" c = "-60" d = "0"/>
+    <pulseGeneratorDL id="iJ" delay="20ms" duration="5ms" amplitude="2" />
+
+    <!-- (K) resonator -->
+    <izhikevichCell id="izResonator" v0 = "-62mV" thresh = "30mV" a ="0.1" b = "0.26" c = "-60" d = "-1"/>
+    <pulseGeneratorDL id="iK1" delay="40ms" duration="4ms" amplitude="0.65" />
+    <pulseGeneratorDL id="iK2" delay="60ms" duration="4ms" amplitude="0.65" />
+    <pulseGeneratorDL id="iK3" delay="200ms" duration="4ms" amplitude="0.65" /> <!-- Using shorter delay -->
+    <pulseGeneratorDL id="iK4" delay="240ms" duration="4ms" amplitude="0.65" />
+
+
+    <!-- (P) bistability -->
+    <izhikevichCell id="izBistability" v0 = "-61mV" thresh = "30mV" a ="0.1" b = "0.26" c = "-60" d = "0"/>
+    <pulseGeneratorDL id="iP1" delay="37.5ms" duration="5ms" amplitude="1" />
+    <pulseGeneratorDL id="iP2" delay="216ms" duration="5ms" amplitude="1" />
+    <pulseGeneratorDL id="iP3" delay="0ms" duration="300ms" amplitude="0.24" />
+
 
     <network id="net1">
         <population id="popA" component="izTonicSpiking" size="1"/>
         <population id="popB" component="izPhasicSpiking" size="1"/>
         <population id="popC" component="izTonicBursting" size="1"/>
         <population id="popD" component="izPhasicBursting" size="1"/>
+        <population id="popE" component="izMixedMode" size="1"/>
+        <population id="popF" component="izSpikeFreqAdapt" size="1"/>
+        <population id="popG" component="izClass1Exc" size="1"/>
+        <population id="popH" component="izClass2Exc" size="1"/>
+        <population id="popI" component="izSpikeLatency" size="1"/>
+        <population id="popJ" component="izSubthreshOsc" size="1"/>
+        <population id="popK" component="izResonator" size="1"/>
+
+        <population id="popP" component="izBistability" size="1"/>
 
         <explicitInput target="popA[0]" input="iA"/>
         <explicitInput target="popB[0]" input="iB"/>
         <explicitInput target="popC[0]" input="iC"/>
         <explicitInput target="popD[0]" input="iD"/>
+        <explicitInput target="popE[0]" input="iE"/>
+        <explicitInput target="popF[0]" input="iF"/>
+        <explicitInput target="popG[0]" input="iG"/>
+        <explicitInput target="popH[0]" input="iH"/>
+        <explicitInput target="popI[0]" input="iI"/>
+        <explicitInput target="popJ[0]" input="iJ"/>
+        <explicitInput target="popK[0]" input="iK1"/>
+        <explicitInput target="popK[0]" input="iK2"/>
+        <explicitInput target="popK[0]" input="iK3"/>
+        <explicitInput target="popK[0]" input="iK4"/>
+
+        <explicitInput target="popP[0]" input="iP1"/>
+        <explicitInput target="popP[0]" input="iP2"/>
+        <explicitInput target="popP[0]" input="iP3"/>
     </network>
 <!--
 
-
-
-%%%%%%%%%%%%%%% (D) phasic bursting %%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(5,4,4)
-a=0.02; b=0.25; c=-55;  d=0.05;
-V=-64;  u=b*V;
-VV=[];  uu=[];
-tau = 0.2;  tspan = 0:tau:200;
-T1=20;
-for t=tspan
-    if (t>T1)
-        I=0.6;
-    else
-        I=0;
 
 -->
 </neuroml>
