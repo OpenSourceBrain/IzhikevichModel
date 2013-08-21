@@ -11,7 +11,7 @@
 
     <Include file="WhichModel.nml"/>
 
-    <Simulation id="sim1" length="300ms" step="0.025ms" target="net1">
+    <Simulation id="sim1" length="350ms" step="0.5ms" target="net1">
 
         <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
@@ -62,12 +62,51 @@
             <Line id ="i3" quantity="popK[0]/iK3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
             <Line id ="i4" quantity="popK[0]/iK4/I" scale="0.1"  color="#228888" timeScale="1ms"/>
         </Display>
-
+	<Display id="L" title="(L) integrator" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popL[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i1" quantity="popL[0]/iL1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+            <Line id ="i2" quantity="popL[0]/iL2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
+            <Line id ="i3" quantity="popL[0]/iL3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
+            <Line id ="i4" quantity="popL[0]/iL4/I" scale="0.1"  color="#228888" timeScale="1ms"/>
+        </Display>
+	<Display id="M" title="(M) rebound spike" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popM[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popM[0]/iM/I" scale="1"  color="#222222" timeScale="1ms"/>
+        </Display>
+	<Display id="N" title="(N) rebound burst" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popN[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popN[0]/iN/I" scale="1"  color="#222222" timeScale="1ms"/>
+        </Display>
+	<Display id="O" title="(O) threshold variability" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popO[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i1" quantity="popO[0]/iO1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+            <Line id ="i2" quantity="popO[0]/iO2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
+            <Line id ="i3" quantity="popO[0]/iO3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
+        </Display>
         <Display id="P" title="(P) bistability" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popP[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popP[0]/iP1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popP[0]/iP2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
             <Line id ="i3" quantity="popP[0]/iP3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
+        </Display>
+	<Display id="Q" title="(Q) DAP" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popQ[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popQ[0]/iQ/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+        </Display>
+	<Display id="R" title="(R) Accomodation" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popR[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i1" quantity="popR[0]/iR1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+            <Line id ="i2" quantity="popR[0]/iR2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
+        </Display>
+	<Display id="S" title="(S) IIS" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popS[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i1" quantity="popS[0]/iS1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+            <Line id ="i2" quantity="popS[0]/iS2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
+        </Display>
+	<Display id="T" title="(T) IIB" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+            <Line id ="iz1" quantity="popT[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i1" quantity="popT[0]/iT1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
+            <Line id ="i2" quantity="popT[0]/iT2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
         </Display>
         
     </Simulation>
