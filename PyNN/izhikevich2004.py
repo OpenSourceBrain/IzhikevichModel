@@ -415,6 +415,15 @@ fig.canvas.draw()
 ##	Sub-plot G: Class 1 excitable
 ############################################
 
+'''
+         Note eqn for this cell is:
+            V = V + tau*(0.04*V^2+4.1*V+108-u+I);
+         as opposed to
+            V = V + tau*(0.04*V^2+5*V+140-u+I);
+         in figure1.m
+'''
+
+
 timeStep = 0.05
 setup(timestep=timeStep, min_delay=0.5)
 '''
@@ -781,6 +790,15 @@ fig.canvas.draw()
 ####################################
 ##	Sub-plot L: Integrator
 ####################################
+
+'''
+         Note eqn for this cell is:
+            V = V + tau*(0.04*V^2+4.1*V+108-u+I);
+         as opposed to
+            V = V + tau*(0.04*V^2+5*V+140-u+I);
+         in figure1.m
+'''
+
 
 timeStep = 0.05
 setup(timestep=timeStep, min_delay=0.5)

@@ -66,14 +66,6 @@
     <pulseGeneratorDL id="iL3" delay="70ms" duration="2ms" amplitude="9.0" />
     <pulseGeneratorDL id="iL4" delay="80ms" duration="2ms" amplitude="9.0" />
 
-    <!-- (M) Rebound spike -->
-    <izhikevichCell id="izReboundSpike" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-60.0" d = "4.0"/>
-    <pulseGeneratorDL id="iM" delay="20ms" duration="5ms" amplitude="-15" />
-
-    <!-- (N) Rebound burst -->
-    <izhikevichCell id="izReboundBurst" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-52.0" d = "0.0"/>
-    <pulseGeneratorDL id="iN" delay="20ms" duration="5ms" amplitude="-15" />
-
     <!--
          Note eqn for this cell is:
             V = V + tau*(0.04*V^2+4.1*V+108-u+I);
@@ -81,6 +73,14 @@
             V = V + tau*(0.04*V^2+5*V+140-u+I);
          in figure1.m
     -->
+
+    <!-- (M) Rebound spike -->
+    <izhikevichCell id="izReboundSpike" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-60.0" d = "4.0"/>
+    <pulseGeneratorDL id="iM" delay="20ms" duration="5ms" amplitude="-15" />
+
+    <!-- (N) Rebound burst -->
+    <izhikevichCell id="izReboundBurst" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-52.0" d = "0.0"/>
+    <pulseGeneratorDL id="iN" delay="20ms" duration="5ms" amplitude="-15" />
 
     <!-- (O) Threshold variability -->
     <izhikevichCell id="izThVar" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-60.0" d = "4.0"/>
