@@ -91,7 +91,7 @@
     <!-- (P) bistability -->
     <izhikevichCell id="izBistability" v0 = "-61mV" thresh = "30mV" a ="0.1" b = "0.26" c = "-60" d = "0"/>
     <pulseGeneratorDL id="iP1" delay="37.5ms" duration="5ms" amplitude="1" />
-    <pulseGeneratorDL id="iP2" delay="216ms" duration="5ms" amplitude="1" />
+    <pulseGeneratorDL id="iP2" delay="208ms" duration="5ms" amplitude="1" />
     <pulseGeneratorDL id="iP3" delay="0ms" duration="300ms" amplitude="0.24" />
 
     <!-- (Q) Depolarizing after-potential (DAP) -->

@@ -11,7 +11,7 @@
 
     <Include file="WhichModel.nml"/>
 
-    <Simulation id="sim1" length="350ms" step="0.05ms" target="net1">
+    <Simulation id="sim1" length="350ms" step="0.025ms" target="net1">
 
         <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="120" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
