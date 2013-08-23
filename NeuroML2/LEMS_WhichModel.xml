@@ -11,21 +11,21 @@
 
     <Include file="WhichModel.nml"/>
 
-    <Simulation id="sim1" length="350ms" step="0.5ms" target="net1">
+    <Simulation id="sim1" length="350ms" step="0.05ms" target="net1">
 
-        <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="120" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popA[0]/iA/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="B" title="(B) phasic spiking" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="B" title="(B) phasic spiking" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popB[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popB[0]/iB/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="C" title="(C) tonic bursting" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="C" title="(C) tonic bursting" timeScale="1ms" xmin="-20" xmax="240" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popC[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popC[0]/iC/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="D" title="(D) phasic bursting" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="D" title="(D) phasic bursting" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popD[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popD[0]/iD/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
