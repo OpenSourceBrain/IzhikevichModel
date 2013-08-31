@@ -37,6 +37,8 @@ print "Starting PyNN with simulator: %s"%simulator_name
 
 timer = Timer()
 
+globalTimeStep = 0.01
+
 
 # v represents the membrane potential of the neuron
 # u represents a membrane recovery variable
@@ -63,7 +65,7 @@ timer = Timer()
 ##	Sub-plot A: Tonic spiking
 #############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02	
@@ -122,7 +124,7 @@ fig.canvas.draw()
 ##	Sub-plot B: Phasic spiking
 #############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02	
@@ -180,7 +182,7 @@ fig.canvas.draw()
 ##	Sub-plot C: Tonic bursting
 #############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02	
@@ -239,7 +241,7 @@ fig.canvas.draw()
 ##	Sub-plot D: Phasic bursting
 #############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02
@@ -297,7 +299,7 @@ fig.canvas.draw()
 ##	Sub-plot E: Mixed mode
 #############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 
 setup(timestep=timeStep, min_delay=0.5)
 
@@ -357,7 +359,7 @@ fig.canvas.draw()
 ##	Sub-plot F: Spike Frequency Adaptation (SFA)
 #######################################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.01
@@ -424,7 +426,7 @@ fig.canvas.draw()
 '''
 
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 '''
 a = 0.02
@@ -506,7 +508,7 @@ ax1.spines['top'].set_color('None')
 ax1.set_title('(G) Class 1 excitable')
 
 vm = data.filter(name='v')[0]
-plt.plot(vm.times, vm, [0, 30, 300, 300],[-90, -90, -70, -90])
+# plt.plot(vm.times, vm, [0, 30, 300, 300],[-90, -90, -70, -90])
 
 plt.show(block=False)
 fig.canvas.draw()
@@ -517,7 +519,7 @@ fig.canvas.draw()
 ##	Sub-plot H: Class 2 excitable
 ############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.01
@@ -577,7 +579,7 @@ fig.canvas.draw()
 ##	Sub-plot I: Spike latency
 #########################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02
@@ -614,7 +616,8 @@ neuron.record('v')
 
 run(10)
 
-neuron.set(i_offset = 7.04)
+# neuron.set(i_offset = 7.04)
+neuron.set(i_offset = 6.71)
 
 run(3)
 
@@ -649,7 +652,7 @@ fig.canvas.draw()
 ##	Sub-plot J: Subthreshold oscillation
 #################################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 
@@ -721,7 +724,7 @@ fig.canvas.draw()
 ##	Sub-plot K: Resonator
 ####################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.1
@@ -800,7 +803,7 @@ fig.canvas.draw()
 '''
 
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02
@@ -871,7 +874,7 @@ fig.canvas.draw()
 ##	Sub-plot M: Rebound spike
 ######################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.03
@@ -941,7 +944,7 @@ fig.canvas.draw()
 ##	Sub-plot N: Rebound burst
 ######################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.03
@@ -1012,7 +1015,7 @@ fig.canvas.draw()
 ##	Sub-plot O: Threshold variability
 ###############################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.03
@@ -1046,16 +1049,44 @@ neuron.initialize(**initialValues)
 
 neuron.record('v')
 
-run(20)
+simTime = 10
+run(simTime)
+simulatedTime = simTime
 
-neuron.set(i_offset = -15.0)
+neuron.set(i_offset = 1.0)
 
-run(5)
+simTime = 15 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
 neuron.set(i_offset = 0.0)
 
-run(200 - 25)
+simTime = 70 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
+neuron.set(i_offset = -6.0)
+
+simTime = 75 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = 80 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 1.0)
+
+simTime = 85 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = 100 - simulatedTime
+run(simTime)
 
 data = neuron.get_data().segments[0]
 
@@ -1072,7 +1103,7 @@ ax1.spines['top'].set_color('None')
 ax1.set_title('(O) Threshold variability')
 
 vm = data.filter(name='v')[0]
-#plt.plot(vm.times, vm, [0, 20, 20, 25, 25, 200],[-85, -85, -90, -90, -85, -85]);
+plt.plot(vm.times, vm, [0, 10, 10, 15, 15, 70, 70, 75, 75, 80, 80, 85, 85, 100],[-85, -85, -80 , -80 , -85 , -85, -90, -90, -85, -85, -80 , -80 , -85, -85]);
 
 plt.show(block=False)
 fig.canvas.draw()
@@ -1082,7 +1113,7 @@ fig.canvas.draw()
 ##	Sub-plot P: Bistability
 ######################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 
@@ -1129,6 +1160,7 @@ simulatedTime = simulatedTime + simTime
 
 neuron.set(i_offset = 0.24)
 
+# simTime = 216 - simulatedTime
 simTime = 208 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
@@ -1172,7 +1204,7 @@ fig.canvas.draw()
 ##	Sub-plot Q: Depolarizing after-potential
 #####################################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 1.0
@@ -1245,7 +1277,7 @@ fig.canvas.draw()
 ##	Sub-plot R: Accomodation
 #####################################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 0.02
@@ -1321,7 +1353,7 @@ fig.canvas.draw()
 ##	Sub-plot R: Inhibition-induced spiking
 #####################################################
 
-timeStep = 0.05
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = -0.02
@@ -1398,7 +1430,7 @@ fig.canvas.draw()
 ##	Sub-plot S: Inhibition-induced bursting
 #####################################################
 
-timeStep = 0.01
+timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = -0.026

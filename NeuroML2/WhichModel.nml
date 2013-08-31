@@ -46,7 +46,7 @@
 
     <!-- (I) spike latency -->
     <izhikevichCell id="izSpikeLatency" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-65" d = "6"/>
-    <pulseGeneratorDL id="iI" delay="10ms" duration="3ms" amplitude="7.04" />
+    <pulseGeneratorDL id="iI" delay="10ms" duration="3ms" amplitude="6.71" />
 
     <!-- (J) subthresh. osc. -->
     <izhikevichCell id="izSubthreshOsc" v0 = "-62mV" thresh = "30mV" a ="0.05" b = "0.26" c = "-60" d = "0"/>
