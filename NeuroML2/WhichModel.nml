@@ -29,16 +29,18 @@
     <izhikevichCell id="izSpikeFreqAdapt" v0 = "-70mV" thresh = "30mV" a ="0.01" b = "0.2" c = "-65" d = "8"/>
     <pulseGeneratorDL id="iF" delay="8.5ms" duration="76.5ms" amplitude="30" />
 
-    <!-- (G) Class 1 excitable -->
-    <izhikevichCell id="izClass1Exc" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55" d = "6"/>
-    <rampGeneratorDL id="iG" delay="30ms" duration="270ms" startAmplitude="-32" finishAmplitude="-11.75" baselineAmplitude="-32"/>
-    <!--
+    <!-- (G) Class 1 excitable 
          Note eqn for this cell is:
             V = V + tau*(0.04*V^2+4.1*V+108-u+I);
          as opposed to
             V = V + tau*(0.04*V^2+5*V+140-u+I);
          in figure1.m
+         
+         We use generalizedIzhikevichCell with extra X, Y, Z parameters from GeneralizedIzhikevichCell.xml
     -->
+    <generalizedIzhikevichCell id="izClass1Exc" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55" d = "6" X="0.04" Y="4.1" Z="108"/>
+    <rampGeneratorDL id="iG" delay="30ms" duration="270ms" startAmplitude="0" finishAmplitude="20.25" baselineAmplitude="0"/>
+    
 
     <!-- (H) Class 2 excitable -->
     <izhikevichCell id="izClass2Exc" v0 = "-64mV" thresh = "30mV" a ="0.2" b = "0.26" c = "-65" d = "0"/>

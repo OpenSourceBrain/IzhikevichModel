@@ -9,31 +9,32 @@
     <Include file="Inputs.xml"/>
     <Include file="Simulation.xml"/>
 
+    <Include file="GeneralizedIzhikevichCell.xml"/>
     <Include file="WhichModel.nml"/>
 
     <Simulation id="sim1" length="350ms" step="0.01ms" target="net1">
 
-        <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <!--<Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="120" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popA[0]/iA/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="B" title="(B) phasic spiking" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="B" title="(B) phasic spiking" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popB[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popB[0]/iB/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="C" title="(C) tonic bursting" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="C" title="(C) tonic bursting" timeScale="1ms" xmin="-20" xmax="240" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popC[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popC[0]/iC/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="D" title="(D) phasic bursting" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="D" title="(D) phasic bursting" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popD[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popD[0]/iD/I" scale="1"  color="#222222" timeScale="1ms"/>
-        </Display>
-        <Display id="E" title="(E) mixed mode" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        </Display>-->
+        <Display id="E" title="(E) mixed mode" timeScale="1ms" xmin="-20" xmax="200" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popE[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popE[0]/iE/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="F" title="(F) spike freq. adapt" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="F" title="(F) spike freq. adapt" timeScale="1ms" xmin="-10" xmax="100" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popF[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popF[0]/iF/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
@@ -47,7 +48,7 @@
             <Line id ="iz2" quantity="popH[0]/U" scale="1"    color="#BBA0AA" timeScale="1ms"/>
             <Line id ="i0" quantity="popH[0]/iH/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-        <Display id="I" title="(I) spike latency" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+       <!-- <Display id="I" title="(I) spike latency" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popI[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popI[0]/iI/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
@@ -107,7 +108,7 @@
             <Line id ="iz1" quantity="popT[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popT[0]/iT1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popT[0]/iT2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
-        </Display>
+        </Display>-->
         
     </Simulation>
     
