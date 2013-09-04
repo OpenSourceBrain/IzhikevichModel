@@ -61,20 +61,21 @@
     <pulseGeneratorDL id="iK3" delay="200ms" duration="4ms" amplitude="0.65" /> <!-- Using shorter delay -->
     <pulseGeneratorDL id="iK4" delay="240ms" duration="4ms" amplitude="0.65" />
 
-    <!-- (L) integrator -->
-    <izhikevichCell id="izIntegrator" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55.0" d = "6.0"/>
-    <pulseGeneratorDL id="iL1" delay="9ms" duration="2ms" amplitude="9.0" />
-    <pulseGeneratorDL id="iL2" delay="14ms" duration="2ms" amplitude="9.0" />
-    <pulseGeneratorDL id="iL3" delay="70ms" duration="2ms" amplitude="9.0" />
-    <pulseGeneratorDL id="iL4" delay="80ms" duration="2ms" amplitude="9.0" />
-
-    <!--
+    <!-- (L) integrator 
+    
          Note eqn for this cell is:
             V = V + tau*(0.04*V^2+4.1*V+108-u+I);
          as opposed to
             V = V + tau*(0.04*V^2+5*V+140-u+I);
          in figure1.m
+         
+         We use generalizedIzhikevichCell with extra X, Y, Z parameters from GeneralizedIzhikevichCell.xml
     -->
+    <generalizedIzhikevichCell id="izIntegrator" v0 = "-60mV" thresh = "30mV" a ="0.02" b = "-0.1" c = "-55.0" d = "6.0" X="0.04" Y="4.1" Z="108"/>
+    <pulseGeneratorDL id="iL1" delay="9ms" duration="2ms" amplitude="9.0" />
+    <pulseGeneratorDL id="iL2" delay="14ms" duration="2ms" amplitude="9.0" />
+    <pulseGeneratorDL id="iL3" delay="70ms" duration="2ms" amplitude="9.0" />
+    <pulseGeneratorDL id="iL4" delay="80ms" duration="2ms" amplitude="9.0" />
 
     <!-- (M) Rebound spike -->
     <izhikevichCell id="izReboundSpike" v0 = "-64mV" thresh = "30mV" a ="0.03" b = "0.25" c = "-60.0" d = "4.0"/>
@@ -97,18 +98,27 @@
     <pulseGeneratorDL id="iP3" delay="0ms" duration="300ms" amplitude="0.24" />
 
     <!-- (Q) Depolarizing after-potential (DAP) -->
-    <izhikevichCell id="izDAP" v0 = "-70mV" thresh = "30mV" a ="1.0" b = "0.2" c = "-60.0" d = "-21"/>
+    <izhikevichCell id="izDAP" v0 = "-70mV" thresh = "30mV" a ="1.0" b = "0.18" c = "-60.0" d = "-21"/>
     <pulseGeneratorDL id="iQ" delay="9.0ms" duration="2ms" amplitude="20.0" />
 
-    <!-- (R) Accomodation -->
-    <izhikevichCell id="izAccomodation" v0 = "-65.0mV" u0 = "-16.0mV" thresh = "30mV" a ="0.02" b = "1.0" c = "-55.0" d = "4.0"/>
+    <!-- (R) Accomodation 
+        Note:
+        
+        u = u + tau*a*(b*(V+65));
+            not
+        u = u + tau*a*(b*V-u);
+        
+        So using accomodationIzhikevichCell from GeneralizedIzhikevichCell.xml
+    
+    -->
+    <accomodationIzhikevichCell id="izAccomodation" v0 = "-65.0mV" U0 = "-16.0" thresh = "30mV" a ="0.02" b = "1.0" c = "-55.0" d = "4.0"/>
     <rampGeneratorDL id="iR1" delay="0ms" duration="200ms" startAmplitude="0.0" finishAmplitude="8" baselineAmplitude="0.0"/>
     <rampGeneratorDL id="iR2" delay="300ms" duration="12.5ms" startAmplitude="0.0" finishAmplitude="4" baselineAmplitude="0.0"/>
 	
     <!-- (S) Inhibition induced spiking (IIS) -->
     <izhikevichCell id="izIIS" v0 = "-63.8mV" thresh = "30mV" a ="-0.02" b = "-1.0" c = "-60.0" d = "8.0"/>
-    <pulseGeneratorDL id="iS1" delay="0.0ms" duration="350ms" amplitude="80.0" />
-    <pulseGeneratorDL id="iS2" delay="50.0ms" duration="200ms" amplitude="-5.0" />
+    <pulseGeneratorDL id="iS1" delay="0.0ms" duration="400ms" amplitude="80.0" />
+    <pulseGeneratorDL id="iS2" delay="50.0ms" duration="170ms" amplitude="-5.0" />
 
     <!-- (T) Inhibition induced bursting (IIB) -->
     <izhikevichCell id="izIIB" v0 = "-63.8mV" thresh = "30mV" a ="-0.026" b = "-1.0" c = "-45.0" d = "-2.0"/>
@@ -128,16 +138,16 @@
         <population id="popI" component="izSpikeLatency" size="1"/>
         <population id="popJ" component="izSubthreshOsc" size="1"/>
         <population id="popK" component="izResonator" size="1"/>
-	<population id="popL" component="izIntegrator" size="1"/>
-	<population id="popM" component="izReboundSpike" size="1"/>
-	<population id="popN" component="izReboundBurst" size="1"/>
-	<population id="popO" component="izThVar" size="1"/>
+        <population id="popL" component="izIntegrator" size="1"/>
+        <population id="popM" component="izReboundSpike" size="1"/>
+        <population id="popN" component="izReboundBurst" size="1"/>
+        <population id="popO" component="izThVar" size="1"/>
         <population id="popP" component="izBistability" size="1"/>
-	<population id="popQ" component="izDAP" size="1"/>
-	<population id="popR" component="izAccomodation" size="1"/>
-	<population id="popS" component="izIIS" size="1"/>
-	<population id="popT" component="izIIB" size="1"/>
-
+        <population id="popQ" component="izDAP" size="1"/>
+        <population id="popR" component="izAccomodation" size="1"/>
+        <population id="popS" component="izIIS" size="1"/>
+        <population id="popT" component="izIIB" size="1"/>
+    
         <explicitInput target="popA[0]" input="iA"/>
         <explicitInput target="popB[0]" input="iB"/>
         <explicitInput target="popC[0]" input="iC"/>
@@ -152,25 +162,25 @@
         <explicitInput target="popK[0]" input="iK2"/>
         <explicitInput target="popK[0]" input="iK3"/>
         <explicitInput target="popK[0]" input="iK4"/>
-	<explicitInput target="popL[0]" input="iL1"/>
-	<explicitInput target="popL[0]" input="iL2"/>
-	<explicitInput target="popL[0]" input="iL3"/>
-	<explicitInput target="popL[0]" input="iL4"/>
-	<explicitInput target="popM[0]" input="iM"/>
-	<explicitInput target="popN[0]" input="iN"/>
+        <explicitInput target="popL[0]" input="iL1"/>
+        <explicitInput target="popL[0]" input="iL2"/>
+        <explicitInput target="popL[0]" input="iL3"/>
+        <explicitInput target="popL[0]" input="iL4"/>
+        <explicitInput target="popM[0]" input="iM"/>
+        <explicitInput target="popN[0]" input="iN"/>
         <explicitInput target="popO[0]" input="iO1"/>
         <explicitInput target="popO[0]" input="iO2"/>
         <explicitInput target="popO[0]" input="iO3"/>
-	<explicitInput target="popP[0]" input="iP1"/>
+        <explicitInput target="popP[0]" input="iP1"/>
         <explicitInput target="popP[0]" input="iP2"/>
         <explicitInput target="popP[0]" input="iP3"/>
-	<explicitInput target="popQ[0]" input="iQ"/>
-	<explicitInput target="popR[0]" input="iR1"/>
-	<explicitInput target="popR[0]" input="iR2"/>
-	<explicitInput target="popS[0]" input="iS1"/>
-	<explicitInput target="popS[0]" input="iS2"/>
-	<explicitInput target="popT[0]" input="iT1"/>
-	<explicitInput target="popT[0]" input="iT2"/>
+        <explicitInput target="popQ[0]" input="iQ"/>
+        <explicitInput target="popR[0]" input="iR1"/>
+        <explicitInput target="popR[0]" input="iR2"/>
+        <explicitInput target="popS[0]" input="iS1"/>
+        <explicitInput target="popS[0]" input="iS2"/>
+        <explicitInput target="popT[0]" input="iT1"/>
+        <explicitInput target="popT[0]" input="iT2"/>
     </network>
 <!--
 
