@@ -120,11 +120,7 @@
     <pulseGeneratorDL id="iS1" delay="0.0ms" duration="400ms" amplitude="80.0" />
     <pulseGeneratorDL id="iS2" delay="50.0ms" duration="170ms" amplitude="-5.0" />
 
-    <!-- (T) Inhibition induced bursting (IIB) 
-
-	Modifying parameter d from -2.0 to -0.7 in order to reproduce Fig. 1
-
-    -->
+    <!-- (T) Inhibition induced bursting (IIB) -->
     <izhikevichCell id="izIIB" v0 = "-63.8mV" thresh = "30mV" a ="-0.026" b = "-1.0" c = "-45.0" d = "-0.7"/>
     <pulseGeneratorDL id="iT1" delay="0.0ms" duration="350ms" amplitude="80.0" />
     <pulseGeneratorDL id="iT2" delay="50.0ms" duration="200ms" amplitude="-5.0" />

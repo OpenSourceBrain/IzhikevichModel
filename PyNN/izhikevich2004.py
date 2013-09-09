@@ -737,6 +737,11 @@ I = 0
 v_init = -62.0
 u_init = b * v_init
 
+T1=400/10;
+T2=T1+20;
+T3 = 0.7*400;
+T4 = T3+40;
+
 neuronParameters = 	{
 			'a':	a,	
 			'b':	b, 	
@@ -758,15 +763,57 @@ neuron.initialize(**initialValues)
 
 neuron.record('v')
 
-run(20)
+simTime = T1
+run(simTime)
+simulatedTime = simTime
 
-neuron.set(i_offset = 2.0)
+neuron.set(i_offset = 0.65)
 
-run(5)
+simTime = 4
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
 neuron.set(i_offset = 0.0)
 
-run(200 - 25)
+simTime = T2 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.65)
+
+simTime = 4
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = T3 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.65)
+
+simTime = 4
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = T4 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.65)
+
+simTime = 4
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = 400 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
 
 data = neuron.get_data().segments[0]
@@ -784,7 +831,7 @@ ax1.spines['top'].set_color('None')
 ax1.set_title('(K) Resonator')
 
 vm = data.filter(name='v')[0]
-#plt.plot(vm.times, vm, [0, 20, 20, 25, 25, 200],[-90, -90, -80, -80, -90, -90]);
+plt.plot(vm.times, vm, [0, T1, T1, (T1+8), (T1+8), T2, T2, (T2+8), (T2+8), T3, T3, (T3+8), (T3+8), T4, T4, (T4+8), (T4+8), 400], [-90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90]);
 
 plt.show(block=False)
 fig.canvas.draw()
@@ -816,6 +863,13 @@ I = 0
 v_init = -60.0
 u_init = b * v_init
 
+
+T1=100/11;
+T2=T1+5;
+T3 = 0.7*100;
+T4 = T3+10;
+
+
 neuronParameters = 	{
 			'a':	a,	
 			'b':	b, 	
@@ -837,15 +891,57 @@ neuron.initialize(**initialValues)
 
 neuron.record('v')
 
-run(20)
+simTime = T1
+run(simTime)
+simulatedTime = simTime
 
-neuron.set(i_offset = 2.0)
+neuron.set(i_offset = 9)
 
-run(5)
+simTime = 2
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
 neuron.set(i_offset = 0.0)
 
-run(200 - 25)
+simTime = T2 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 9)
+
+simTime = 2
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = T3 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 9)
+
+simTime = 2
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = T4 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 9)
+
+simTime = 2
+run(simTime)
+simulatedTime = simulatedTime + simTime
+
+neuron.set(i_offset = 0.0)
+
+simTime = 100 - simulatedTime
+run(simTime)
+simulatedTime = simulatedTime + simTime
 
 
 data = neuron.get_data().segments[0]
@@ -863,7 +959,7 @@ ax1.spines['top'].set_color('None')
 ax1.set_title('(L) Integrator')
 
 vm = data.filter(name='v')[0]
-#plt.plot(vm.times, vm, [0, 20, 20, 25, 25, 200],[-90, -90, -80, -80, -90, -90]);
+plt.plot(vm.times, vm, [0, T1, T1, (T1+2), (T1+2), T2, T2, (T2+2), (T2+2), T3, T3, (T3+2), (T3+2), T4, T4, (T4+2), (T4+2), 100], [-90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90]);
 
 plt.show(block=False)
 fig.canvas.draw()
@@ -1208,7 +1304,7 @@ timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
 a = 1.0
-b = 0.2
+b = 0.18
 c = -60.0
 d = -21.0
 
@@ -1339,7 +1435,7 @@ ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
 
-ax1.set_title('(Q) DAP')
+ax1.set_title('(R) Accomodation')
 
 vm = data.filter(name='v')[0]
 #plt.plot(vm.times, vm, [0, 9, 9, 11, 11, 50],[-90, -90, -80, -80, -90, -90]);
@@ -1350,7 +1446,7 @@ fig.canvas.draw()
 
 
 #####################################################
-##	Sub-plot R: Inhibition-induced spiking
+##	Sub-plot S: Inhibition-induced spiking
 #####################################################
 
 timeStep = globalTimeStep
@@ -1416,7 +1512,7 @@ ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
 
-ax1.set_title('(R) Inhibition-induced spiking')
+ax1.set_title('(S) Inhibition-induced spiking')
 
 vm = data.filter(name='v')[0]
 plt.plot(vm.times, vm, [0, 50, 50, 250, 250, 350],[-80, -80, -90, -90, -80, -80]);
@@ -1427,16 +1523,21 @@ fig.canvas.draw()
 
 
 #####################################################
-##	Sub-plot S: Inhibition-induced bursting
+##	Sub-plot T: Inhibition-induced bursting
 #####################################################
 
 timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
 
+'''
+Modifying parameter d from -2.0 to -0.7 in order to reproduce Fig. 1
+'''
+
 a = -0.026
 b = -1.0
 c = -45.0
-d = -2.0
+d = -0.7
+
 
 I = 80.0
 
@@ -1463,7 +1564,7 @@ neuron = create(cell_type)
 neuron.initialize(**initialValues)
 
 neuron.record('v')
-'''
+
 simTime = 50
 run(simTime)
 simulatedTime = simTime
@@ -1483,6 +1584,7 @@ simulatedTime = simulatedTime + simTime
 
 data = neuron.get_data().segments[0]
 
+
 plt.ion()
 fig = plt.figure(1, facecolor='white')
 
@@ -1497,11 +1599,13 @@ ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
 
-ax1.set_title('(S) Inhibition-induced bursting')
+ax1.set_title('(T) Inhibition-induced bursting')
 
 vm = data.filter(name='v')[0]
 plt.plot(vm.times, vm, [0, 50, 50, 250, 250, 350],[-80, -80, -90, -90, -80, -80]);
-'''
+
+
+
 plt.show(block=False)
 fig.canvas.draw()
 
