@@ -464,7 +464,7 @@ neuron.record('v')
 
 totalTimes = np.zeros(0)
 totalAmps = np.zeros(0)
-'''
+
 times = np.linspace(0.0, 30.0, int(1 + (30.0 - 0.0) / timeStep))
 amps = np.linspace(0.0, 0.0, int(1 + (30.0 - 0.0) / timeStep))
 totalTimes = np.append(totalTimes, times)
@@ -474,13 +474,13 @@ injectedCurrent = StepCurrentSource(times=times, amplitudes=amps)
 injectedCurrent.inject_into(neuron)
 
 run(30)
-'''
-'''
+
+
 times = np.linspace(30 + timeStep, 300, int((300 - 30) / timeStep))
 amps = np.linspace(0.075 * timeStep, 0.075 * (300 - 30), int((300 - 30) / timeStep))
 totalTimes = np.append(totalTimes, times)
 totalAmps = np.append(totalAmps, amps)
-'''
+
 
 times = np.linspace(30 + timeStep, 300, int((300 - 30) / timeStep))
 amps = np.linspace(14, 14, int((300 - 30) / timeStep))
@@ -508,7 +508,7 @@ ax1.spines['top'].set_color('None')
 ax1.set_title('(G) Class 1 excitable')
 
 vm = data.filter(name='v')[0]
-# plt.plot(vm.times, vm, [0, 30, 300, 300],[-90, -90, -70, -90])
+plt.plot(vm.times, vm, [0, 30, 300, 300],[-90, -90, -70, -90])
 
 plt.show(block=False)
 fig.canvas.draw()
@@ -1489,7 +1489,7 @@ simulatedTime = simTime
 
 neuron.set(i_offset = 75.0)
 
-simTime = 250 - simulatedTime
+simTime = 220 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 

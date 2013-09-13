@@ -57,7 +57,7 @@ totalTimes = np.append(totalTimes, times)
 totalAmps = np.append(totalAmps, amps)
 
 times = np.linspace(30 + timeStep, 300, int((300 - 30) / timeStep))
-amps = np.linspace(0.075 * timeStep, 0.075 * (300 - 30), int((300 - 30) / timeStep))
+amps = np.linspace(0.3 * timeStep, 0.3 * (300 - 30), int((300 - 30) / timeStep))
 totalTimes = np.append(totalTimes, times)
 totalAmps = np.append(totalAmps, amps)
 
