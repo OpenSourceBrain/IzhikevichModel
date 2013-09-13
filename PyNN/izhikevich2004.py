@@ -428,12 +428,6 @@ fig.canvas.draw()
 
 timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
-'''
-a = 0.02
-b = -0.1
-c = -55.0
-d = 6.0
-'''
 
 a = 0.02	
 b = 0.2 	
@@ -494,6 +488,9 @@ ax1.spines['left'].set_color('None')
 ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
+
+plt.xlim((0.0, 300.0))
+plt.ylim((-95.0, 30.0))
 
 ax1.set_title('(G) Class 1 excitable')
 
@@ -571,7 +568,10 @@ ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
 
-ax1.set_title('(H) Class 1 excitable')
+plt.xlim((0.0, 300.0))
+plt.ylim((-95.0, 30.0))
+
+ax1.set_title('(H) Class 2 excitable')
 
 vm = data.filter(name='v')[0]
 plt.plot(vm.times, vm, [0, 30, 300, 300],[-90, -90,-70, -90]);
@@ -1455,6 +1455,10 @@ ax1.spines['left'].set_color('None')
 ax1.spines['right'].set_color('None')
 ax1.spines['bottom'].set_color('None')
 ax1.spines['top'].set_color('None')
+
+plt.xlim((0.0, 400.0))
+plt.ylim((-95.0, 30.0))
+
 
 ax1.set_title('(R) Accomodation')
 
