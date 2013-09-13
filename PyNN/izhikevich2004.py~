@@ -1528,11 +1528,9 @@ fig.canvas.draw()
 
 timeStep = globalTimeStep
 setup(timestep=timeStep, min_delay=0.5)
+
 '''
-a = -0.026
-b = -1.0
-c = -45.0
-d = -2.0
+Modifying parameter d from -2.0 to -0.7 in order to reproduce Fig. 1
 '''
 
 a = -0.026

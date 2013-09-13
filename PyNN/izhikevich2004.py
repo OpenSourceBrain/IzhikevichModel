@@ -1489,7 +1489,7 @@ simulatedTime = simTime
 
 neuron.set(i_offset = 75.0)
 
-simTime = 250 - simulatedTime
+simTime = 220 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
