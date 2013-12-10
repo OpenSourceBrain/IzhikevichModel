@@ -5,6 +5,7 @@ NeuroML2/*.ode
 NeuroML2/*.9ml
 NeuroML2/*.png
 NeuroML2/*.dat
+NeuroML2/*.mod
 *.pyc
 *i686
 *x86_64
