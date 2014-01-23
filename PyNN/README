@@ -1,2 +1,4 @@
 Will contain examples in PyNN using new Izhikevich model:
 http://neuralensemble.org/docs/PyNN/reference/neuronmodels.html#pyNN.standardmodels.cells.Izhikevich
+
+See http://www.opensourcebrain.org/projects/izhikevichmodel/wiki for info on issues with present implementation!
