@@ -27,6 +27,13 @@ sim, options = get_simulator()
 
 globalTimeStep = 0.01
 
+plt.rcParams.update({
+    'lines.linewidth': 0.5,
+    'legend.fontsize': 'small',
+    'axes.titlesize': 'small',
+    'font.size': 6,
+    'savefig.dpi': 150,
+})
 
 # v represents the membrane potential of the neuron
 # u represents a membrane recovery variable
@@ -47,13 +54,17 @@ globalTimeStep = 0.01
 
 j = 1
 
+plt.ion()
+fig = plt.figure(1, facecolor='white', figsize=(6, 6))
+plt.subplots_adjust(hspace=0.5, wspace=0.4)
+
 
 def run_simulation(timestep=0.01, a=0.02, b=0.2, c=-65.0, d=6.0,
                    u_init=None, v_init=-70.0,
                    waveform=None, tstop=100.0,
                    title="", p_waveform=None,
                    xlim=None, ylim=None):
-    global j
+    global j, fig
     sim.setup(timestep=timestep, min_delay=0.5)
 
     if u_init is None:
@@ -74,8 +85,6 @@ def run_simulation(timestep=0.01, a=0.02, b=0.2, c=-65.0, d=6.0,
 
     data = neuron.get_data().segments[0]
 
-    plt.ion()
-    fig = plt.figure(1, facecolor='white')
     ax1 = fig.add_subplot(5, 4, j)
     j += 1
     ax1.get_xaxis().set_visible(False)
@@ -409,10 +418,10 @@ alt_times, alt_amps = np.hstack(parts)
 #assert alt_times == totalTimes
 #assert alt_amps == totalAmps
 
-fig2 = plt.figure(2)
-plt.plot(totalTimes, totalAmps)
-fig3 = plt.figure(3)
-plt.plot(alt_times, alt_amps)
+#fig2 = plt.figure(2)
+#plt.plot(totalTimes, totalAmps)
+#fig3 = plt.figure(3)
+#plt.plot(alt_times, alt_amps)
 
 run_simulation(a=0.02, b=1.0, c=-55.0, d=4.0, v_init=-65.0, u_init=-16.0,
                waveform=(totalTimes, totalAmps),
@@ -451,4 +460,4 @@ try:
     os.makedirs(os.path.dirname(filename))
 except OSError:
     pass
-plt.figure(1).savefig(filename)
+fig.savefig(filename)
