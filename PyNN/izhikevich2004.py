@@ -59,13 +59,13 @@ fig = plt.figure(1, facecolor='white', figsize=(6, 6))
 plt.subplots_adjust(hspace=0.5, wspace=0.4)
 
 
-def run_simulation(timestep=0.01, a=0.02, b=0.2, c=-65.0, d=6.0,
+def run_simulation(timestep=globalTimeStep, a=0.02, b=0.2, c=-65.0, d=6.0,
                    u_init=None, v_init=-70.0,
                    waveform=None, tstop=100.0,
                    title="", p_waveform=None,
                    xlim=None, ylim=None):
     global j, fig
-    sim.setup(timestep=timestep, min_delay=0.5)
+    sim.setup(timestep=timestep, min_delay=timestep)
 
     if u_init is None:
         u_init = b * v_init
@@ -102,6 +102,7 @@ def run_simulation(timestep=0.01, a=0.02, b=0.2, c=-65.0, d=6.0,
 
     vm = data.filter(name='v')[0]
     i_times, i_vars = p_waveform
+
     plt.plot(vm.times, vm, i_times, i_vars)
 
     plt.show(block=False)
@@ -125,8 +126,12 @@ def pulse(amplitude, onsets, width, t_stop, baseline=0.0):
     return np.array(times), np.array(amps)
 
 
-def ramp(amplitude, onset, t_stop, baseline=0.0, timeStep=0.01):
-    times = np.arange(0.0, t_stop + timeStep, timeStep)
+def ramp(amplitude, onset, t_stop, baseline=0.0, timeStep=globalTimeStep, t_start=0.0):
+    if onset > t_start:
+        times = np.hstack((np.array((t_start, onset)),  # flat part
+                           np.arange(onset + timeStep, t_stop + timeStep, timeStep)))  # ramp part
+    else:
+        times = np.arange(t_start, t_stop + timeStep, timeStep)
     amps = baseline + amplitude*(times - onset) * (times > onset)
     return times, amps
 
@@ -205,26 +210,6 @@ run_simulation(a=0.01, b=0.2, c=-65.0, d=8.0, v_init=-70.0,
 
 
 t_stop = 300.0
-
-#timeStep = globalTimeStep
-#totalTimes = np.zeros(0)
-#totalAmps = np.zeros(0)
-#times = np.linspace(0.0, 30.0, int(1 + (30.0 - 0.0) / timeStep))
-#amps = np.linspace(0.0, 0.0, int(1 + (30.0 - 0.0) / timeStep))
-#totalTimes = np.append(totalTimes, times)
-#totalAmps = np.append(totalAmps, amps)
-#times = np.linspace(30 + timeStep, t_stop, int((t_stop - 30) / timeStep))
-#amps = np.linspace(0.000075 * timeStep, 0.000075 * (t_stop - 30), int((t_stop - 30) / timeStep))
-#totalTimes = np.append(totalTimes, times)
-#totalAmps = np.append(totalAmps, amps)
-
-
-
-
-#alt_times, alt_amps = ramp(0.000075, 30.0, t_stop)
-#assert (totalTimes == alt_times)
-#assert (totalAmps == alt_amps)
-
 run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
                waveform=ramp(0.000075, 30.0, t_stop),
                tstop=t_stop, title='(G) Class 1 excitable',
@@ -236,22 +221,6 @@ run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
 ############################################
 
 t_stop = 300.0
-#timeStep = globalTimeStep
-#totalTimes = np.zeros(0)
-#totalAmps = np.zeros(0)
-#times = np.linspace(0.0, 30.0, int(1 + (30.0 - 0.0) / timeStep))
-#amps = np.linspace(-0.0005, -0.0005, int(1 + (30.0 - 0.0) / timeStep))
-#totalTimes = np.append(totalTimes, times)
-#totalAmps = np.append(totalAmps, amps)
-#times = np.linspace(30 + timeStep, t_stop, int((t_stop - 30) / timeStep))
-#amps = np.linspace(-0.0005 + 0.000015 * timeStep, -0.0005 + 0.000015 * (t_stop - 30), int((t_stop - 30) / timeStep))
-#totalTimes = np.append(totalTimes, times)
-#totalAmps = np.append(totalAmps, amps)
-#
-#alt_times, alt_amps = ramp(0.000015, 30.0, t_stop, baseline=-0.0005)
-#assert (totalTimes == alt_times)
-#assert (totalAmps == alt_amps)
-
 run_simulation(a=0.2, b=0.26, c=-65.0, d=0.0, v_init=-64.0,
                waveform=ramp(0.000015, 30.0, t_stop, baseline=-0.0005),
                tstop=t_stop, title='(H) Class 2 excitable',
@@ -385,43 +354,11 @@ run_simulation(a=1.0, b=0.18, c=-60.0, d=-21.0, v_init=-70.0,
 
 t_stop = 400.0
 
-timeStep = globalTimeStep
-totalTimes = np.zeros(0)
-totalAmps = np.zeros(0)
-
-times = np.linspace(0.0, 200.0, int(1 + (200.0 - 0.0) / timeStep))
-amps = np.linspace(0.0, 0.008, int(1 + (200.0 - 0.0) / timeStep))
-totalTimes = np.append(totalTimes, times)
-totalAmps = np.append(totalAmps, amps)
-
-times = np.linspace(200 + timeStep, 300, int((300 - 200) / timeStep))
-amps = np.linspace(0.0, 0.0, int((300 - 200) / timeStep))
-totalTimes = np.append(totalTimes, times)
-totalAmps = np.append(totalAmps, amps)
-
-times = np.linspace(300 + timeStep, 312.5, int((312.5 - 300) / timeStep))
-amps = np.linspace(0.0, 0.004, int((312.5 - 300) / timeStep))
-totalTimes = np.append(totalTimes, times)
-totalAmps = np.append(totalAmps, amps)
-
-times = np.linspace(312.5 + timeStep, 400, int((400 - 312.5) / timeStep))
-amps = np.linspace(0.0, 0.0, int((400 - 312.5) / timeStep))
-totalTimes = np.append(totalTimes, times)
-totalAmps = np.append(totalAmps, amps)
-
 parts = (ramp(0.00004, 0.0, 200.0),
-         (np.array([200.0, 300.0]), np.array([0.0, 0.0])),
-         ramp(0.00032, 300.0, 312.5),
-         (np.array([312.5, t_stop]), np.array([0.0, 0.0])))
-alt_times, alt_amps = np.hstack(parts)
-
-#assert alt_times == totalTimes
-#assert alt_amps == totalAmps
-
-#fig2 = plt.figure(2)
-#plt.plot(totalTimes, totalAmps)
-#fig3 = plt.figure(3)
-#plt.plot(alt_times, alt_amps)
+         (np.array([200.0 + globalTimeStep, 300.0 - globalTimeStep]), np.array([0.0, 0.0])),
+         ramp(0.00032, 300.0, 312.5, t_start=300.0),
+         (np.array([312.5 + globalTimeStep, t_stop]), np.array([0.0, 0.0])))
+totalTimes, totalAmps = np.hstack(parts)
 
 run_simulation(a=0.02, b=1.0, c=-55.0, d=4.0, v_init=-65.0, u_init=-16.0,
                waveform=(totalTimes, totalAmps),
