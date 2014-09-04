@@ -21,6 +21,7 @@ from __future__ import division
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 from pyNN.utility import get_simulator, normalized_filename
 
 sim, options = get_simulator()
@@ -52,19 +53,19 @@ plt.rcParams.update({
 # The parameter d describes after-spike reset of the recovery variable
 # u caused by slow high-threshold Na+ and K+ conductances.
 
-j = 1
+j = 0
 
 plt.ion()
 fig = plt.figure(1, facecolor='white', figsize=(6, 6))
-plt.subplots_adjust(hspace=0.5, wspace=0.4)
+gs = gridspec.GridSpec(5, 4)
+gs.update(hspace=0.5, wspace=0.4)
 
 
 def run_simulation(timestep=globalTimeStep, a=0.02, b=0.2, c=-65.0, d=6.0,
                    u_init=None, v_init=-70.0,
                    waveform=None, tstop=100.0,
-                   title="", p_waveform=None,
-                   xlim=None, ylim=None):
-    global j, fig
+                   title=""):
+    global j, fig, gs
     sim.setup(timestep=timestep, min_delay=timestep)
 
     if u_init is None:
@@ -85,25 +86,35 @@ def run_simulation(timestep=globalTimeStep, a=0.02, b=0.2, c=-65.0, d=6.0,
 
     data = neuron.get_data().segments[0]
 
-    ax1 = fig.add_subplot(5, 4, j)
-    j += 1
-    ax1.get_xaxis().set_visible(False)
-    ax1.get_yaxis().set_visible(False)
-    ax1.spines['left'].set_color('None')
-    ax1.spines['right'].set_color('None')
-    ax1.spines['bottom'].set_color('None')
-    ax1.spines['top'].set_color('None')
+    gs1 = gridspec.GridSpecFromSubplotSpec(2, 1,
+                                           subplot_spec=gs[j//4, j%4],
+                                           height_ratios=[8, 1],
+                                           hspace=0.0)
+    ax1 = plt.subplot(gs1[0])
+    ax2 = plt.subplot(gs1[1])
 
-    if xlim:
-        plt.xlim(xlim)
-    if ylim:
-        plt.ylim(ylim)
+    j += 1
+    for ax in (ax1, ax2):
+        ax.get_xaxis().set_visible(False)
+        ax.get_yaxis().set_visible(False)
+        ax.spines['left'].set_color('None')
+        ax.spines['right'].set_color('None')
+        ax.spines['bottom'].set_color('None')
+        ax.spines['top'].set_color('None')
+        ax.set_xlim(0.0, t_stop)
+
     ax1.set_title(title)
 
     vm = data.filter(name='v')[0]
-    i_times, i_vars = p_waveform
+    i_times, i_vars = stepify(times, amps)
 
-    plt.plot(vm.times, vm, i_times, i_vars)
+    ax1.plot(vm.times, vm)
+    ax1.set_ylim(-90, 30)
+
+    ax2.plot(i_times, i_vars, 'g')
+    ymin, ymax = amps.min(), amps.max()
+    padding = (ymax - ymin)/10
+    ax2.set_ylim(ymin - padding, ymax + padding)
 
     plt.show(block=False)
     fig.canvas.draw()
@@ -136,6 +147,16 @@ def ramp(amplitude, onset, t_stop, baseline=0.0, timeStep=globalTimeStep, t_star
     return times, amps
 
 
+def stepify(times, values):
+    new_times = np.empty((2*times.size - 1,))
+    new_values = np.empty_like(new_times)
+    new_times[::2] = times
+    new_times[1::2] = times[1:]
+    new_values[::2] = values
+    new_values[1::2] = values[:-1]
+    return new_times, new_values
+
+
 #############################################
 ##      Sub-plot A: Tonic spiking
 #############################################
@@ -143,8 +164,7 @@ def ramp(amplitude, onset, t_stop, baseline=0.0, timeStep=globalTimeStep, t_star
 t_stop = 100.0
 run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
                waveform=step(0.014, t_stop),
-               tstop=t_stop, title='(A) Tonic spiking',
-               p_waveform=([0, 10, 10, 100], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(A) Tonic spiking')
 
 #############################################
 ##      Sub-plot B: Phasic spiking
@@ -153,8 +173,7 @@ run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
 t_stop = 200.0
 run_simulation(a=0.02, b=0.25, c=-65.0, d=6.0, v_init=-64.0,
                waveform=step(0.0005, t_stop),
-               tstop=t_stop, title='(B) Phasic spiking',
-               p_waveform=([0, 20, 20, 200], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(B) Phasic spiking')
 
 #############################################
 ##      Sub-plot C: Tonic bursting
@@ -163,8 +182,7 @@ run_simulation(a=0.02, b=0.25, c=-65.0, d=6.0, v_init=-64.0,
 t_stop = 220.0
 run_simulation(a=0.02, b=0.2, c=-50.0, d=2.0, v_init=-70.0,
                waveform=step(0.015, t_stop),
-               tstop=t_stop, title='(C) Tonic bursting',
-               p_waveform=([0, 22, 22, 220], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(C) Tonic bursting')
 
 #############################################
 ##      Sub-plot D: Phasic bursting
@@ -173,8 +191,7 @@ run_simulation(a=0.02, b=0.2, c=-50.0, d=2.0, v_init=-70.0,
 t_stop = 200.0
 run_simulation(a=0.02, b=0.25, c=-55.0, d=0.05, v_init=-64.0,
                waveform=step(0.0006, t_stop),
-               tstop=t_stop, title='(D) Phasic bursting',
-               p_waveform=([0, 20, 20, 200], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(D) Phasic bursting')
 
 #############################################
 ##      Sub-plot E: Mixed mode
@@ -183,8 +200,7 @@ run_simulation(a=0.02, b=0.25, c=-55.0, d=0.05, v_init=-64.0,
 t_stop = 160.0
 run_simulation(a=0.02, b=0.2, c=-55.0, d=4.0, v_init=-70.0,
                waveform=step(0.01, t_stop),
-               tstop=t_stop, title='(E) Mixed mode',
-               p_waveform=([0, 16, 16, 160], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(E) Mixed mode')
 
 #######################################################
 ##      Sub-plot F: Spike Frequency Adaptation (SFA)
@@ -193,8 +209,7 @@ run_simulation(a=0.02, b=0.2, c=-55.0, d=4.0, v_init=-70.0,
 t_stop = 85.0
 run_simulation(a=0.01, b=0.2, c=-65.0, d=8.0, v_init=-70.0,
                waveform=step(0.03, t_stop),
-               tstop=t_stop, title='(F) SFA',
-               p_waveform=([0, 8.5, 8.5, 85], [-90, -90, -80, -80]))
+               tstop=t_stop, title='(F) SFA')
 
 ############################################
 ##      Sub-plot G: Class 1 excitable
@@ -212,9 +227,7 @@ run_simulation(a=0.01, b=0.2, c=-65.0, d=8.0, v_init=-70.0,
 t_stop = 300.0
 run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
                waveform=ramp(0.000075, 30.0, t_stop),
-               tstop=t_stop, title='(G) Class 1 excitable',
-               p_waveform=([0, 30, 300, 300], [-90, -90, -70, -90]),
-               xlim=(0.0, 300.0), ylim=(-95.0, 30.0))
+               tstop=t_stop, title='(G) Class 1 excitable')
 
 ############################################
 ##      Sub-plot H: Class 2 excitable
@@ -223,8 +236,7 @@ run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
 t_stop = 300.0
 run_simulation(a=0.2, b=0.26, c=-65.0, d=0.0, v_init=-64.0,
                waveform=ramp(0.000015, 30.0, t_stop, baseline=-0.0005),
-               tstop=t_stop, title='(H) Class 2 excitable',
-               p_waveform=([0, 30, 300, 300], [-90, -90, -70, -90]))
+               tstop=t_stop, title='(H) Class 2 excitable')
 
 #########################################
 ##      Sub-plot I: Spike latency
@@ -234,8 +246,7 @@ t_stop = 100.0
 run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
                waveform=pulse(0.00671,  # 0.00704 in original
                               [10], 3, t_stop),
-               tstop=t_stop, title='(I) Spike latency',
-               p_waveform=([0, 10, 10, 13, 13, 100], [-90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(I) Spike latency')
 
 #################################################
 ##      Sub-plot J: Subthreshold oscillation
@@ -244,8 +255,7 @@ run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
 t_stop = 200.0
 run_simulation(a=0.05, b=0.26, c=-60.0, d=0.0, v_init=-62.0,
                waveform=pulse(0.002, [20], 5, t_stop),
-               tstop=t_stop, title='(J) Subthreshold oscillation',
-               p_waveform=([0, 20, 20, 25, 25, 200], [-90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(J) Subthreshold oscillation')
 
 ####################################
 ##      Sub-plot K: Resonator
@@ -258,9 +268,7 @@ T3 = 0.7 * t_stop
 T4 = T3 + 40
 run_simulation(a=0.1, b=0.26, c=-60.0, d=-1.0, v_init=-62.0,
                waveform=pulse(0.00065, [T1, T2, T3, T4], 4, t_stop),
-               tstop=t_stop, title='(K) Resonator',
-               p_waveform=([0, T1, T1, (T1+8), (T1+8), T2, T2, (T2+8), (T2+8), T3, T3, (T3+8), (T3+8), T4, T4, (T4+8), (T4+8), 400],
-                           [-90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(K) Resonator')
 
 
 ####################################
@@ -282,9 +290,7 @@ T3 = 0.7 * t_stop
 T4 = T3 + 10
 run_simulation(a=0.02, b=-0.1, c=-55.0, d=6.0, v_init=-60.0,
                waveform=pulse(0.009, [T1, T2, T3, T4], 2, t_stop),
-               tstop=t_stop, title='(L) Integrator',
-               p_waveform=([0, T1, T1, (T1+2), (T1+2), T2, T2, (T2+2), (T2+2), T3, T3, (T3+2), (T3+2), T4, T4, (T4+2), (T4+2), 100],
-                           [-90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(L) Integrator')
 
 
 ######################################
@@ -294,9 +300,7 @@ run_simulation(a=0.02, b=-0.1, c=-55.0, d=6.0, v_init=-60.0,
 t_stop = 200.0
 run_simulation(a=0.03, b=0.25, c=-60.0, d=4.0, v_init=-64.0,
                waveform=pulse(-0.015, [20], 5, t_stop),
-               tstop=t_stop, title='(M) Rebound spike',
-               p_waveform=([0, 20, 20, 25, 25, 200],
-                           [-85, -85, -90, -90, -85, -85]))
+               tstop=t_stop, title='(M) Rebound spike')
 
 ######################################
 ##      Sub-plot N: Rebound burst
@@ -305,8 +309,7 @@ run_simulation(a=0.03, b=0.25, c=-60.0, d=4.0, v_init=-64.0,
 t_stop = 200.0
 run_simulation(a=0.03, b=0.25, c=-52.0, d=0.0, v_init=-64.0,
                waveform=pulse(-0.015, [20], 5, t_stop),
-               tstop=t_stop, title='(N) Rebound burst',
-               p_waveform=([0, 20, 20, 25, 25, 200], [-85, -85, -90, -90, -85, -85]))
+               tstop=t_stop, title='(N) Rebound burst')
 
 ###############################################
 ##      Sub-plot O: Threshold variability
@@ -317,9 +320,7 @@ times = np.array([0, 10, 15, 70, 75, 80, 85, t_stop])
 amps = np.array([0, 0.001, 0, -0.006, 0, 0.001, 0, 0])
 run_simulation(a=0.03, b=0.25, c=-60.0, d=4.0, v_init=-64.0,
                waveform=(times, amps),
-               tstop=t_stop, title='(O) Threshold variability',
-               p_waveform=([0, 10, 10, 15, 15, 70, 70, 75, 75, 80, 80, 85, 85, 100],
-                           [-85, -85, -80, -80, -85, -85, -90, -90, -85, -85, -80, -80, -85, -85]))
+               tstop=t_stop, title='(O) Threshold variability')
 
 ######################################
 ##      Sub-plot P: Bistability
@@ -330,9 +331,7 @@ T1 = t_stop/8
 T2 = 208  # 216.0 in original
 run_simulation(a=0.1, b=0.26, c=-60.0, d=0.0, v_init=-61.0,
                waveform=pulse(0.00124, [T1, T2], 5, t_stop, baseline=0.00024),
-               tstop=t_stop, title='(P) Bistability',
-               p_waveform=([0, 300.0/8, 300.0/8, (300.0/8 + 5), (300.0/8 + 5), 216, 216, 221, 221, 300],
-                           [-90, -90, -80, -80, -90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(P) Bistability')
 
 #####################################################
 ##      Sub-plot Q: Depolarizing after-potential
@@ -341,9 +340,7 @@ run_simulation(a=0.1, b=0.26, c=-60.0, d=0.0, v_init=-61.0,
 t_stop = 50.0
 run_simulation(a=1.0, b=0.18, c=-60.0, d=-21.0, v_init=-70.0,
                waveform=pulse(0.02, [9], 2, t_stop),
-               tstop=t_stop, title='(Q) DAP',
-               p_waveform=([0, 9, 9, 11, 11, 50],
-                           [-90, -90, -80, -80, -90, -90]))
+               tstop=t_stop, title='(Q) DAP')
 
 #####################################################
 ##      Sub-plot R: Accomodation
@@ -362,9 +359,7 @@ totalTimes, totalAmps = np.hstack(parts)
 
 run_simulation(a=0.02, b=1.0, c=-55.0, d=4.0, v_init=-65.0, u_init=-16.0,
                waveform=(totalTimes, totalAmps),
-               tstop=t_stop, title='(R) Accomodation',
-               p_waveform=(totalTimes, 1500 * totalAmps - 90),
-               xlim=(0.0, 400.0), ylim=(-95.0, 30.0))
+               tstop=t_stop, title='(R) Accomodation')
 
 #####################################################
 ##      Sub-plot S: Inhibition-induced spiking
@@ -373,9 +368,7 @@ run_simulation(a=0.02, b=1.0, c=-55.0, d=4.0, v_init=-65.0, u_init=-16.0,
 t_stop = 350.0
 run_simulation(a=-0.02, b=-1.0, c=-60.0, d=8.0, v_init=-63.8,
                waveform=pulse(0.075, [50], 170, t_stop, baseline=0.08),
-               tstop=t_stop, title='(S) Inhibition-induced spiking',
-               p_waveform=([0, 50, 50, 250, 250, 350],
-                           [-80, -80, -90, -90, -80, -80]))
+               tstop=t_stop, title='(S) Inhibition-induced spiking')
 
 #####################################################
 ##      Sub-plot T: Inhibition-induced bursting
@@ -388,9 +381,7 @@ Modifying parameter d from -2.0 to -0.7 in order to reproduce Fig. 1
 t_stop = 350.0
 run_simulation(a=-0.026, b=-1.0, c=-45.0, d=-0.7, v_init=-63.8,
                waveform=pulse(0.075, [50], 200, t_stop, baseline=0.08),
-               tstop=t_stop, title='(T) Inhibition-induced bursting',
-               p_waveform=([0, 50, 50, 250, 250, 350],
-                           [-80, -80, -90, -90, -80, -80]))
+               tstop=t_stop, title='(T) Inhibition-induced bursting')
 
 filename = normalized_filename("results", "izhikevich2004", "png", options.simulator)
 try:
