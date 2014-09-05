@@ -1,6 +1,5 @@
 """
-Model implementation in PyNN by Vitor Chaud, Andrew Davison and Padraig Gleeson (August 2013 and February 2014).
-This is a re-implementation of the models described in the following references to reproduce Fig. 1 of Izhikevich (2004).
+This script reproduces Fig. 1 of Izhikevich (2004).
 
 Original implementation references:
 
@@ -12,9 +11,23 @@ Original implementation references:
 
         http://www.izhikevich.org/publications/whichmod.htm
 
+See http://www.opensourcebrain.org/projects/izhikevichmodel/wiki for info on issues with the current implementation.
+
+
+Usage: python izhikevich2004.py <simulator>
+
+       where <simulator> is neuron, nest, brian, or another PyNN backend simulator
+
+
+Requirements: PyNN 0.8 and one or more PyNN-supported simulators
+
 
 Version 0.1 - original script written by Vitor Chaud during Google Summer of Code 2013
-Version 0.2 - script condensed and updated to use latest development version of PyNN by Andrew Davison, February 2014
+Version 0.2 - script condensed and updated to use latest development version of PyNN by Andrew Davison, February and September 2014
+
+
+:copyright: Copyright 2013-2014 Vitor Chaud, Andrew Davison and Padraig Gleeson
+:license: Modified BSD, see LICENSE for details.
 """
 
 from __future__ import division
