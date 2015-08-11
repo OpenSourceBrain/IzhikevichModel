@@ -1,0 +1,24 @@
+<Lems>
+
+    <!-- Specify which component to run -->
+    <Target component="sim1"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Inputs.xml"/>
+    <Include file="Simulation.xml"/>
+
+    <Include file="SmallNetwork.nml"/>
+
+    <Simulation id="sim1" length="110ms" step="0.01ms" target="net1">
+
+        <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="120" ymin="-90" ymax="40">
+            <Line id ="iz0" quantity="popA/0/izTonicSpiking/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popA/1/izTonicSpiking/v" scale="1mV"  color="#FFFF00" timeScale="1ms"/>
+        </Display>
+        
+        
+    </Simulation>
+    
+</Lems>

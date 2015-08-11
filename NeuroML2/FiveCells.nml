@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
+    id="WhichModel">
+    
+    <pulseGeneratorDL id="iA" delay="10ms" duration="90ms" amplitude="14" />
+    <pulseGeneratorDL id="iB" delay="20ms" duration="180ms" amplitude="0.5" />
+    <pulseGeneratorDL id="iC" delay="22ms" duration="198ms" amplitude="15" />
+    <pulseGeneratorDL id="iD" delay="20ms" duration="180ms" amplitude="0.6" />
+    <pulseGeneratorDL id="iE" delay="16ms" duration="144ms" amplitude="10" />
+
+    <!-- (A) tonic spiking -->
+    <izhikevichCell id="izTonicSpiking" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-65" d = "6"/>
+
+    <!-- (B) phasic spiking -->
+    <izhikevichCell id="izPhasicSpiking" v0 = "-64mV" thresh = "30mV" a ="0.02" b = "0.25" c = "-65" d = "6"/>
+
+    <!-- (C) tonic bursting -->
+    <izhikevichCell id="izTonicBursting" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-50" d = "2"/>
+
+    <!-- (D) phasic bursting -->
+    <izhikevichCell id="izPhasicBursting" v0 = "-64mV" thresh = "30mV" a ="0.02" b = "0.25" c = "-55" d = "0.05"/>
+
+    <!-- (E) mixed mode -->
+    <izhikevichCell id="izMixedMode" v0 = "-70mV" thresh = "30mV" a ="0.02" b = "0.2" c = "-55" d = "4"/>
+
+
+    <network id="net1">
+        <population id="popA" component="izTonicSpiking" size="1"/>
+        <population id="popB" component="izPhasicSpiking" size="1"/>
+        <population id="popC" component="izTonicBursting" size="1"/>
+        <population id="popD" component="izPhasicBursting" size="1"/>
+        <population id="popE" component="izMixedMode" size="1"/>
+    
+        <explicitInput target="popA[0]" input="iA"/>
+        <explicitInput target="popB[0]" input="iB"/>
+        <explicitInput target="popC[0]" input="iC"/>
+        <explicitInput target="popD[0]" input="iD"/>
+        <explicitInput target="popE[0]" input="iE"/>
+    </network>
+<!--
+
+
+-->
+</neuroml>
