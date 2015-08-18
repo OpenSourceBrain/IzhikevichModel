@@ -1,0 +1,57 @@
+<Lems>
+
+<!-- Specify which component to run -->
+<Target component="sim1"/>
+
+<!-- Include core NeuroML2 ComponentType definitions -->
+<Include file="Cells.xml"/>
+<Include file="Networks.xml"/>
+<Include file="Simulation.xml"/>
+
+
+<Include file="IzhikevichCell2008.xml"/>
+
+
+<izhikevichCell2008 id="weaklyAdapting" v0 = "-65mV" C="300 pF" vr = "-61.8 mV"
+                        vpeak = "22.6 mV" c = "-65.8 mV" k = "1 nS_per_mV"
+                        a = "0.001 per_ms" d = "5 pA" vt = "-57.0 mV" b = "3 nS"/>
+
+<pulseGenerator id="weakIext"   delay="0ms" duration="1000ms" amplitude="100 pA"/>
+<pulseGenerator id="weakIshift" delay="0ms" duration="1000ms" amplitude="-45 pA"/>
+
+<izhikevichCell2008 id="stronglyAdapting" v0 = "-65mV" C="115 pF" vr = "-61.8 mV"
+                        vpeak = "22.6 mV" c = "-65.8 mV" k = "0.3 nS_per_mV"
+                        a = "0.0012 per_ms" d = "10 pA" vt = "-57.0 mV" b = "3 nS"/>
+
+<pulseGenerator id="strongIext"   delay="0ms" duration="1000ms" amplitude="100 pA"/>
+<pulseGenerator id="strongIshift" delay="0ms" duration="1000ms" amplitude="0 pA"/>
+
+
+<network id="net1">
+    <population id="weakpop" component="weaklyAdapting" size="1"/>
+    <population id="strongpop" component="stronglyAdapting" size="1"/>
+    
+    <explicitInput target="weakpop[0]" input="weakIext" destination="synapses"/>
+    <explicitInput target="weakpop[0]" input="weakIshift" destination="synapses"/>
+    
+    <explicitInput target="strongpop[0]" input="strongIext" destination="synapses"/>
+    <explicitInput target="strongpop[0]" input="strongIshift" destination="synapses"/>
+    
+</network>
+
+<!-- End of NeuroML2 content -->
+        
+
+<Simulation id="sim1" length="1000ms" step="0.02ms" target="net1">
+
+    <Display id="d1" title="Weakly adapting PYR model 1 with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
+        <Line id ="weaklyAdapting v" quantity="weakpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+    </Display>
+    
+    <Display id="d2" title="Strongly adapting PYR model with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
+        <Line id ="stronglyAdapting v" quantity="strongpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+    </Display>
+      
+</Simulation>
+
+</Lems>
