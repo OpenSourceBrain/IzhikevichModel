@@ -28,17 +28,48 @@
 
 
     <network id="net1">
-        <population id="popA" component="izTonicSpiking" size="1"/>
-        <population id="popB" component="izPhasicSpiking" size="1"/>
-        <population id="popC" component="izTonicBursting" size="1"/>
-        <population id="popD" component="izPhasicBursting" size="1"/>
-        <population id="popE" component="izMixedMode" size="1"/>
+        <population id="popA" component="izTonicSpiking" type="populationList" size="1">
+            <instance id="0">
+                <location x="0" y="0" z="0"/>
+            </instance>
+        </population>
+        <population id="popB" component="izPhasicSpiking" type="populationList" size="1">
+            <instance id="0">
+                <location x="50" y="0" z="0"/>
+            </instance>
+        </population>
+        <population id="popC" component="izTonicBursting" type="populationList" size="1">
+            <instance id="0">
+                <location x="100" y="0" z="0"/>
+            </instance>
+        </population>
+        <population id="popD" component="izPhasicBursting" type="populationList" size="1">
+            <instance id="0">
+                <location x="150" y="0" z="0"/>
+            </instance>
+        </population>
+        <population id="popE" component="izMixedMode" type="populationList" size="1">
+            <instance id="0">
+                <location x="200" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <inputList id="InputA" component="iA" population="popA">
+            <input id="0" target="../popA/0/izTonicSpiking" destination="synapses"/>
+        </inputList>
+        <inputList id="InputB" component="iB" population="popB">
+            <input id="0" target="../popB/0/izPhasicSpiking" destination="synapses"/>
+        </inputList>
+        <inputList id="InputC" component="iC" population="popC">
+            <input id="0" target="../popC/0/izTonicBursting" destination="synapses"/>
+        </inputList>
+        <inputList id="InputD" component="iD" population="popD">
+            <input id="0" target="../popD/0/izPhasicBursting" destination="synapses"/>
+        </inputList>
+        <inputList id="InputE" component="iE" population="popE">
+            <input id="0" target="../popE/0/izMixedMode" destination="synapses"/>
+        </inputList>
     
-        <explicitInput target="popA[0]" input="iA"/>
-        <explicitInput target="popB[0]" input="iB"/>
-        <explicitInput target="popC[0]" input="iC"/>
-        <explicitInput target="popD[0]" input="iD"/>
-        <explicitInput target="popE[0]" input="iE"/>
     </network>
 <!--
 

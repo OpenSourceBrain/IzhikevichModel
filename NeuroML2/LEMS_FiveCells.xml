@@ -11,41 +11,41 @@
 
     <Include file="FiveCells.nml"/>
 
-    <Simulation id="sim1" length="400ms" step="0.01ms" target="net1">
+    <Simulation id="sim1" length="250ms" step="0.01ms" target="net1">
 
         <Display id="A" title="(A) tonic spiking" timeScale="1ms" xmin="-20" xmax="120" ymin="-90" ymax="40">
-            <Line id ="iz1" quantity="popA[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
-            <Line id ="i0" quantity="popA[0]/iA/I" scale="1"  color="#222222" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popA/0/izTonicSpiking/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popA/0/izTonicSpiking/iA/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
         
         <Display id="B" title="(B) phasic spiking" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
-            <Line id ="iz1" quantity="popB[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
-            <Line id ="i0" quantity="popB[0]/iB/I" scale="1"  color="#222222" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popB/0/izPhasicSpiking/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popB/0/izPhasicSpiking/iB/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
         
         <Display id="C" title="(C) tonic bursting" timeScale="1ms" xmin="-20" xmax="240" ymin="-90" ymax="40">
-            <Line id ="iz1" quantity="popC[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
-            <Line id ="i0" quantity="popC[0]/iC/I" scale="1"  color="#222222" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popC/0/izTonicBursting/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popC/0/izTonicBursting/iC/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
         
         <Display id="D" title="(D) phasic bursting" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
-            <Line id ="iz1" quantity="popD[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
-            <Line id ="i0" quantity="popD[0]/iD/I" scale="1"  color="#222222" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popD/0/izPhasicBursting/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popD/0/izPhasicBursting/iD/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
         
         <Display id="E" title="(E) mixed mode" timeScale="1ms" xmin="-20" xmax="200" ymin="-90" ymax="40">
-            <Line id ="iz1" quantity="popE[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
-            <Line id ="i0" quantity="popE[0]/iE/I" scale="1"  color="#222222" timeScale="1ms"/>
+            <Line id ="iz1" quantity="popE/0/izMixedMode/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="i0" quantity="popE/0/izMixedMode/iE/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
         
         <OutputFile id="of0" fileName="izfive_v.dat">
-            <OutputColumn id="izA" quantity="popA[0]/v" />
-            <OutputColumn id="izB" quantity="popB[0]/v" />
-            <OutputColumn id="izC" quantity="popC[0]/v" />
-            <OutputColumn id="izD" quantity="popD[0]/v" />
-            <OutputColumn id="izE" quantity="popE[0]/v" />
+            <OutputColumn id="izA" quantity="popA/0/izTonicSpiking/v" />
+            <OutputColumn id="izB" quantity="popB/0/izPhasicSpiking/v" />
+            <OutputColumn id="izC" quantity="popC/0/izTonicBursting/v" />
+            <OutputColumn id="izD" quantity="popD/0/izPhasicBursting/v" />
+            <OutputColumn id="izE" quantity="popE/0/izMixedMode/v" />
         </OutputFile>
-        
+        -->
     </Simulation>
     
 </Lems>
