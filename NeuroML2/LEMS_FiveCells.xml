@@ -45,7 +45,7 @@
             <OutputColumn id="izD" quantity="popD/0/izPhasicBursting/v" />
             <OutputColumn id="izE" quantity="popE/0/izMixedMode/v" />
         </OutputFile>
-        -->
+        
     </Simulation>
     
 </Lems>

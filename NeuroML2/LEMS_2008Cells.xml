@@ -43,43 +43,55 @@
 
 
 <network id="net1">
-    <population id="weakpop" component="weaklyAdapting" size="1"/>
+    <!--<population id="weakpop" component="weaklyAdapting" size="1"/>
     <population id="strongpop" component="stronglyAdapting" size="1"/>
-    <population id="RS_l5pop" component="RS_l5" size="1"/>
-    <population id="LSpop" component="LS" size="1"/>
+    <population id="RS_l5pop" component="RS_l5" size="1"/>-->
     
+    <population id="LSpop" component="LS" type="populationList" size="1">
+        <instance id="0">
+            <location x="0" y="0" z="0"/>
+        </instance>
+    </population>
+    <!--
     <explicitInput target="weakpop[0]" input="weakIext" destination="synapses"/>
     <explicitInput target="weakpop[0]" input="weakIshift" destination="synapses"/>
     
     <explicitInput target="strongpop[0]" input="strongIext" destination="synapses"/>
     <explicitInput target="strongpop[0]" input="strongIshift" destination="synapses"/>
     
-    <explicitInput target="RS_l5pop[0]" input="RS_l5Iext" destination="synapses"/>
+    <explicitInput target="RS_l5pop[0]" input="RS_l5Iext" destination="synapses"/>-->
     
-    <explicitInput target="LSpop[0]" input="LSIext" destination="synapses"/>
+        <inputList id="iLSIext" component="LSIext" population="LSpop">
+            <input id="0" target="../LSpop/0/LS" destination="synapses"/>
+        </inputList>
     
 </network>
 
 <!-- End of NeuroML2 content -->
         
 
-<Simulation id="sim1" length="1000ms" step="0.02ms" target="net1">
+<Simulation id="sim1" length="700ms" step="0.02ms" target="net1">
 
+    <!--
     <Display id="d1" title="Weakly adapting PYR model 1 with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
         <Line id ="weaklyAdapting v" quantity="weakpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
-    
     <Display id="d2" title="Strongly adapting PYR model with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
         <Line id ="stronglyAdapting v" quantity="strongpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     
     <Display id="d3" title="RS_l5 (uses parameters from Fig 10 of suppl info of PNAS2008, but not same behaviour due to no dendrites)" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
         <Line id ="RS_l5 v" quantity="RS_l5pop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
-    </Display>
+    </Display>-->
     
     <Display id="d4" title="LS (uses parameters from Fig 10 of suppl info of PNAS2008, but not same behaviour due to no dendrites)" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
-        <Line id ="LS v" quantity="LSpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+        <Line id ="LS v" quantity="LSpop/0/LS/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
+
+
+    <OutputFile id="of0" fileName="iz2008_v.dat">
+        <OutputColumn id="ls" quantity="LSpop/0/LS/v" />
+    </OutputFile>
       
 </Simulation>
 
