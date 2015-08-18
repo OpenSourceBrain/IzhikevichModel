@@ -9,34 +9,31 @@
 
 -->
 
-
 <Dimension name="conductance_per_voltage" m="-2" l="-4" t="6" i="3"/>
 
 <Unit symbol="nS_per_mV" dimension="conductance_per_voltage" power="-6"/>
 
 <ComponentType name="izhikevichCell2008"
         extends="baseCellMembPotCap"
-        description="Cell based on the modified Izhikevich model in Izhikevich and Edelman, Large-scale model of mammalian thalamocortical systems, PNAS 2008">
+        description="Cell based on the modified Izhikevich model in Izhikevich and Edelman, Large-scale model of mammalian thalamocortical systems, PNAS 2008. Note: this is only a point neuron model, no dendrites.">
 
         <Parameter name="v0" dimension="voltage"/>  
         
         <!--
         Defined in baseCellMembPotCap:
-        
         <Parameter name="C" dimension="capacitance"/>
         -->
-        <Parameter name="vr" dimension="voltage"/> 
-        <Parameter name="vpeak" dimension="voltage"/> 
-        <Parameter name="vt" dimension="voltage"/> 
-        
         <Parameter name="k" dimension="conductance_per_voltage"/>
+        
+        <Parameter name="vr" dimension="voltage"/> 
+        <Parameter name="vt" dimension="voltage"/> 
+        <Parameter name="vpeak" dimension="voltage"/> 
         
         <Parameter name="a" dimension="per_time"/>
         <Parameter name="b" dimension="conductance"/>
         <Parameter name="c" dimension="voltage"/>
         <Parameter name="d" dimension="current"/>
         
-
         <Attachments name="synapses" type="basePointCurrent"/>
 
         <Exposure name="u" dimension="current"/>
@@ -49,8 +46,6 @@
             <DerivedVariable name="iSyn"  dimension="current" exposure="iSyn" select="synapses[*]/i" reduce="add" />
             
             <DerivedVariable name="iMemb" dimension="current" exposure="iMemb" value="k * (v-vr) * (v-vt) + iSyn - u"/>
-            
-           
             
             <TimeDerivative variable="v" value="iMemb / C"/>
             <TimeDerivative variable="u" value="a * (b * (v-vr) - u)"/>

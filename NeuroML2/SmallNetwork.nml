@@ -26,12 +26,9 @@
             </instance>
         </population>
         
-   
         <projection id="proj0" presynapticPopulation="popA" postsynapticPopulation="popB" synapse="syn0">
             <connection id="0" preCellId="../popA/0/RS" postCellId="../popB/0/RS"/>
         </projection>
-        
-        
         
         <inputList id="InputA" component="pulse0" population="popA">
             <input id="0" target="../popA/0/RS" destination="synapses"/>
