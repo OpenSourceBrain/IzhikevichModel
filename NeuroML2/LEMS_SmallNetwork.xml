@@ -15,7 +15,7 @@
     <Simulation id="sim1" length="110ms" step="0.01ms" target="net1">
 
         <Display id="A" title="Network" timeScale="1ms" xmin="-20" xmax="120" ymin="-70" ymax="60">
-            <Line id ="pre" quantity="popA/0/RS/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
+            <Line id ="pre" quantity="popA/0/RS/v" scale="1mV"  color="#0000FF" timeScale="1ms"/>
             <Line id ="post" quantity="popB/0/RS/v" scale="1mV"  color="#FFFF00" timeScale="1ms"/>
         </Display>
         
