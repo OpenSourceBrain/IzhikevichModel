@@ -22,18 +22,20 @@ Original implementation references:
 #############################################
 
 
-from pyNN.random import RandomDistribution, NumpyRNG
-from pyNN.utility import get_script_args, Timer, ProgressBar, init_logging, normalized_filename
+from pyNN.utility import get_script_args, Timer
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+if len(sys.argv) == 1:
+    print("\nPlease specify the simulator for PyNN to use as an argument, e.g.\n\n   python izhikevich2004.py neuron\n\n")
+    exit()
 simulator_name = get_script_args(1)[0]  
 
 exec("from pyNN.%s import *" % simulator_name)
 
 print("\n")
-print "Starting PyNN with simulator: %s"%simulator_name
+print("Starting PyNN with simulator: %s"%simulator_name)
 
 timer = Timer()
 
@@ -43,7 +45,6 @@ globalTimeStep = 0.01
 # v represents the membrane potential of the neuron
 # u represents a membrane recovery variable
 # Synaptic currents or injected dc-currents are delivered via the variable I.
-
 
 
 # Dimensionless parameters
@@ -95,7 +96,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(10)
-neuron.set(i_offset = 14)
+neuron.set(i_offset = 0.014)
 run(90)
 
 data = neuron.get_data().segments[0]
@@ -154,7 +155,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(20)
-neuron.set(i_offset = 0.5)
+neuron.set(i_offset = 0.0005)
 run(180)
 
 data = neuron.get_data().segments[0]
@@ -213,7 +214,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(22)
-neuron.set(i_offset = 15.)
+neuron.set(i_offset = 0.015)
 run(198)
 
 data = neuron.get_data().segments[0]
@@ -271,7 +272,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(20)
-neuron.set(i_offset = 0.6)
+neuron.set(i_offset = 0.0006)
 run(180)
 
 data = neuron.get_data().segments[0]
@@ -330,7 +331,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(16)
-neuron.set(i_offset = 10.0)
+neuron.set(i_offset = 0.010)
 run(160 - 16)
 
 data = neuron.get_data().segments[0]
@@ -389,7 +390,7 @@ neuron.initialize(**initialValues)
 neuron.record('v')
 
 run(8.5)
-neuron.set(i_offset = 30.0)
+neuron.set(i_offset = 0.030)
 run(85 - 8.5)
 
 data = neuron.get_data().segments[0]
@@ -514,7 +515,7 @@ b = 0.26
 c = -65.0
 d = 0.0
 
-I = -0.5
+I = -0.0005
 
 v_init = -64.0
 u_init = b * v_init
@@ -622,7 +623,7 @@ neuron.record('v')
 run(10)
 
 # neuron.set(i_offset = 7.04)
-neuron.set(i_offset = 6.71)
+neuron.set(i_offset = 0.00671)
 
 run(3)
 
@@ -694,7 +695,7 @@ neuron.record('v')
 
 run(20)
 
-neuron.set(i_offset = 2.0)
+neuron.set(i_offset = 0.002)
 
 run(5)
 
@@ -772,7 +773,7 @@ simTime = T1
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 0.65)
+neuron.set(i_offset = 0.00065)
 
 simTime = 4
 run(simTime)
@@ -784,7 +785,7 @@ simTime = T2 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 0.65)
+neuron.set(i_offset = 0.00065)
 
 simTime = 4
 run(simTime)
@@ -796,7 +797,7 @@ simTime = T3 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 0.65)
+neuron.set(i_offset = 0.00065)
 
 simTime = 4
 run(simTime)
@@ -808,7 +809,7 @@ simTime = T4 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 0.65)
+neuron.set(i_offset = 0.00065)
 
 simTime = 4
 run(simTime)
@@ -900,7 +901,7 @@ simTime = T1
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 9)
+neuron.set(i_offset = 0.009)
 
 simTime = 2
 run(simTime)
@@ -912,7 +913,7 @@ simTime = T2 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 9)
+neuron.set(i_offset = 0.009)
 
 simTime = 2
 run(simTime)
@@ -924,7 +925,7 @@ simTime = T3 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 9)
+neuron.set(i_offset = 0.009)
 
 simTime = 2
 run(simTime)
@@ -936,7 +937,7 @@ simTime = T4 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 9)
+neuron.set(i_offset = 0.009)
 
 simTime = 2
 run(simTime)
@@ -1011,7 +1012,7 @@ neuron.record('v')
 
 run(20)
 
-neuron.set(i_offset = -15.0)
+neuron.set(i_offset = -0.015)
 
 run(5)
 
@@ -1081,7 +1082,7 @@ neuron.record('v')
 
 run(20)
 
-neuron.set(i_offset = -15.0)
+neuron.set(i_offset = -0.015)
 
 run(5)
 
@@ -1154,7 +1155,7 @@ simTime = 10
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 1.0)
+neuron.set(i_offset = 0.001)
 
 simTime = 15 - simulatedTime
 run(simTime)
@@ -1166,7 +1167,7 @@ simTime = 70 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = -6.0)
+neuron.set(i_offset = -0.006)
 
 simTime = 75 - simulatedTime
 run(simTime)
@@ -1178,7 +1179,7 @@ simTime = 80 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 1.0)
+neuron.set(i_offset = 0.001)
 
 simTime = 85 - simulatedTime
 run(simTime)
@@ -1223,7 +1224,7 @@ b = 0.26
 c = -60.0
 d = 0.0
 
-I = 0.24
+I = 0.00024
 
 v_init = -61.0
 u_init = b * v_init
@@ -1253,26 +1254,26 @@ simTime = 300.0/8
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 1.24)
+neuron.set(i_offset = 0.00124)
 
 simTime = 5
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 0.24)
+neuron.set(i_offset = 0.00024)
 
 # simTime = 216 - simulatedTime
 simTime = 208 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 1.24)
+neuron.set(i_offset = 0.00124)
 
 simTime = 5
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 0.24)
+neuron.set(i_offset = 0.00024)
 
 simTime = 300 - simulatedTime
 run(simTime)
@@ -1339,7 +1340,7 @@ simTime = 9
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 20.0)
+neuron.set(i_offset = 0.020)
 
 simTime = 2
 run(simTime)
@@ -1430,14 +1431,13 @@ times = np.linspace(312.5 + timeStep, 400, int((400 - 312.5) / timeStep))
 amps = np.linspace(0.0, 0.0, int((400 - 312.5) / timeStep))
 totalTimes = np.append(totalTimes, times)
 totalAmps = np.append(totalAmps, amps)
-
+totalAmps = totalAmps/1000.0
 
 injectedCurrent = StepCurrentSource(times=totalTimes, amplitudes=totalAmps)
 injectedCurrent.inject_into(neuron)
 
 
 run(400.0)
-
 
 
 data = neuron.get_data().segments[0]
@@ -1482,7 +1482,7 @@ b = -1.0
 c = -60.0
 d = 8.0
 
-I = 80.0
+I = 0.080
 
 v_init = -63.8
 u_init = b * v_init
@@ -1512,13 +1512,13 @@ simTime = 50
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 75.0)
+neuron.set(i_offset = 0.075)
 
 simTime = 220 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 80.0)
+neuron.set(i_offset = 0.080)
 
 simTime = 350 - simulatedTime
 run(simTime)
@@ -1564,7 +1564,7 @@ c = -45.0
 d = -0.7
 
 
-I = 80.0
+I = 0.080
 
 v_init = -63.8
 u_init = b * v_init
@@ -1594,13 +1594,13 @@ simTime = 50
 run(simTime)
 simulatedTime = simTime
 
-neuron.set(i_offset = 75.0)
+neuron.set(i_offset = 0.075)
 
 simTime = 250 - simulatedTime
 run(simTime)
 simulatedTime = simulatedTime + simTime
 
-neuron.set(i_offset = 80.0)
+neuron.set(i_offset = 0.080)
 
 simTime = 350 - simulatedTime
 run(simTime)
@@ -1630,12 +1630,8 @@ vm = data.filter(name='v')[0]
 plt.plot(vm.times, vm, [0, 50, 50, 250, 250, 350],[-80, -80, -90, -90, -80, -80]);
 
 
-
 plt.show(block=False)
 fig.canvas.draw()
-
-
-
 
 
 
