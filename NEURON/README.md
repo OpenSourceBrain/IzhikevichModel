@@ -1,6 +1,6 @@
 ## Izhikevich artificial neuron model from 2 different publications: 1) Izhikevich et al, 2003; and 2) Izhikevich, 2007.
 
-**Files:**
+**Files**
 
 [izhi2003a.mod](izhi2003a.mod) // integrates STATE {u, vv}; firing patterns in 2003,
 2004 papers; POINT_PROCESS Izhi2003a
@@ -50,7 +50,7 @@ This single parameterization was used in these 2 papers with different cell-sets
 interfere with built-in v of cell -- the built-in v is used for
 izhi2003b.mod)
 
-**a,b,c,d,I are the major parameters; f,g are reset for 2 simulations (G-"Class 1" and L-"integrator")**
+a,b,c,d,I are the major parameters; f,g are reset for 2 simulations (G-"Class 1" and L-"integrator")
 
 3 of the simulations shown in izhi2004.gif are not properly replicated:
 Q: depolarizing afterpotential does not repolarize properly
@@ -75,50 +75,50 @@ Equation for synaptic inputs built-in for izhi2007.mod were taken from: Izhikevi
 simulation is displaced in the phase plane to produce interruption and
 create next stage of dynamics; see below)
 
-**The following parameters specific to each cell type: C, k, vr, vt, vpeak, a, b, c, d and celltype**
+The following parameters specific to each cell type: C, k, vr, vt, vpeak, a, b, c, d and celltype
 
 Cell types available are based on Izhikevich, 2007 book (chapter
 8). Here we include a description of each cell type, the model
 parameters required to implement it, and the conditions to replicate
 the 2007 book figures:
-
-1. RS - Layer 5 regular spiking pyramidal cell (fig 8.12 from 2007
-    book) Parameters: C=100; k=0.7; vr=-60; vt=-40; vpeak=35;
-    a=0.03; b=-2; c=-50; d=100; celltype=1 Book fig: T = 520 ms;
-    IinRange = [60,70,85,100] pA
-
-2. IB - Layer 5 intrinsically bursting cell (fig 8.19 from 2007
-    book) Parameters: C=150; k=1.2; vr=-75; vt=-45; vpeak=50;
-    a=0.01; b=5; c=-56; d=130; celltype=2 Book fig: T = 600 ms;
-    IinRange = [290,370,500,550] pA
-
-3. CH - Cat primary visual cortex chattering cell (fig 8.23 from
-    2007 book) Parameters: C=50; k=1.5; vr=-60; vt=-40; vpeak=25;
-    a=0.03; b=1; c=-40; d=150; celltype=3 Book fig: T = 210 ms;
-    IinRange = [200,300,400,600] pA
-
-4. LTS - Rat barrel cortex Low-threshold spiking interneuron (fig
-    8.25 from 2007 book) Parameters: C=100; k=1; vr=-56; vt=-42;
-    vpeak=40; a=0.03; b=8; c=-53; d=20; celltype=4 Book fig: T =
-    100 ms; IinRange = [100,125,200,300] pA
-
-5. FS - Rat visual cortex layer 5 fast-spiking interneuron (fig
-    8.27 from 2007 book) Parameters: C=20; k=1; vr=-55; vt=-40;
-    vpeak=25; a=0.2; b=-2; c=-45; d=-55; celltype=5; Book fig: T =
-    100 ms; IinRange = [73.2,100,200,400] pA
-
-6. TC - Cat dorsal LGN thalamocortical (TC) cell (fig 8.31 from
-    2007 book) C=200; k=1.6; vr=-60; vt=-50; vpeak=35; a=0.01;
-    b=15; c=-60; d=10; celltype=6 Book fig: T = 650 ms; IinRange =
-    [50,100,150] pA Book fig (burst mode): T0 = 120 ms; Iin0 =
-    -1200 pA; T = 650 ms; IinRange = [0,50,100] pA
-
-7. RTN - Rat reticular thalamic nucleus (RTN) cell (fig 8.32 from
-	2007 book) Parameters: C=40; k=0.25; vr=-65; vt=-45;
-	vpeak=0; a=0.015; b=10; c=-55; d=50; celltype=7 Book
-	fig: T = 650 ms; IinRange = [50,70,110] pA Book fig
-	(burst mode): T0 = 120 ms; Iin0 = -350 pA; T = 720 ms;
-	IinRange = [30,50,90] pA
+	
+	1. RS - Layer 5 regular spiking pyramidal cell (fig 8.12 from 2007
+	    book) Parameters: C=100; k=0.7; vr=-60; vt=-40; vpeak=35;
+	    a=0.03; b=-2; c=-50; d=100; celltype=1 Book fig: T = 520 ms;
+	    IinRange = [60,70,85,100] pA
+	
+	2. IB - Layer 5 intrinsically bursting cell (fig 8.19 from 2007
+	    book) Parameters: C=150; k=1.2; vr=-75; vt=-45; vpeak=50;
+	    a=0.01; b=5; c=-56; d=130; celltype=2 Book fig: T = 600 ms;
+	    IinRange = [290,370,500,550] pA
+	
+	3. CH - Cat primary visual cortex chattering cell (fig 8.23 from
+	    2007 book) Parameters: C=50; k=1.5; vr=-60; vt=-40; vpeak=25;
+	    a=0.03; b=1; c=-40; d=150; celltype=3 Book fig: T = 210 ms;
+	    IinRange = [200,300,400,600] pA
+	
+	4. LTS - Rat barrel cortex Low-threshold spiking interneuron (fig
+	    8.25 from 2007 book) Parameters: C=100; k=1; vr=-56; vt=-42;
+	    vpeak=40; a=0.03; b=8; c=-53; d=20; celltype=4 Book fig: T =
+	    100 ms; IinRange = [100,125,200,300] pA
+	
+	5. FS - Rat visual cortex layer 5 fast-spiking interneuron (fig
+	    8.27 from 2007 book) Parameters: C=20; k=1; vr=-55; vt=-40;
+	    vpeak=25; a=0.2; b=-2; c=-45; d=-55; celltype=5; Book fig: T =
+	    100 ms; IinRange = [73.2,100,200,400] pA
+	
+	6. TC - Cat dorsal LGN thalamocortical (TC) cell (fig 8.31 from
+	    2007 book) C=200; k=1.6; vr=-60; vt=-50; vpeak=35; a=0.01;
+	    b=15; c=-60; d=10; celltype=6 Book fig: T = 650 ms; IinRange =
+	    [50,100,150] pA Book fig (burst mode): T0 = 120 ms; Iin0 =
+	    -1200 pA; T = 650 ms; IinRange = [0,50,100] pA
+	
+	7. RTN - Rat reticular thalamic nucleus (RTN) cell (fig 8.32 from
+		2007 book) Parameters: C=40; k=0.25; vr=-65; vt=-45;
+		vpeak=0; a=0.015; b=10; c=-55; d=50; celltype=7 Book
+		fig: T = 650 ms; IinRange = [50,70,110] pA Book fig
+		(burst mode): T0 = 120 ms; Iin0 = -350 pA; T = 720 ms;
+		IinRange = [30,50,90] pA
 
 
 Note: The LTS, FS, TC and RTN cells require modifications to the
