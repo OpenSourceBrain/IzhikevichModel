@@ -48,7 +48,7 @@
             <Line id ="iz2" quantity="popH[0]/U" scale="1"    color="#BBA0AA" timeScale="1ms"/>
             <Line id ="i0" quantity="popH[0]/iH/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-       <Display id="I" title="(I) spike latency" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
+        <Display id="I" title="(I) spike latency" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popI[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popI[0]/iI/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
@@ -56,29 +56,29 @@
             <Line id ="iz1" quantity="popJ[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popJ[0]/iJ/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-         <Display id="K" title="(K) resonator" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
+        <Display id="K" title="(K) resonator" timeScale="1ms" xmin="-20" xmax="320" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popK[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popK[0]/iK1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popK[0]/iK2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
             <Line id ="i3" quantity="popK[0]/iK3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
             <Line id ="i4" quantity="popK[0]/iK4/I" scale="0.1"  color="#228888" timeScale="1ms"/>
         </Display>
-	<Display id="L" title="(L) integrator" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
+        <Display id="L" title="(L) integrator" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popL[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popL[0]/iL1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popL[0]/iL2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
             <Line id ="i3" quantity="popL[0]/iL3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
             <Line id ="i4" quantity="popL[0]/iL4/I" scale="0.1"  color="#228888" timeScale="1ms"/>
         </Display>
-	<Display id="M" title="(M) rebound spike" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
+        <Display id="M" title="(M) rebound spike" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popM[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popM[0]/iM/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-	<Display id="N" title="(N) rebound burst" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
+        <Display id="N" title="(N) rebound burst" timeScale="1ms" xmin="-20" xmax="220" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popN[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popN[0]/iN/I" scale="1"  color="#222222" timeScale="1ms"/>
         </Display>
-	<Display id="O" title="(O) threshold variability" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
+        <Display id="O" title="(O) threshold variability" timeScale="1ms" xmin="-10" xmax="110" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popO[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popO[0]/iO1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popO[0]/iO2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
@@ -90,26 +90,88 @@
             <Line id ="i2" quantity="popP[0]/iP2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
             <Line id ="i3" quantity="popP[0]/iP3/I" scale="0.1"  color="#226666" timeScale="1ms"/>
         </Display>
-	<Display id="Q" title="(Q) DAP" timeScale="1ms" xmin="-5" xmax="55" ymin="-90" ymax="40">
+        <Display id="Q" title="(Q) DAP" timeScale="1ms" xmin="-5" xmax="55" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popQ[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i0" quantity="popQ[0]/iQ/I" scale="0.1"  color="#222222" timeScale="1ms"/>
         </Display>
-	<Display id="R" title="(R) Accomodation" timeScale="1ms" xmin="-20" xmax="420" ymin="-90" ymax="90">
+        <Display id="R" title="(R) Accomodation" timeScale="1ms" xmin="-20" xmax="420" ymin="-90" ymax="90">
             <Line id ="iz1" quantity="popR[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popR[0]/iR1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popR[0]/iR2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
         </Display>
-	<Display id="S" title="(S) IIS" timeScale="1ms" xmin="-20" xmax="370" ymin="-90" ymax="40">
+        <Display id="S" title="(S) IIS" timeScale="1ms" xmin="-20" xmax="370" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popS[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popS[0]/iS1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popS[0]/iS2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
         </Display>
-	<Display id="T" title="(T) IIB" timeScale="1ms" xmin="-20" xmax="370" ymin="-90" ymax="40">
+        <Display id="T" title="(T) IIB" timeScale="1ms" xmin="-20" xmax="370" ymin="-90" ymax="40">
             <Line id ="iz1" quantity="popT[0]/v" scale="1mV"  color="#FF0000" timeScale="1ms"/>
             <Line id ="i1" quantity="popT[0]/iT1/I" scale="0.1"  color="#222222" timeScale="1ms"/>
             <Line id ="i2" quantity="popT[0]/iT2/I" scale="0.1"  color="#224444" timeScale="1ms"/>
         </Display><!-- -->
         
+
+        <OutputFile id="ofA" fileName="results/A.dat">
+            <OutputColumn id="v" quantity="popA[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofB" fileName="results/B.dat">
+            <OutputColumn id="v" quantity="popB[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofC" fileName="results/C.dat">
+            <OutputColumn id="v" quantity="popC[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofD" fileName="results/D.dat">
+            <OutputColumn id="v" quantity="popD[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofE" fileName="results/E.dat">
+            <OutputColumn id="v" quantity="popE[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofF" fileName="results/F.dat">
+            <OutputColumn id="v" quantity="popF[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofG" fileName="results/G.dat">
+            <OutputColumn id="v" quantity="popG[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofH" fileName="results/H.dat">
+            <OutputColumn id="v" quantity="popH[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofI" fileName="results/I.dat">
+            <OutputColumn id="v" quantity="popI[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofJ" fileName="results/J.dat">
+            <OutputColumn id="v" quantity="popJ[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofK" fileName="results/K.dat">
+            <OutputColumn id="v" quantity="popK[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofL" fileName="results/L.dat">
+            <OutputColumn id="v" quantity="popL[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofM" fileName="results/M.dat">
+            <OutputColumn id="v" quantity="popM[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofN" fileName="results/N.dat">
+            <OutputColumn id="v" quantity="popN[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofO" fileName="results/O.dat">
+            <OutputColumn id="v" quantity="popO[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofP" fileName="results/P.dat">
+            <OutputColumn id="v" quantity="popP[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofQ" fileName="results/Q.dat">
+            <OutputColumn id="v" quantity="popQ[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofR" fileName="results/R.dat">
+            <OutputColumn id="v" quantity="popR[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofS" fileName="results/S.dat">
+            <OutputColumn id="v" quantity="popS[0]/v"/>
+        </OutputFile>
+        <OutputFile id="ofT" fileName="results/T.dat">
+            <OutputColumn id="v" quantity="popT[0]/v"/>
+        </OutputFile>
+    
     </Simulation>
     
 </Lems>
