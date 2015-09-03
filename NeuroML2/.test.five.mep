@@ -1,0 +1,6 @@
+system: Test Five
+
+experiments:
+    popA:
+        expected:
+            spike times: [12.51, 16.02, 28.87, 55.89, 82.66]

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
+    id="SmallNetwork">
+    
+    <izhikevichCell2008 id="RS" v0 = "-60mV" C="100 pF" k = "3 nS_per_mV"
+                        vr = "-60 mV" vt = "-50 mV" vpeak = "50 mV" 
+                        a = "0.01 per_ms" b = "5 nS" c = "-60 mV" d = "400 pA"/>
+
+    <pulseGenerator id="pulse0" delay="10ms" duration="100ms" amplitude="0.9nA"/>
+    
+    <expOneSynapse id="syn0" gbase="2nS" erev="0mV" tauDecay="2ms" />
+
+    <network id="net1">
+        <population id="popA" component="RS"  type="populationList" size="1">
+            <instance id="0">
+                <location x="0" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="popB" component="RS"  type="populationList" size="1">
+            <instance id="0">
+                <location x="50" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <projection id="proj0" presynapticPopulation="popA" postsynapticPopulation="popB" synapse="syn0">
+            <connection id="0" preCellId="../popA/0/RS" postCellId="../popB/0/RS"/>
+        </projection>
+        
+        <inputList id="InputA" component="pulse0" population="popA">
+            <input id="0" target="../popA/0/RS" destination="synapses"/>
+        </inputList>
+    
+    </network>
+
+</neuroml>
