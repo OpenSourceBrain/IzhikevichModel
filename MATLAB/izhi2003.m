@@ -39,6 +39,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('regular spiking (RS)');
 
+fileID = fopen('results/RS.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%% intrinsically bursting (IB) %%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,2) 
@@ -69,6 +70,8 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('intrinsically bursting (IB)');
 
+fileID = fopen('results/IB.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
+
 %%%%%%%%%%%%%%% chattering (CH) %%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,3) 
 a=0.02; b=0.2;  c=-50;  d=2;
@@ -98,6 +101,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('chattering (CH)');
 
+fileID = fopen('results/CH.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%% fast spiking (FS) %%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,4) 
@@ -128,6 +132,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title(' fast spiking (FS)');
 
+fileID = fopen('results/FS.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 
 %%%%%%%%%%%%%%% thalamo-cortical (TC) %%%%%%%%%%%%%%%%%%%%%%
@@ -159,6 +164,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('thalamo-cortical (TC)');
 
+fileID = fopen('results/TC.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%% thalamo-cortical burst (TC) %%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,6) 
@@ -188,6 +194,8 @@ plot(tspan,VV,[0 T1 T1 max(tspan)],-90+[0 0 10 10]);
 axis([0 max(tspan) -90 30])
 axis off;
 title('thalamo-cortical burst (TC)');
+
+fileID = fopen('results/TCb.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%%%%%  resonator (RZ) %%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,7) 
@@ -221,6 +229,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('resonator (RZ)');
 
+fileID = fopen('results/RZ.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%% low-threshold spiking (LTS) %%%%%%%%%%%%%%%%%%%%%%
 subplot(2,4,8) 
@@ -251,6 +260,7 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('low-threshold spiking (LTS)');
 
+fileID = fopen('results/LTS.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 
 %%

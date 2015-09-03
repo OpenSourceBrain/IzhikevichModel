@@ -18,3 +18,4 @@ simulations
 *.bak
 *py.class
 izhikevich15jun19
+MATLAB/results/*.dat
