@@ -37,6 +37,8 @@ Version 0.2 - script condensed and updated to use latest development version of 
 from __future__ import division
 import os
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pyNN.utility import get_simulator, normalized_filename
