@@ -1,0 +1,216 @@
+load_file("stdgui.hoc")
+nrnmainmenu()
+objref g[10]
+tstop=500
+
+//* setup the cell
+create acell
+access acell
+objref izh,stim,nc,fih[2]
+cvode_local(1)
+acell izh=new Izhi2003a(0.5) // 2003 and 2004 papers shared same parameterizations
+
+//* parameters for different cell types
+objref avec,bvec,cvec,dvec,vviv,tstv,butnl,bub
+avec=new Vector()
+{bvec=avec.c cvec=avec.c dvec=avec.c vviv=avec.c tstv=avec.c}
+// parameters a,b,c,d for different models
+avec.append(0.02,0.02,0.02,0.02,0.02,0.01,0.02,0.2,0.02,0.05,0.1,0.02,0.03,0.03,0.03,0.1,1,0.02,-0.02,-0.026)
+bvec.append(0.2,0.25,0.2,0.25,0.2,0.2,-0.1,0.26,0.2,0.26,0.26,-0.1,0.25,0.25,0.25,0.26,0.2,1,-1,-1)
+cvec.append(-65,-65,-50,-55,-55,-65,-55,-65,-65,-60,-60,-55,-60,-52,-60,-60,-60,-55,-60,-45)
+dvec.append(6,6,2,0.05,4,8,6,0,6,0,-1,6,4,0,4,0,-21,4,8,-2)
+objref playvec,playtvec
+{playvec=new Vector() playtvec=new Vector()}
+
+vviv.append(-70,-64,-70,-64,-70,-70,-60,-64,-70,-62,-62,-60,-64,-64,-64,-61,-70,-65,-63.8,-63.8)
+tstv.append(100,200,220,200,160,85,300,300,100,200,400,100,200,200,100,300,50,400,350,350)
+
+butnl=new List()
+for ii=0,19 butnl.append(new String())
+{butnl.object(0).s="tonic spiking" butnl.object(1).s="phasic spiking" butnl.object(2).s="tonic bursting" butnl.object(3).s="phasic bursting" butnl.object(4).s="mixed mode" butnl.object(5).s="spike frequency adaptation" butnl.object(6).s="Class 1" butnl.object(7).s="Class 2" butnl.object(8).s="spike latency"}
+{butnl.object(9).s="subthreshold oscillations" butnl.object(10).s="resonator" butnl.object(11).s="integrator" butnl.object(12).s="rebound spike" butnl.object(13).s="rebound burst" butnl.object(14).s="threshold variability" butnl.object(15).s="bistability" butnl.object(16).s="Depolarizing afterpotential" butnl.object(17).s="accomodation" butnl.object(18).s="inhibition-induced spiking" butnl.object(19).s="inhibition-induced bursting"}
+
+proc prpars () { local ix
+  if (numarg()==1) ix=$1 else ix=rnum
+  printf("\t%s\n",butnl.object(ix).s)
+  printf("a:%g\tb:%g\tc:%g\td:%g\tvv0:%g\n",avec.x[ix],bvec.x[ix],cvec.x[ix],dvec.x[ix],vviv.x[ix])
+}
+
+//* run routine
+proc p () { local ix
+  ix=rnum=$1 // global rnum
+  izh.a=avec.x[ix] izh.b=bvec.x[ix] izh.c=cvec.x[ix] izh.d=dvec.x[ix]
+  tstop=tstv.x[ix]
+  cvode_simgraph()
+  g.size(0,tstop,-100,50)
+  playinit()
+  run()
+}
+
+proc playinit () { local T1,ix
+  ix=rnum
+  izh.f=5 izh.g=140 // standard params: V'=0.04*V^2+5*V+140-u+Iin
+  sprint(bub.label,"%s (%c) #%d",butnl.object(ix).s,65+ix,ix)
+  if (ix==16) sprint(bub.label,"%s -- REPEATED SPIKING",bub.label)
+  if (ix==17) sprint(bub.label,"%s -- NOT IMPLEMENTED (different functional form;see izh.mod)",bub.label)
+  if (ix==19) sprint(bub.label,"%s -- NOT IMPLEMENTED (convergence problems)",bub.label)
+  g.erase_all
+  g.addvar("izh.V",2,2)
+  g.label(0.1,0.9,bub.label)
+  playvec.play_remove()
+  playtvec.resize(0) playvec.resize(0)
+  if (ix==6) {
+    T1=30
+    playtvec.append(0,T1,tstop)
+    playvec.append(0,0,0.075*(tstop-T1))
+  } else if (ix==7) { //  (H) Class 2 exc.
+    T1=30
+    playtvec.append(0,T1,tstop)
+    playvec.append(-0.5, -0.5,-0.05+0.015*(tstop-T1))
+  } else if (ix==17) { //  (R) accomodation
+    playtvec.append(0, 200,    200.001, 300,     312.5, 312.501, tstop)
+    playvec.append( 0, 200/25, 0      , 0      , 4    , 0      , 0)
+  }
+  if (ix==6 || ix==7 || ix==17) playvec.play(&izh.Iin,playtvec,1)
+  if (ix==6 || ix==11) { izh.f=4.1  izh.g=108 }
+}  
+
+//* box of buttons
+begintemplate bubox
+ public label
+ external p
+ objref hbox,vbox
+ strdef tstr,label
+
+proc init () {
+  cols=4 rows=5
+  vbox = new VBox()
+  hbox = new HBox()
+  label="================================================================================"
+  vbox.intercept(1)
+  xpanel("")
+  xvarlabel(label)
+  xlabel("V' = e*V^2 + f*V + g - u + Iin;   if (V>30) V=c [reset]")
+  xlabel(" u' = a*(b*V-u);                          if (V>30) u=u+d [reset]")
+  xpanel()
+  hbox.intercept(1)
+  for ii=0,$o1.count-1 {
+    jj=transpose(ii)
+    if (ii%rows==0) xpanel("")
+    sprint(tstr,"p(%d)",jj)
+    xbutton($o1.object(jj).s,tstr)
+    if (ii%rows==rows-1) xpanel()
+  }
+  hbox.intercept(0)
+  hbox.map("")
+  vbox.intercept(0)
+  vbox.map("Spike patterns")
+  label=""
+}
+
+func transpose () { return int($1/rows) + $1%rows*cols } 
+endtemplate bubox
+
+//* plotting & printing
+newPlotV()
+g=graphItem
+g.erase_all
+g.addvar("izh.V",2,2)
+// g.addvar("izh.u",3,1)
+// g.addvar("izh.Iin",4,2) // will show false ramps
+nrnpointmenu(izh)
+bub = new bubox(butnl)
+
+//* initialization
+fih=new FInitializeHandler("uvvset()")
+fih[1]=new FInitializeHandler(0,"Isend()")
+// initialization routines
+proc uvvset () { 
+  izh.V=vviv.x[rnum] 
+  izh.u=izh.V*izh.b 
+  if (rnum==17) izh.u=-16 // example 17 also requires different mod file
+}
+
+// current injections for specific models
+proc Isend () { local T1,T2,T3,T4
+  T1=tstop/10
+  izh.Iin=0
+  if (rnum==0) {  //  (A) tonic spiking
+    Isend1(T1,14)
+  } else if (rnum==1) { //  (B) phasic spiking
+    T1=20
+    Isend1(T1,0.5)
+  } else if (rnum==2) { //  (C) tonic bursting
+    T1=22
+    Isend1(T1,15)
+  } else if (rnum==3) { //  (D) phasic bursting
+    T1=20
+    Isend1(T1,0.6)
+  } else if (rnum==4) { //  (E) mixed mode
+    Isend1(T1,10)
+  } else if (rnum==5) { //  (F) spike freq. adapt
+    Isend1(T1,30)
+  } else if (rnum==6) { //  (G) Class 1 exc. -- playvec
+  } else if (rnum==7) { //  (H) Class 2 exc. -- playvec
+  } else if (rnum==8) { //  (izh.Iin) spike latency
+    Isend1(T1,7.04)
+    Isend1(T1+3,0.0)
+  } else if (rnum==9) { //  (J) subthresh. osc.
+    Isend1(T1,2)
+    Isend1(T1+5,0)
+  } else if (rnum==10) { //  (K) resonator
+    T2=T1+20    T3 = 0.7*tstop    T4 = T3+40
+    Isend1(T1,0.65)    Isend1(T2,0.65)    Isend1(T3,0.65)    Isend1(T4,0.65)
+    Isend1(T1+4,0.)    Isend1(T2+4,0.)    Isend1(T3+4,0.)    Isend1(T4+4,0.)
+  } else if (rnum==11) { //  (L) integrator
+    T1=tstop/11 T2=T1+5 T3 = 0.7*tstop T4 = T3+10
+    Isend1(T1,9)    Isend1(T2,9)    Isend1(T3,9)    Isend1(T4,9)
+    Isend1(T1+2,0.) Isend1(T2+2,0.) Isend1(T3+2,0.) Isend1(T4+4,0.)
+  } else if (rnum==12) { //  (M) rebound spike
+    T1=20
+    Isend1(T1,-15)
+    Isend1(T1+5,0)
+  } else if (rnum==13) { //  (N) rebound burst
+    T1=20
+    Isend1(T1,-15)
+    Isend1(T1+5,0)
+  } else if (rnum==14) { //  (O) thresh. variability
+    T1=10    T2=70    T3=80
+    Isend1(T1,1)    Isend1(T2,-6)    Isend1(T3,1)
+    Isend1(T1+5,0.) Isend1(T2+5,0.)  Isend1(T3+5,0.)
+  } else if (rnum==15) { //  (P) bistability
+    T1=tstop/8    T2=216
+    izh.Iin=0.24
+    Isend1(T1,1.24)    Isend1(T2,1.24)
+    Isend1(T1+5,0.24)  Isend1(T2+5,0.24)
+  } else if (rnum==16) { //  (Q) DAP depolarizing afterpotential
+    T1 = 10
+    Isend1(T1-1,20)
+    Isend1(T1+1,0)
+  } else if (rnum==17) { //  (R) accomodation -- playvec
+  } else if (rnum==18) { //  (S) inhibition induced spiking
+    izh.Iin=80
+    Isend1(50,75)
+    Isend1(250,80)
+  } else if (rnum==19) { //  (T) inhibition induced bursting
+    izh.Iin=80
+    Isend1(50,80) // Isend1(50,75) -- will crash simulator
+    Isend1(250,80)
+  }
+}
+
+proc Isend1 () {
+  sprint(tstr,"izh.Iin=%g cvode.re_init()",$2)
+  cvode.event($1,tstr)
+}
+
+// izhstim() sets up a single stim into izh cell
+// effect easily seen by running "Class 1" -- p(6)
+proc izhstim () {
+  stim=new NetStim(0.5)
+  stim.number = stim.start = 1
+  nc = new NetCon(stim,izh)
+  nc.delay = 2
+  nc.weight = 0.1
+  izh.erev = -5
+}
