@@ -1,0 +1,8 @@
+system: Test 2003
+
+experiments:
+    RS:
+        expected:
+            spike times: [18.0, 23.75, 54.0, 87.25, 120.5]
+
+
