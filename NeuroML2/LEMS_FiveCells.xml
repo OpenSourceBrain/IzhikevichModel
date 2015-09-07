@@ -38,7 +38,7 @@
             <Line id ="i0" quantity="popE/0/izMixedMode/iE/I" scale="1"  color="#00FF00" timeScale="1ms"/>
         </Display>
         
-        <OutputFile id="of0" fileName="izfive_v.dat">
+        <OutputFile id="of0" fileName="results/izfive_v.dat">
             <OutputColumn id="izA" quantity="popA/0/izTonicSpiking/v" />
             <OutputColumn id="izB" quantity="popB/0/izPhasicSpiking/v" />
             <OutputColumn id="izC" quantity="popC/0/izTonicBursting/v" />

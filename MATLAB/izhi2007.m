@@ -154,7 +154,6 @@ for Iinput=IinRange
     xlabel(['t (ms)     (Iin=', num2str(round(I(i))),' pA)']);
     xlim([0,n*tau])
 	ylabel('V (mV)')
-    times
     
     fileName = strjoin({'results/',testModel,'2007_',num2str(Iinput),'.dat'},'');
     fileID = fopen(fileName,'w'); A = [times; v; u];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);

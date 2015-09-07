@@ -9,7 +9,7 @@
     <Include file="Inputs.xml"/>
     <Include file="Simulation.xml"/>
 
-    <Include file="IzhikevichCell2008.xml"/>
+    <Include file="IzhikevichCell2007.xml"/>
     <Include file="SmallNetwork.nml"/>
 
     <Simulation id="sim1" length="110ms" step="0.01ms" target="net1">

@@ -5,7 +5,7 @@
 <!--
 
     Definition in LEMS of a new ComponentType for a single compartment point neuron model based on 
-    Izhikevich and Edelman, Large-scale model of mammalian thalamocortical systems, PNAS 2008
+    Izhikevich EM (2007). "Dynamical systems in neuroscience" MIT Press 
 
 -->
 
@@ -13,9 +13,9 @@
 
 <Unit symbol="nS_per_mV" dimension="conductance_per_voltage" power="-6"/>
 
-<ComponentType name="izhikevichCell2008"
+<ComponentType name="izhikevichCell2007"
         extends="baseCellMembPotCap"
-        description="Cell based on the modified Izhikevich model in Izhikevich and Edelman, Large-scale model of mammalian thalamocortical systems, PNAS 2008. Note: this is only a point neuron model, no dendrites.">
+        description="Cell based on the modified Izhikevich model in Izhikevich EM (2007). Dynamical systems in neuroscience, MIT Press">
 
         <Parameter name="v0" dimension="voltage"/>  
         

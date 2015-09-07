@@ -2,13 +2,13 @@
  
 target: LEMS_FiveCells.xml 
 engine: PyLEMS_NeuroML2
-mep: .test.five.mep
+mep: results/.test.five.mep
 experiments:
   popA:
     observables:
       spike times:
         file: 
-          path: izfive_v.dat
+          path: results/izfive_v.dat
           columns: [0,1]
           scaling: [1000, 1000]
         spike detection: 
