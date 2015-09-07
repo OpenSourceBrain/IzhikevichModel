@@ -155,7 +155,7 @@ for Iinput=IinRange
     xlim([0,n*tau])
 	ylabel('V (mV)')
     
-    fileName = strjoin({'results/',testModel,'2007_',num2str(Iinput),'.dat'},'');
+    fileName = strcat('results/',testModel,'2007_',num2str(Iinput),'.dat');
     fileID = fopen(fileName,'w'); A = [times; v; u];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
     if index == length(IinRange), title(figtitle); end
