@@ -1,37 +1,24 @@
 ## Izhikevich artificial neuron model from 2 different publications: 1) Izhikevich et al, 2003; and 2) Izhikevich, 2007.
 
-**Files**
+### Files
 
-[izhi2003a.mod](izhi2003a.mod) // integrates STATE {u, vv}; firing patterns in 2003,
-2004 papers; POINT_PROCESS Izhi2003a
-
-[izhi2003b.mod](izhi2003b.mod) // integrates STATE {u}; v calculated in a Section;
-firing patterns in 2003, 2004 papers; POINT_PROCESS Izhi2003b
-
-[izhi2007a.mod](izhi2007a.mod) // no STATE -- uses Euler explicit integration update
-rule, includes synapses; cell types in 2007 book+syns; POINT_PROCESS
-Izhi2007a
-
-[izhi2007b.mod](izhi2007b.mod) // integrates STATE {u}; v calculated in a Section;
-firing patterns in 2007 book; POINT_PROCESS Izhi2007b
-
-[izhi2003.m](../MATLAB/izhi2003.m) // Matlab code to replicate firing patterns in 2003 paper
-[izhi2007.m](../MATLAB/izhi2007.m) // Matlab code to replicate firing patterns in 2007 book
-
-[simple.py](simple.py) // much brief example to just create 1 of each of the types + 1 additional example using izhi2007Wrapper
-[izhiGUI.py](izhiGUI.py) // runs interactive demo of 6 Izhikevich cell models (3 parameter sets, 2 implementations of each)
-[izhi2007Figs.py](izhi2007Figs.py) // uses python graphicss to graph firing patterns of 7 cell types in 2007 book
-[izhi2007Wrapper.py](izhi2007Wrapper.py) // instantiates the 7 cell types in 2007 book
-
-
-[izhi2003.png](izhi2003.png) // Illustration of  firing patterns in 2003 paper
-[izhi2004.gif](izhi2004.gif) // Illustration of firing patterns in 2004 paper
-[izhi2007Comparison.pdf](izhi2007Comparison.pdf) // Illustration of firing patterns in 2007 book
-(and comparison to model)
-
-[izhi2004a.hoc](izhi2004a.hoc) // hoc file retained for archaeological interest
-
-[README](README) // original README file (can be read as an org-mode file in emacs)
+ File   |     Information |
+-----|-----------
+[izhi2003a.mod](izhi2003a.mod) | Integrates STATE {u, vv}; firing patterns in 2003, 2004 papers; POINT_PROCESS Izhi2003a 
+[izhi2003b.mod](izhi2003b.mod) | Integrates STATE {u}; v calculated in a Section; firing patterns in 2003, 2004 papers; POINT_PROCESS Izhi2003b
+[izhi2007a.mod](izhi2007a.mod) | No STATE -- uses Euler explicit integration update rule, includes synapses; cell types in 2007 book+syns; POINT_PROCESS Izhi2007a
+[izhi2007b.mod](izhi2007b.mod) | Integrates STATE {u}; v calculated in a Section; firing patterns in 2007 book; POINT_PROCESS Izhi2007b
+[izhi2003.m](../MATLAB/izhi2003.m) | MATLAB code to replicate firing patterns in 2003 paper
+[izhi2007.m](../MATLAB/izhi2007.m) | MATLAB code to replicate firing patterns in 2007 book
+[simple.py](simple.py) | Much brief example to just create 1 of each of the types + 1 additional example using izhi2007Wrapper
+[izhiGUI.py](izhiGUI.py) | Runs interactive demo of 6 Izhikevich cell models (3 parameter sets, 2 implementations of each)
+[izhi2007Figs.py](izhi2007Figs.py) | Uses python graphicss to graph firing patterns of 7 cell types in 2007 book
+[izhi2007Wrapper.py](izhi2007Wrapper.py) | Instantiates the 7 cell types in 2007 book
+[izhi2003.png](izhi2003.png) | Illustration of  firing patterns in 2003 paper
+[izhi2004.gif](izhi2004.gif) | Illustration of firing patterns in 2004 paper
+[izhi2007Comparison.pdf](izhi2007Comparison.pdf) | Illustration of firing patterns in 2007 book (and comparison to model)
+[izhi2004a.hoc](izhi2004a.hoc) | hoc file retained for archaeological interest
+[README](README) | Original README file (can be read as an org-mode file in emacs)
 
 ### 2003-2004 Models
 
