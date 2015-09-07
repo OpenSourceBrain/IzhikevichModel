@@ -1,0 +1,15 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation  
+
+target: izhi2007.m 
+engine: Octave
+
+mep: results/.test.2007.mep
+experiments:
+  RS2007_100:
+    observables:
+      spike times:
+        file: 
+          path: results/RS2007_100.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0

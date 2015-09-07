@@ -75,6 +75,7 @@ end
 tau=0.25; %dt
 index = 0;
 figure('Position', [50, 50, 550, 750]);
+
 for Iinput=IinRange
     index = index + 1; % subplot index
     n=round(T/tau); % number of samples
@@ -89,60 +90,62 @@ for Iinput=IinRange
     
     v=vr*ones(1,n);  % initialize variables
     u=0*v;
+    times=0*v;
     for i=1:n-1                         % forward Euler method
+        times(i+1) = tau*i;
         v(i+1) = v(i) + tau * (k * (v(i) - vr) * (v(i) - vt) - u(i) + I(i)) / C;
- 
-    %  Cell-type specific dynamics
-    if (celltype < 5) % default 
-        u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i)); % Calculate recovery variable
-    else 
-        if (celltype == 5)  % For FS neurons, include nonlinear U(v): U(v) = 0 when v<vb ; U(v) = 0.025(v-vb) when v>=vb (d=vb=-55)
-            if (v(i+1) < d) 
-                u(i+1) = u(i) + tau*a*(0-u(i));
-            else
-                u(i+1) = u(i) + tau*a*((0.025*(v(i)-d).^3)-u(i));
-            end
-        elseif (celltype == 6) % For TC neurons, reset b
-           if (v(i+1) > -65) 
-               b=0;
-           else
-               b=15;
-           end
-           u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i)); 
-        elseif (celltype==7) %For TRN neurons, reset b
-            if (v(i+1) > -65)
-                b=2;
-            else
-                b=10;
-            end
-            u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i));
-        end
-    end
-        
-    %  Check if spike occurred and need to reset
-    if (celltype < 4 || celltype == 5 || celltype == 7) % default
-        if v(i+1)>=vpeak
-            v(i)=vpeak;
-            v(i+1)=c;
-            if celltype ~= 5, u(i+1)=u(i+1)+d; end % reset u, except for FS cells
-        end
-    elseif (celltype == 4) % LTS cell
-        if v(i+1) > (vpeak - 0.1*u(i+1))
-            v(i)=vpeak - 0.1*u(i+1);
-            v(i+1) = c+0.04*u(i+1); % Reset voltage
-            if ((u+d)<670)
-                u(i+1)=u(i+1)+d; % Reset recovery variable
-            else
-                u(i+1) = 670;
+
+        %  Cell-type specific dynamics
+        if (celltype < 5) % default 
+            u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i)); % Calculate recovery variable
+        else 
+            if (celltype == 5)  % For FS neurons, include nonlinear U(v): U(v) = 0 when v<vb ; U(v) = 0.025(v-vb) when v>=vb (d=vb=-55)
+                if (v(i+1) < d) 
+                    u(i+1) = u(i) + tau*a*(0-u(i));
+                else
+                    u(i+1) = u(i) + tau*a*((0.025*(v(i)-d).^3)-u(i));
+                end
+            elseif (celltype == 6) % For TC neurons, reset b
+               if (v(i+1) > -65) 
+                   b=0;
+               else
+                   b=15;
+               end
+               u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i)); 
+            elseif (celltype==7) %For TRN neurons, reset b
+                if (v(i+1) > -65)
+                    b=2;
+                else
+                    b=10;
+                end
+                u(i+1)=u(i)+tau*a*(b*(v(i)-vr)-u(i));
             end
         end
-    elseif (celltype == 6) % TC cell
-        if v(i+1) > (vpeak + 0.1*u(i+1))
-            v(i)=vpeak + 0.1*u(i+1);
-            v(i+1) = c-0.1*u(i+1); % Reset voltage
-            u(i+1)=u(i+1)+d;
+
+        %  Check if spike occurred and need to reset
+        if (celltype < 4 || celltype == 5 || celltype == 7) % default
+            if v(i+1)>=vpeak
+                v(i)=vpeak;
+                v(i+1)=c;
+                if celltype ~= 5, u(i+1)=u(i+1)+d; end % reset u, except for FS cells
+            end
+        elseif (celltype == 4) % LTS cell
+            if v(i+1) > (vpeak - 0.1*u(i+1))
+                v(i)=vpeak - 0.1*u(i+1);
+                v(i+1) = c+0.04*u(i+1); % Reset voltage
+                if ((u+d)<670)
+                    u(i+1)=u(i+1)+d; % Reset recovery variable
+                else
+                    u(i+1) = 670;
+                end
+            end
+        elseif (celltype == 6) % TC cell
+            if v(i+1) > (vpeak + 0.1*u(i+1))
+                v(i)=vpeak + 0.1*u(i+1);
+                v(i+1) = c-0.1*u(i+1); % Reset voltage
+                u(i+1)=u(i+1)+d;
+            end
         end
-    end
     end
     
     % plot V
@@ -151,5 +154,10 @@ for Iinput=IinRange
     xlabel(['t (ms)     (Iin=', num2str(round(I(i))),' pA)']);
     xlim([0,n*tau])
 	ylabel('V (mV)')
+    times
+    
+    fileName = strjoin({'results/',testModel,'2007_',num2str(Iinput),'.dat'},'');
+    fileID = fopen(fileName,'w'); A = [times; v; u];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
+
     if index == length(IinRange), title(figtitle); end
 end
