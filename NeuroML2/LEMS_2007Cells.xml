@@ -12,6 +12,14 @@
 <Include file="IzhikevichCell2007.xml"/>
 
 
+
+<izhikevichCell2007 id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
+                        vr = "-60 mV" vt = "-40 mV" vpeak = "35 mV" 
+                        a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
+
+<pulseGenerator id="RS_Iext" delay="0ms" duration="520ms" amplitude="100 pA"/>
+
+
 <izhikevichCell2007 id="weaklyAdapting" v0 = "-65mV" C = "300 pF" k = "1 nS_per_mV" 
                         vr = "-61.8 mV" vt = "-57.0 mV" vpeak = "22.6 mV"
                         a = "0.001 per_ms"  b = "3 nS" c = "-65.8 mV" d = "5 pA" />
@@ -27,12 +35,6 @@
 <pulseGenerator id="strongIshift" delay="0ms" duration="1000ms" amplitude="0 pA"/>
 
 
-<izhikevichCell2007 id="RS_l5" v0 = "-60mV" C="100 pF" k = "3 nS_per_mV"
-                        vr = "-60 mV" vt = "-50 mV" vpeak = "50 mV" 
-                        a = "0.01 per_ms" b = "5 nS" c = "-60 mV" d = "400 pA"/>
-
-<pulseGenerator id="RS_l5Iext" delay="100ms" duration="500ms" amplitude="150 pA"/>
-
 
 <izhikevichCell2007 id="LS" v0 = "-66mV" C="20 pF" k = ".3 nS_per_mV"
                         vr = "-66 mV" vt = "-40 mV" vpeak = "30 mV" 
@@ -44,7 +46,7 @@
 <network id="net1">
     <population id="weakpop" component="weaklyAdapting" size="1"/>
     <population id="strongpop" component="stronglyAdapting" size="1"/>
-    <population id="RS_l5pop" component="RS_l5" size="1"/>
+    <population id="RS_pop" component="RS" size="1"/>
     
     <population id="LSpop" component="LS" type="populationList" size="1">
         <instance id="0">
@@ -58,7 +60,7 @@
     <explicitInput target="strongpop[0]" input="strongIext" destination="synapses"/>
     <explicitInput target="strongpop[0]" input="strongIshift" destination="synapses"/>
     
-    <explicitInput target="RS_l5pop[0]" input="RS_l5Iext" destination="synapses"/>
+    <explicitInput target="RS_pop[0]" input="RS_Iext" destination="synapses"/>
     
         <inputList id="iLSIext" component="LSIext" population="LSpop">
             <input id="0" target="../LSpop/0/LS" destination="synapses"/>
@@ -79,8 +81,8 @@
         <Line id ="stronglyAdapting v" quantity="strongpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     
-    <Display id="d3" title="RS_l5 (uses parameters from Fig 10 of suppl info of PNAS2008, but not same behaviour due to no dendrites)" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
-        <Line id ="RS_l5 v" quantity="RS_l5pop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+    <Display id="d3" title="RS" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
+        <Line id ="RS v" quantity="RS_pop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     
     <Display id="d4" title="LS (uses parameters from Fig 10 of suppl info of PNAS2008, but not same behaviour due to no dendrites)" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
@@ -88,8 +90,8 @@
     </Display>
 
 
-    <OutputFile id="of0" fileName="results/iz2007_v.dat">
-        <OutputColumn id="ls" quantity="LSpop/0/LS/v" />
+    <OutputFile id="of0" fileName="results/iz2007_RS.dat">
+        <OutputColumn id="ls" quantity="RS_pop[0]/v" />
     </OutputFile>
       
 </Simulation>

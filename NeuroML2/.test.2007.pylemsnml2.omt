@@ -2,16 +2,16 @@
  
 target: LEMS_2007Cells.xml 
 engine: PyLEMS_NeuroML2
-mep: results/.test.2007.mep
+mep: ../MATLAB/results/.test.2007.mep
 experiments:
-  LSpop:
+  RS2007_100:
     observables:
       spike times:
         file: 
-          path: results/iz2007_v.dat
+          path: results/iz2007_RS.dat
           columns: [0,1]
           scaling: [1000, 1000]
         spike detection: 
           method: threshold
           threshold: 0
-        tolerance: 0.00
+        tolerance: 0.00487
