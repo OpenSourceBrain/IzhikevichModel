@@ -71,7 +71,7 @@
 <!-- End of NeuroML2 content -->
         
 
-<Simulation id="sim1" length="700ms" step="0.02ms" target="net1">
+<Simulation id="sim1" length="700ms" step="0.01ms" target="net1">
 
     
     <Display id="d1" title="Weakly adapting PYR model 1 with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
