@@ -10,9 +10,62 @@ experiments:
       spike times:
         file: 
           path: results/RS.dat
-          columns: [0,1]
-          scaling: [1, 1]
         spike detection: 
           method: threshold
-          threshold: 0
+        tolerance: 0
+  IB:
+    observables:
+      spike times:
+        file: 
+          path: results/IB.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  CH:
+    observables:
+      spike times:
+        file: 
+          path: results/CH.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  FS:
+    observables:
+      spike times:
+        file: 
+          path: results/FS.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  TC:
+    observables:
+      spike times:
+        file: 
+          path: results/TC.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  TCb:
+    observables:
+      spike times:
+        file: 
+          path: results/TCb.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  RZ:
+    observables:
+      spike times:
+        file: 
+          path: results/RZ.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  LTS:
+    observables:
+      spike times:
+        file: 
+          path: results/LTS.dat
+        spike detection: 
+          method: threshold
         tolerance: 0
