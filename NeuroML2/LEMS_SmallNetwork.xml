@@ -9,7 +9,6 @@
     <Include file="Inputs.xml"/>
     <Include file="Simulation.xml"/>
 
-    <Include file="IzhikevichCell2007.xml"/>
     <Include file="SmallNetwork.nml"/>
 
     <Simulation id="sim1" length="110ms" step="0.01ms" target="net1">
@@ -19,9 +18,6 @@
             <Line id ="post" quantity="popB/0/RS/v" scale="1mV"  color="#FFFF00" timeScale="1ms"/>
         </Display>
         
-        <Display id="Synapse" title="Input synapse current" timeScale="1ms" xmin="-20" xmax="120" ymin="-20" ymax="140">
-            <Line id ="iSyn" quantity="popB/0/RS/syn0/i" scale="1pA"  color="#FFFF00" timeScale="1ms"/>
-        </Display>
         
     </Simulation>
     

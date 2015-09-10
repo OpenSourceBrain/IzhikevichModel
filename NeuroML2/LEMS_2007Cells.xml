@@ -9,25 +9,21 @@
 <Include file="Simulation.xml"/>
 
 
-<Include file="IzhikevichCell2007.xml"/>
-
-
-
-<izhikevichCell2007 id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
+<izhikevich2007Cell id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
                         vr = "-60 mV" vt = "-40 mV" vpeak = "35 mV" 
                         a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
 
 <pulseGenerator id="RS_Iext" delay="0ms" duration="520ms" amplitude="100 pA"/>
 
 
-<izhikevichCell2007 id="weaklyAdapting" v0 = "-65mV" C = "300 pF" k = "1 nS_per_mV" 
+<izhikevich2007Cell id="weaklyAdapting" v0 = "-65mV" C = "300 pF" k = "1 nS_per_mV" 
                         vr = "-61.8 mV" vt = "-57.0 mV" vpeak = "22.6 mV"
                         a = "0.001 per_ms"  b = "3 nS" c = "-65.8 mV" d = "5 pA" />
 
 <pulseGenerator id="weakIext"   delay="0ms" duration="1000ms" amplitude="100 pA"/>
 <pulseGenerator id="weakIshift" delay="0ms" duration="1000ms" amplitude="-45 pA"/>
 
-<izhikevichCell2007 id="stronglyAdapting" v0 = "-65mV" C="115 pF" k = "0.3 nS_per_mV"
+<izhikevich2007Cell id="stronglyAdapting" v0 = "-65mV" C="115 pF" k = "0.3 nS_per_mV"
                         vr = "-61.8 mV" vt = "-57.0 mV" vpeak = "22.6 mV" 
                         a = "0.0012 per_ms" b = "3 nS" c = "-65.8 mV" d = "10 pA" />
 
@@ -36,7 +32,7 @@
 
 
 
-<izhikevichCell2007 id="LS" v0 = "-66mV" C="20 pF" k = ".3 nS_per_mV"
+<izhikevich2007Cell id="LS" v0 = "-66mV" C="20 pF" k = ".3 nS_per_mV"
                         vr = "-66 mV" vt = "-40 mV" vpeak = "30 mV" 
                         a = "0.17 per_ms" b = "5 nS" c = "-45 mV" d = "100 pA"/>
 

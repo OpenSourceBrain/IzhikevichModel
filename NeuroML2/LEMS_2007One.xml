@@ -9,9 +9,7 @@
 <Include file="Simulation.xml"/>
 
 
-<Include file="IzhikevichCell2007.xml"/>
-
-<izhikevichCell2007 id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
+<izhikevich2007Cell id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
                         vr = "-60 mV" vt = "-40 mV" vpeak = "35 mV" 
                         a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
 
