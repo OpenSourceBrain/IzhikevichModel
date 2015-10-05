@@ -7,6 +7,8 @@ NeuroML2/*.9ml
 NeuroML2/*.png
 NeuroML2/*.dat
 NeuroML2/*.mod
+NeuroML2/*.m
+NeuroML2/*.json
 *.pyc
 *i686
 *x86_64
