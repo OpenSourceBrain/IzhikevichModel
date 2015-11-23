@@ -3,5 +3,5 @@ system: Test 2007
 experiments:
     RS2007_100:
         expected:
-            spike times: [47.03, 120.495, 196.615, 272.65, 348.685, 424.72, 500.7575]  # Values here worked out with tau=0.0025 in izhi2007.m
+            spike times: [47.0325, 120.4975, 196.6175, 272.6525, 348.6875, 424.7225, 500.76]  # Values here worked out with tau=0.0025 in izhi2007.m
 
