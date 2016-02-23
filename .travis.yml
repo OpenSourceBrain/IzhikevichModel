@@ -16,6 +16,7 @@ addons:
     - libgsl0-dev
         # Requirements for Octave
     - octave
+    - gnuplot
     
 language: python
 
