@@ -23,3 +23,6 @@ simulations
 izhikevich15jun19
 MATLAB/results/*.dat
 NeuroML2/results/*.dat
+	
+PyNN/results/
+nnn/
