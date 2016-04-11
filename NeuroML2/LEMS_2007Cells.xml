@@ -87,7 +87,16 @@
 
 
     <OutputFile id="of0" fileName="results/iz2007_RS.dat">
-        <OutputColumn id="ls" quantity="RS_pop[0]/v" />
+        <OutputColumn id="rs" quantity="RS_pop[0]/v" />
+    </OutputFile>
+
+    <OutputFile id="of1" fileName="results/iz2007_ws.dat">
+        <OutputColumn id="w" quantity="weakpop[0]/v" />
+        <OutputColumn id="s" quantity="strongpop[0]/v" />
+    </OutputFile>
+
+    <OutputFile id="of2" fileName="results/iz2007_LS.dat">
+        <OutputColumn id="ls" quantity="LSpop/0/LS/v" />
     </OutputFile>
       
 </Simulation>
