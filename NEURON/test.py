@@ -1,8 +1,9 @@
 
-import pylab as plt
-import pprint as pp
+import sys
 
 from neuron import h, gui
+
+plot = not '-nogui' in sys.argv
 
 fih = []
 
@@ -37,21 +38,21 @@ h.dt = 0.0025
 
 h.steps_per_ms = 1/h.dt
 
+if plot:
+    # Display: display_d1
+    display_d1 = h.Graph(0)
+    display_d1.size(0,h.tstop,-80.0,50.0)
+    display_d1.view(0, -80.0, h.tstop, 130.0, 80, 330, 330, 250)
+    h.graphList[0].append(display_d1)
+    # Line, plotting: RS_pop[0]/v
+    display_d1.addexpr("v(0.5)", "v(0.5)", 1, 1, 0.8, 0.9, 2)
 
-# Display: display_d1
-display_d1 = h.Graph(0)
-display_d1.size(0,h.tstop,-80.0,50.0)
-display_d1.view(0, -80.0, h.tstop, 130.0, 80, 330, 330, 250)
-h.graphList[0].append(display_d1)
-# Line, plotting: RS_pop[0]/v
-display_d1.addexpr("v(0.5)", "v(0.5)", 1, 1, 0.8, 0.9, 2)
-
-# Display: display_d2
-display_d2 = h.Graph(0)
-display_d2.size(0,h.tstop,-80.0,50.0)
-display_d2.view(0, -80.0, h.tstop, 130.0, 80, 330, 330, 250)
-h.graphList[0].append(display_d2)
-display_d2.addexpr("Izhi2007b[0].u", "Izhi2007b[0].u", 1, 1, 0.8, 0.9, 2)
+    # Display: display_d2
+    display_d2 = h.Graph(0)
+    display_d2.size(0,h.tstop,-80.0,50.0)
+    display_d2.view(0, -80.0, h.tstop, 130.0, 80, 330, 330, 250)
+    h.graphList[0].append(display_d2)
+    display_d2.addexpr("Izhi2007b[0].u", "Izhi2007b[0].u", 1, 1, 0.8, 0.9, 2)
 
 
 # File to save: time
@@ -74,11 +75,15 @@ h(' v_u_of0.record(&Izhi2007b[0].u) ')
 h.v_u_of0.resize((h.tstop * h.steps_per_ms) + 1)
 
 
-h.nrncontrolmenu()
+if plot:
+    h.nrncontrolmenu()
 
 h.run()
 
-display_d1.exec_menu("View = plot")
+
+if plot:
+    display_d1.exec_menu("View = plot")
+    display_d2.exec_menu("View = plot")
 
 py_v_time = [ t/1000 for t in h.v_time.to_python() ]  # Convert to Python list for speed...
 
