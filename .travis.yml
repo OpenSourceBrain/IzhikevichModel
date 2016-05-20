@@ -34,6 +34,7 @@ env:
     - OMV_ENGINE=PyNN_Brian1
     - OMV_ENGINE=PyNN_NEURON
     - OMV_ENGINE=PyNN_Nest
+    - OMV_ENGINE=PyNEURON
 
 install: 
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation

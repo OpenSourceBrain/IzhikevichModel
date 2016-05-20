@@ -72,7 +72,7 @@ ASSIGNED {
 
 : Initial conditions
 INITIAL {
-  u = 0.2*vr
+  u = 0
   derivtype=2
   net_send(0,1) : Required for the WATCH statement to be active; v=vr initialization done there
 }
