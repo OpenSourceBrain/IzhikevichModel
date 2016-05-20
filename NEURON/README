@@ -13,8 +13,12 @@ izhi2007a.mod // no STATE -- uses Euler explicit integration update
 rule, includes synapses; cell types in 2007 book+syns; POINT_PROCESS
 Izhi2007a
 
-izhi2007b.mod // integrates STATE {u}; v calculated in a Section;
-firing patterns in 2007 book; POINT_PROCESS Izhi2007b
+izhi2007b.mod // no STATE -- uses Euler explicit integration update
+rule; v calculated in a Section; firing patterns in 2007 book;
+POINT_PROCESS Izhi2007b
+
+izhi2007bS.mod // integrates STATE {u}; v calculated in a Section;
+firing patterns in 2007 book; POINT_PROCESS Izhi2007bS
 
 izhi2003.m // Matlab code to replicate firing patterns in 2003 paper
 izhi2007.m // Matlab code to replicate firing patterns in 2007 book
@@ -155,6 +159,7 @@ menu of standard choices based on cell types.
 
 * simple simulation -- default parameter implementations in simple.py
 python
+from neuron import h,gui
 import simple
 h.run()
 simple.show()
@@ -191,3 +196,11 @@ izhi2003.png  # sim results
 izhi2004.gif  # figure taken from original paper 
 izhi2007Comparison.pdf # side by side comparison of figures from paper
 with these sims
+
+20151006 Revisision: A command "from neuron import h,gui" was added
+above to the simple simulation demo.
+
+20160303 Updated integration method of the izhi2007b cell model from
+Salva Dura. Addition of izhi2007bS.mod and replacement of
+izhi2007b.mod and revision of this readme's documentation of
+izhi2007b.mod and addition of izhi2007bS.mod documentation.

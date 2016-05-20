@@ -1,7 +1,7 @@
 COMMENT
 
-A "simple" implementation of the Izhikevich neuron.
-Equations and parameter values are taken from
+A "simple" implementation of the Izhikevich neuron with AMPA, NMDA,
+GABA_A, and GABA_B receptor dynamics. Equations and parameter values are taken from
   Izhikevich EM (2007).
   "Dynamical systems in neuroscience"
   MIT Press
@@ -32,8 +32,8 @@ ENDCOMMENT
 
 : Declare name of object and variables
 NEURON {
-  POINT_PROCESS Izhi2007b
-  RANGE C, k, vr, vt, vpeak, u, a, b, c, d, Iin, celltype, alive, cellid, verbose, derivtype, delta, t0
+  POINT_PROCESS Izhi2007bS
+  RANGE C, k, vr, vt, vpeak, a, b, c, d, Iin, celltype, alive, cellid, verbose, derivtype
   NONSPECIFIC_CURRENT i
 }
 
@@ -64,11 +64,14 @@ PARAMETER {
 ASSIGNED {
   v (mV)
   i (nA)
-  u (mV) : Slow current/recovery variable
-  delta
-  t0
   derivtype
 }
+
+: State variables
+STATE {
+  u (mV) : Slow current/recovery variable
+}
+
 
 : Initial conditions
 INITIAL {
@@ -79,37 +82,7 @@ INITIAL {
 
 : Define neuron dynamics
 BREAKPOINT {
-  delta = t-t0 : Find time difference
-  if (celltype<5) {
-    u = u + delta*a*(b*(v-vr)-u) : Calculate recovery variable
-  }
-  else {
-     : For FS neurons, include nonlinear U(v): U(v) = 0 when v<vb ; U(v) = 0.025(v-vb) when v>=vb (d=vb=-55)
-     if (celltype==5) {
-       if (v<d) { 
-        u = u + delta*a*(0-u)
-       }
-       else { 
-        u = u + delta*a*((0.025*(v-d)*(v-d)*(v-d))-u)
-       }
-     }
-
-     : For TC neurons, reset b
-     if (celltype==6) {
-       if (v>-65) {b=0}
-       else {b=15}
-       u = u + delta*a*(b*(v-vr)-u) : Calculate recovery variable
-     }
-     
-     : For TRN neurons, reset b
-     if (celltype==7) {
-       if (v>-65) {b=2}
-       else {b=10}
-       u = u + delta*a*(b*(v-vr)-u) : Calculate recovery variable
-     }
-  }
-
-  t0=t : Reset last time so delta can be calculated in the next time step
+  SOLVE states METHOD derivimplicit  : cnexp
   i = -(k*(v-vr)*(v-vt) - u + Iin)/C/1000
 }
 
@@ -125,6 +98,12 @@ FUNCTION derivfunc () {
   } else {
     derivfunc = a*(b*(v-vr)-u) : Calculate recovery variable
   }
+}
+
+DERIVATIVE states {
+  LOCAL f
+  f = derivfunc()
+  u' = f
 }
 
 : Input received
