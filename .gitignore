@@ -2,7 +2,7 @@
 /NeuroML2/results/RS_One.dat.lems
 *~
 NeuroML2/*.gv
-NeuroML2/*.py
+NeuroML2/*nrn.py
 NeuroML2/*.ode
 NeuroML2/*.9ml
 NeuroML2/*.png
