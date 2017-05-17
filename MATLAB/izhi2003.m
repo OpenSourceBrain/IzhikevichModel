@@ -295,6 +295,9 @@ axis([0 max(tspan) -90 30])
 axis off;
 title('(A) tonic spiking');
 
+fileID = fopen('results/A_tonic.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
+
+
 %%%%%%%%%%%%%%%%%% (B) phasic spiking %%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(5,4,2)%  
 a=0.02; b=0.25; c=-65;  d=6;
@@ -352,6 +355,8 @@ plot(tspan,VV,[0 T1 T1 max(tspan)],-90+[0 0 10 10]);
 axis([0 max(tspan) -90 30])
 axis off;
 title('(C) tonic bursting');
+
+fileID = fopen('results/C_tonicbursting.dat','w');A = [tspan; VV; uu];fprintf(fileID,'%f\t%f\t%f\n',A);fclose(fileID);
 
 %%%%%%%%%%%%%%% (D) phasic bursting %%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(5,4,4)   

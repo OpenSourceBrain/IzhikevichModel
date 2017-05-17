@@ -5,6 +5,24 @@ engine: Octave
 
 mep: results/.test.2003.mep
 experiments:
+    
+  A_tonic:
+    observables:
+      spike times:
+        file: 
+          path: results/A_tonic.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+  C_tonicbursting:
+    observables:
+      spike times:
+        file: 
+          path: results/C_tonicbursting.dat
+        spike detection: 
+          method: threshold
+        tolerance: 0
+    
   RS:
     observables:
       spike times:
