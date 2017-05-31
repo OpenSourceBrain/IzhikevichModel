@@ -57,7 +57,8 @@ plt.rcParams.update({
 
 def run_simulation(time_step=global_time_step, a=0.02, b=0.2, c=-65.0, d=6.0,
                    u_init=None, v_init=-70.0, waveform=None, t_stop=100.0,
-                   title="", scalebar_level=0, label_scalebar=False):
+                   title="", scalebar_level=0, label_scalebar=False,
+                   save_data=False):
     """
     Run a simulation of a single neuron.
 
@@ -141,6 +142,15 @@ def run_simulation(time_step=global_time_step, a=0.02, b=0.2, c=-65.0, d=6.0,
 
     plt.show(block=False)
     fig.canvas.draw()
+    
+    if save_data:
+        datfilename = "results/%s_%s.dat" % (title.replace("(","").replace(")","").replace(" ","_"),options.simulator)
+
+        datfile = open(datfilename,'w')
+        for i in range(len(vm)):
+            datfile.write('%s\t%s\n'%(vm.times[i].magnitude,vm[i][0].magnitude))
+        datfile.close()
+        print('   Saved data to %s'%datfilename)
 
 
 def step(amplitude, t_stop):
@@ -228,7 +238,7 @@ t_stop = 100.0
 run_simulation(a=0.02, b=0.2, c=-65.0, d=6.0, v_init=-70.0,
                waveform=step(0.014, t_stop),
                t_stop=t_stop, title='(A) Tonic spiking',
-               label_scalebar=True)
+               label_scalebar=True, save_data=True)
 
 # == Sub-plot B: Phasic spiking =============================================
 
@@ -242,7 +252,7 @@ run_simulation(a=0.02, b=0.25, c=-65.0, d=6.0, v_init=-64.0,
 _stop = 220.0
 run_simulation(a=0.02, b=0.2, c=-50.0, d=2.0, v_init=-70.0,
                waveform=step(0.015, t_stop),
-               t_stop=t_stop, title='(C) Tonic bursting')
+               t_stop=t_stop, title='(C) Tonic bursting', save_data=True)
 
 # == Sub-plot D: Phasic bursting ============================================
 
@@ -435,3 +445,6 @@ try:
 except OSError:
     pass
 fig.savefig(filename)
+
+print("\n  Simulation complete. Results can be seen in figure at %s\n"%(filename))
+
