@@ -80,7 +80,7 @@ def run_simulation(time_step=global_time_step, a=0.02, b=0.2, c=-65.0, d=6.0,
 
     # create a neuron and current source
 
-    sim.setup(timestep=time_step, min_delay=time_step)
+    sim.setup(timestep=time_step)
 
     if u_init is None:
         u_init = b * v_init

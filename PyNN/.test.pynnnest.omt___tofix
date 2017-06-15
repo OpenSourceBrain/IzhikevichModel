@@ -1,0 +1,27 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+ 
+target: izhikevich2004.py 
+engine: PyNN_Nest
+
+mep: ../NeuroML2/.test.2003.mep
+experiments:
+    
+  A_tonic:
+    observables:
+      spike times:
+        file: 
+          path: results/A_Tonic_spiking_nest.dat
+          scaling: [1, 1]
+        spike detection: 
+          method: threshold
+        tolerance: 0.0038089
+  C_tonicbursting:
+    observables:
+      spike times:
+        file: 
+          path: results/C_Tonic_bursting_nest.dat
+          scaling: [1, 1]
+        spike detection: 
+          method: threshold
+        tolerance: 0.082001
+

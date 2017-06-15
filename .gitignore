@@ -28,3 +28,4 @@ NeuroML2/results/*.dat
 PyNN/results/
 nnn/
 /NeuroML2/LEMS_2007One_brian2.py
+/NeuroML2/LEMS_2007One_netpyne.py
