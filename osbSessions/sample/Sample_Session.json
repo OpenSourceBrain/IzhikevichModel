@@ -74,9 +74,9 @@
               ],
               "componentSpecific": {
                 "cameraPosition": {
-                  "x": 100,
-                  "y": 0,
-                  "z": 63
+		  "x": 100,
+		  "y": 1.997378740319119e-13,
+		  "z": 202.4279977540971
                 },
                 "cameraRotation": {
                   "rx": 0,
