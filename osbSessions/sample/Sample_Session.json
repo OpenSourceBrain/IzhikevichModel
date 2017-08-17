@@ -1,0 +1,170 @@
+{
+  "id": -1024126888,
+  "name": "Izhikevich Spiking Neuron Model",
+  "experiments": [
+    {
+      "id": 4,
+      "aspectConfigurations": [
+        
+      ],
+      "name": "Izhikevich Spiking Neuron Model simulation",
+      "description": "Re-implementation of Izhikevich\u2019s spiking neuron model. For more information see http:\/\/opensourcebrain.org\/projects\/izhikevichmodel",
+      "lastModified": 1436102517000,
+      "status": "COMPLETED",
+      "simulationResults": [
+        
+      ],
+      "script": "\/script.js",
+      "isPublic": false,
+      "view": {
+        "id": 73,
+        "viewStates": {
+          "views": {
+            "Popup2": {
+              "widgetType": 1,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Model Description - Izhikevich Spiking Neuron Network",
+              "size": {
+                "height": 394,
+                "width": 490
+              },
+              "position": {
+                "left": 95,
+                "top": 140
+              },
+              "dataType": "string",
+              "data": "<div id='Popup2_net1_el_5' class='collapse in popup-html'>Network: <a href=\"#\" instancePath=\"Model.neuroml.net1\">net1<\/a><br\/><br\/>\n<a target=\"_blank\" href=\"https:\/\/raw.githubusercontent.com\/OpenSourceBrain\/OSB_Samples\/master\/Izhikevich\/FiveCells.net.nml\"><i>View NeuroML 2 source file<\/i><\/a><br\/><br\/>\n<b>Populations<\/b><br\/>\npopA: <a href=\"#\" instancePath=\"Model.neuroml.izTonicSpiking.popA[0]\">1 cells of type izTonicSpiking<\/a><br\/>\npopB: <a href=\"#\" instancePath=\"Model.neuroml.izPhasicSpiking.popB[1]\">1 cells of type izPhasicSpiking<\/a><br\/>\npopC: <a href=\"#\" instancePath=\"Model.neuroml.izTonicBursting.popC[2]\">1 cells of type izTonicBursting<\/a><br\/>\npopD: <a href=\"#\" instancePath=\"Model.neuroml.izPhasicBursting.popD[3]\">1 cells of type izPhasicBursting<\/a><br\/>\npopE: <a href=\"#\" instancePath=\"Model.neuroml.izMixedMode.popE[4]\">1 cells of type izMixedMode<\/a><br\/>\n<br\/>\n<b>Cells<\/b><br\/>  \n<a href=\"#\" instancePath=\"Model.neuroml.izMixedMode\">izMixedMode<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izPhasicBursting\">izPhasicBursting<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izPhasicSpiking\">izPhasicSpiking<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izTonicBursting\">izTonicBursting<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izTonicSpiking\">izTonicSpiking<\/a>\n<br\/><br\/>\n<\/div>",
+              "componentSpecific": {
+                "customHandlers": [
+                  {
+                    "funct": "function customHandler(node, path, widget) {\n            var n;\n            try {\n                n = eval(path);\n            } catch (ex) {\n                node = undefined;\n            }\n\n            var metaType = n.getMetaType();\n            if (metaType == GEPPETTO.Resources.VARIABLE_NODE) {\n                \/\/A plot function inside a channel\n                G.addWidget(Widgets.PLOT).plotFunctionNode(n);\n            } else if (metaType == GEPPETTO.Resources.VISUAL_GROUP_NODE) {\n                \/\/A visual group\n                n.show(true);\n            } else if (metaType == GEPPETTO.Resources.COMPOSITE_TYPE_NODE) {\n                \/\/Another composite\n                var target = widget;\n                if (GEPPETTO.isKeyPressed(\"meta\")) {\n                    target = G.addWidget(1).addCustomNodeHandler(customHandler, 'click');\n                }\n                target.setName('Information for ' + n.getId()).setData(n, [GEPPETTO.Resources.HTML_TYPE]);\n            }\n        }",
+                    "event": "click"
+                  }
+                ]
+              }
+            },
+            "Popup3": {
+              "widgetType": 1,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Info",
+              "size": {
+                "height": 160,
+                "width": 350
+              },
+              "position": {
+                "left": 1308.5,
+                "top": 154.5
+              },
+              "dataType": "string",
+              "data": "Example of set of cells using the  <a target='_blank' href='http:\/\/izhikevich.org\/publications\/whichmod.htm'>Izhikevich spiking neuron model<\/a>.<br\/><br\/> The <b>original OSB project<\/b> for this model is <a target='_blank' href='http:\/\/www.opensourcebrain.org\/projects\/izhikevichmodel'>here<\/a>.",
+              "componentSpecific": {
+                "customHandlers": [
+                  
+                ]
+              }
+            },
+            "Canvas1": {
+              "widgetType": "CANVAS",
+              "isWidget": false,
+              "dataType": "instances",
+              "data": [
+                "izhikevich"
+              ],
+              "componentSpecific": {
+                "cameraPosition": {
+                  "x": 100,
+                  "y": 0,
+                  "z": 63
+                },
+                "cameraRotation": {
+                  "rx": 0,
+                  "ry": 0,
+                  "rz": 0,
+                  "radius": 0
+                },
+                "colorMap": {
+                  
+                },
+                "opacityMap": {
+                  
+                },
+                "geometryTypeMap": {
+                  
+                },
+                "backgroundColor": "0x101010"
+              }
+            },
+            "Tutorial1": {
+              "widgetType": "TUTORIAL",
+              "isWidget": true,
+              "dataType": "array",
+              "data": [
+                
+              ],
+              "componentSpecific": {
+                "activeTutorial": "Open Source Brain Tutorial",
+                "currentStep": 0
+              },
+              "size": {
+                "height": 300,
+                "width": 350
+              },
+              "position": {
+                "left": "50%",
+                "top": "50%"
+              }
+            },
+            "Tutorial2": {
+              "widgetType": "TUTORIAL",
+              "isWidget": true,
+              "dataType": "array",
+              "data": [
+                
+              ],
+              "componentSpecific": {
+                "activeTutorial": "Open Source Brain Tutorial",
+                "currentStep": 0
+              },
+              "size": {
+                "height": 300,
+                "width": 350
+              },
+              "position": {
+                "left": "50%",
+                "top": "50%"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "activeExperimentId": 4,
+  "geppettoModel": {
+    "id": 7,
+    "url": "\/GeppettoModel.xmi",
+    "type": "GEPPETTO_PROJECT"
+  },
+  "isPublic": false,
+  "isReadOnly": false,
+  "view": {
+    "id": 0,
+    "viewStates": {
+      "views": {
+        "Canvas1": {
+          "widgetType": "CANVAS",
+          "componentSpecific": {
+            "radiusMap": {
+              
+            },
+            "colorMap": {
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}

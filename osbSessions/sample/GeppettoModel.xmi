@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gep:GeppettoModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gep="https://raw.githubusercontent.com/openworm/org.geppetto.model/master/src/main/resources/geppettoModel.ecore"
+    xmlns:gep_1="https://raw.githubusercontent.com/openworm/org.geppetto.model/master/src/main/resources/geppettoModel.ecore#//types">
+  <variables
+      id="izhikevich"
+      name="Izhikevich Spiking Neuron Network"
+      types="//@libraries.0/@types.0"/>
+  <libraries
+      id="neuroml"
+      name="NeuroML">
+    <types xsi:type="gep_1:ImportType"
+        id="net1"
+        url="https://raw.githubusercontent.com/OpenSourceBrain/OSB_Samples/master/Izhikevich/FiveCells.net.nml"
+        modelInterpreterId="neuroMLModelInterpreter"/>
+  </libraries>
+</gep:GeppettoModel>
