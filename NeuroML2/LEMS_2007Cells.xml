@@ -17,14 +17,14 @@
 
     
     <Display id="d1" title="Weakly adapting PYR model 1 with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
-        <Line id ="weaklyAdapting v" quantity="weakpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+        <Line id ="weaklyAdapting v" quantity="weakpop/0/weaklyAdapting/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     <Display id="d2" title="Strongly adapting PYR model with 100 pA input" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="40">
-        <Line id ="stronglyAdapting v" quantity="strongpop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+        <Line id ="stronglyAdapting v" quantity="strongpop/0/stronglyAdapting/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     
     <Display id="d3" title="RS" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
-        <Line id ="RS v" quantity="RS_pop[0]/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
+        <Line id ="RS v" quantity="RS_pop/0/RS/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
     
     <Display id="d4" title="LS (uses parameters from Fig 10 of suppl info of PNAS2008, but not same behaviour due to no dendrites)" timeScale="1ms" xmin="-100" xmax="1100" ymin="-80" ymax="50">
@@ -33,12 +33,12 @@
 
 
     <OutputFile id="of0" fileName="results/iz2007_RS.dat">
-        <OutputColumn id="rs" quantity="RS_pop[0]/v" />
+        <OutputColumn id="rs" quantity="RS_pop/0/RS/v" />
     </OutputFile>
 
     <OutputFile id="of1" fileName="results/iz2007_ws.dat">
-        <OutputColumn id="w" quantity="weakpop[0]/v" />
-        <OutputColumn id="s" quantity="strongpop[0]/v" />
+        <OutputColumn id="w" quantity="weakpop/0/weaklyAdapting/v" />
+        <OutputColumn id="s" quantity="strongpop/0/stronglyAdapting/v" />
     </OutputFile>
 
     <OutputFile id="of2" fileName="results/iz2007_LS.dat">

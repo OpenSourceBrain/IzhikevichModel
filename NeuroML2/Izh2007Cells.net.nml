@@ -35,23 +35,45 @@
     <pulseGenerator id="LSIext" delay="100ms" duration="500ms" amplitude="130 pA"/>
 
     <network id="net1">
-        <population id="weakpop" component="weaklyAdapting" size="1"/>
-        <population id="strongpop" component="stronglyAdapting" size="1"/>
-        <population id="RS_pop" component="RS" size="1"/>
-    
-        <population id="LSpop" component="LS" type="populationList" size="1">
+        <population id="weakpop" component="weaklyAdapting" size="1" type="populationList">
+            <property tag="color" value="0 0.6 0"/>
+            <property tag="radius" value="5"/>
             <instance id="0">
                 <location x="0" y="0" z="0"/>
             </instance>
         </population>
+        
+        <population id="strongpop" component="stronglyAdapting" size="1" type="populationList">
+            <property tag="color" value="0 0 0.6"/>
+            <property tag="radius" value="5"/>
+            <instance id="0">
+                <location x="40" y="0" z="0"/>
+            </instance>
+        </population>
+        
+        <population id="RS_pop" component="RS" size="1" type="populationList">
+            <property tag="color" value="0 0.6 0.6"/>
+            <property tag="radius" value="5"/>
+            <instance id="0">
+                <location x="80" y="0" z="0"/>
+            </instance>
+        </population>
     
-        <explicitInput target="weakpop[0]" input="weakIext" destination="synapses"/>
-        <explicitInput target="weakpop[0]" input="weakIshift" destination="synapses"/>
+        <population id="LSpop" component="LS" type="populationList" size="1">
+            <property tag="color" value="0.6 0.6 0"/>
+            <property tag="radius" value="5"/>
+            <instance id="0">
+                <location x="120" y="0" z="0"/>
+            </instance>
+        </population>
     
-        <explicitInput target="strongpop[0]" input="strongIext" destination="synapses"/>
-        <explicitInput target="strongpop[0]" input="strongIshift" destination="synapses"/>
+        <explicitInput target="weakpop/0/weaklyAdapting" input="weakIext" destination="synapses"/>
+        <explicitInput target="weakpop/0/weaklyAdapting" input="weakIshift" destination="synapses"/>
     
-        <explicitInput target="RS_pop[0]" input="RS_Iext" destination="synapses"/>
+        <explicitInput target="strongpop/0/stronglyAdapting" input="strongIext" destination="synapses"/>
+        <explicitInput target="strongpop/0/stronglyAdapting" input="strongIshift" destination="synapses"/>
+    
+        <explicitInput target="RS_pop/0/RS" input="RS_Iext" destination="synapses"/>
     
         <inputList id="iLSIext" component="LSIext" population="LSpop">
             <input id="0" target="../LSpop/0/LS" destination="synapses"/>
