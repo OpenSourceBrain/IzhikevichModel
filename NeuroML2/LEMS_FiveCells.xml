@@ -9,7 +9,7 @@
     <Include file="Inputs.xml"/>
     <Include file="Simulation.xml"/>
 
-    <Include file="FiveCells.net.nml"/>
+    <Include file="FiveCells.nml"/>
 
     <Simulation id="sim1" length="220ms" step="0.01ms" target="net1">
 
