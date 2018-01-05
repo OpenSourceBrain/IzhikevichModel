@@ -1,1 +1,1 @@
-initOSBGeppetto("network","FiveCells")
+initOSBGeppetto("network","izhikevich")
