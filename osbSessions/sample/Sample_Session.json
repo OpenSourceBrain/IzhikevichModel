@@ -34,8 +34,7 @@
                 "left": 95,
                 "top": 140
               },
-              "dataType": "string",
-              "data": "<div id='Popup2_net1_el_5' class='collapse in popup-html'>Network: <a href=\"#\" instancePath=\"Model.neuroml.net1\">net1<\/a><br\/><br\/>\n<a target=\"_blank\" href=\"https:\/\/raw.githubusercontent.com\/OpenSourceBrain\/OSB_Samples\/master\/Izhikevich\/FiveCells.net.nml\"><i>View NeuroML 2 source file<\/i><\/a><br\/><br\/>\n<b>Populations<\/b><br\/>\npopA: <a href=\"#\" instancePath=\"Model.neuroml.izTonicSpiking.popA[0]\">1 cells of type izTonicSpiking<\/a><br\/>\npopB: <a href=\"#\" instancePath=\"Model.neuroml.izPhasicSpiking.popB[1]\">1 cells of type izPhasicSpiking<\/a><br\/>\npopC: <a href=\"#\" instancePath=\"Model.neuroml.izTonicBursting.popC[2]\">1 cells of type izTonicBursting<\/a><br\/>\npopD: <a href=\"#\" instancePath=\"Model.neuroml.izPhasicBursting.popD[3]\">1 cells of type izPhasicBursting<\/a><br\/>\npopE: <a href=\"#\" instancePath=\"Model.neuroml.izMixedMode.popE[4]\">1 cells of type izMixedMode<\/a><br\/>\n<br\/>\n<b>Cells<\/b><br\/>  \n<a href=\"#\" instancePath=\"Model.neuroml.izMixedMode\">izMixedMode<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izPhasicBursting\">izPhasicBursting<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izPhasicSpiking\">izPhasicSpiking<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izTonicBursting\">izTonicBursting<\/a> | \n<a href=\"#\" instancePath=\"Model.neuroml.izTonicSpiking\">izTonicSpiking<\/a>\n<br\/><br\/>\n<\/div>",
+              "data": ["Model.neuroml.net1", ["HTMLType"]],
               "componentSpecific": {
                 "customHandlers": [
                   {
