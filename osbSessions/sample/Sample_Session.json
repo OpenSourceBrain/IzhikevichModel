@@ -24,6 +24,7 @@
               "widgetType": 1,
               "isWidget": true,
               "transparentBackground": false,
+              "showHistoryNavigationBar": true,
               "name": "Model Description - Izhikevich Spiking Neuron Network",
               "size": {
                 "height": 394,
