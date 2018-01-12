@@ -14,7 +14,7 @@
       name="NeuroML">
     <types xsi:type="gep_1:ImportType"
         id="net1"
-        url="https://raw.githubusercontent.com/OpenSourceBrain/OSB_Samples/master/Izhikevich/FiveCells.net.nml"
+        url="http://osbprod.s3.amazonaws.com/projects/388/OpenSourceBrain/OSB_Samples/master/Izhikevich/FiveCells.net.nml"
         modelInterpreterId="neuroMLModelInterpreter"/>
   </libraries>
 </gep:GeppettoModel>

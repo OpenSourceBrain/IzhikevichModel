@@ -1,9 +1,9 @@
 {
-  "id": -1024126888,
+  "id": 388,
   "name": "Izhikevich Spiking Neuron Model",
   "experiments": [
     {
-      "id": 4,
+      "id": 656,
       "aspectConfigurations": [
         
       ],
@@ -17,10 +17,10 @@
       "script": "\/script.js",
       "isPublic": false,
       "view": {
-        "id": 73,
+        "id": 417,
         "viewStates": {
           "views": {
-            "Popup2": {
+            "Popup1": {
               "widgetType": 1,
               "isWidget": true,
               "transparentBackground": false,
@@ -38,13 +38,13 @@
               "componentSpecific": {
                 "customHandlers": [
                   {
-		    "funct": "function customHandler(node, path, widget) {\n            var n;\n            try {\n                n = eval(path);\n                var metaType = n.getMetaType();\n                if (metaType == GEPPETTO.Resources.VARIABLE_NODE) {\n                    \/\/A plot function inside a channel\n                    G.addWidget(Widgets.PLOT).then(function (w) {\n                        return w.plotFunctionNode(n);\n                    });\n                } else if (metaType == GEPPETTO.Resources.VISUAL_GROUP_NODE) {\n                    \/\/A visual group\n                    n.show(true);\n                } else if (metaType == GEPPETTO.Resources.COMPOSITE_TYPE_NODE) {\n                    \/\/Another composite\n                    widget.setName('Information for ' + n.getId()).setData(n, [GEPPETTO.Resources.HTML_TYPE]);\n                }\n            } catch (ex) {\n                node = undefined;\n            }\n        }",
+                    "funct": "function customHandler(node, path, widget) {\n            var n;\n            try {\n                n = eval(path);\n                var metaType = n.getMetaType();\n                if (metaType == GEPPETTO.Resources.VARIABLE_NODE) {\n                    \/\/A plot function inside a channel\n                    G.addWidget(Widgets.PLOT).then(function (w) {\n                        return w.plotFunctionNode(n);\n                    });\n                } else if (metaType == GEPPETTO.Resources.VISUAL_GROUP_NODE) {\n                    \/\/A visual group\n                    n.show(true);\n                } else if (metaType == GEPPETTO.Resources.COMPOSITE_TYPE_NODE) {\n                    \/\/Another composite\n                    widget.setName('Information for ' + n.getId()).setData(n, [GEPPETTO.Resources.HTML_TYPE]);\n                }\n            } catch (ex) {\n                node = undefined;\n            }\n        }",
                     "event": "click"
                   }
                 ]
               }
             },
-            "Popup3": {
+            "Popup2": {
               "widgetType": 1,
               "isWidget": true,
               "transparentBackground": false,
@@ -63,37 +63,6 @@
                 "customHandlers": [
                   
                 ]
-              }
-            },
-            "Canvas1": {
-              "widgetType": "CANVAS",
-              "isWidget": false,
-              "dataType": "instances",
-              "data": [
-                "izhikevich"
-              ],
-              "componentSpecific": {
-                "cameraPosition": {
-		  "x": 100,
-		  "y": 1.997378740319119e-13,
-		  "z": 202.4279977540971
-                },
-                "cameraRotation": {
-                  "rx": 0,
-                  "ry": 0,
-                  "rz": 0,
-                  "radius": 0
-                },
-                "colorMap": {
-                  
-                },
-                "opacityMap": {
-                  
-                },
-                "geometryTypeMap": {
-                  
-                },
-                "backgroundColor": "0x101010"
               }
             },
             "Tutorial1": {
@@ -135,22 +104,57 @@
                 "left": "50%",
                 "top": "50%"
               }
+            },
+            "Console1": {
+              "widgetType": "CONSOLE",
+              "isWidget": false
+            },
+            "Canvas1": {
+              "widgetType": "CANVAS",
+              "isWidget": false,
+              "dataType": "instances",
+              "data": [
+                "izhikevich"
+              ],
+              "componentSpecific": {
+                "cameraPosition": {
+                  "x": 110.619,
+                  "y": -1.666,
+                  "z": 101.74
+                },
+                "cameraRotation": {
+                  "rx": 0.016,
+                  "ry": 0.045,
+                  "rz": 0.002,
+                  "radius": 102.131
+                },
+                "colorMap": {
+                  
+                },
+                "opacityMap": {
+                  
+                },
+                "geometryTypeMap": {
+                  
+                },
+                "backgroundColor": "0x101010"
+              }
             }
           }
         }
       }
     }
   ],
-  "activeExperimentId": 4,
+  "activeExperimentId": 656,
   "geppettoModel": {
-    "id": 7,
+    "id": 1170,
     "url": "\/GeppettoModel.xmi",
     "type": "GEPPETTO_PROJECT"
   },
   "isPublic": false,
   "isReadOnly": false,
   "view": {
-    "id": 0,
+    "id": 418,
     "viewStates": {
       "views": {
         "Canvas1": {
