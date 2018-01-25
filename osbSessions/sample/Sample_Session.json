@@ -1,91 +1,159 @@
 {
-  "id": 388,
-  "name": "Izhikevich Spiking Neuron Model",
+  "id": 595,
+  "name": "izhikevichmodel",
   "experiments": [
     {
-      "id": 656,
+      "id": 1198,
       "aspectConfigurations": [
-        
+        {
+          "id": 1178,
+          "instance": "net1",
+          "watchedVariables": [
+            "net1.weakpop[0].v",
+            "net1.strongpop[0].v",
+            "net1.RS_pop[0].v",
+            "net1.LSpop[0].v"
+          ],
+          "modelParameters": [
+            
+          ],
+          "simulatorConfiguration": {
+            "id": 1150,
+            "simulatorId": "neuronSimulator",
+            "timestep": 2.5e-5,
+            "length": 0.8,
+            "parameters": {
+              "target": "net1"
+            }
+          }
+        }
       ],
-      "name": "Izhikevich Spiking Neuron Model simulation",
-      "description": "Re-implementation of Izhikevich\u2019s spiking neuron model. For more information see http:\/\/opensourcebrain.org\/projects\/izhikevichmodel",
-      "lastModified": 1436102517000,
+      "name": "Izh2007Cells - net",
+      "creationDate": 1516899358000,
+      "lastModified": 1516899449000,
       "status": "COMPLETED",
       "simulationResults": [
-        
+        {
+          "id": 940,
+          "simulatedInstance": "net1",
+          "result": {
+            "id": 1567,
+            "url": "\/experiment_1198\/results_25012018_165731.h5",
+            "type": "RECORDING"
+          },
+          "format": "GEPPETTO_RECORDING"
+        },
+        {
+          "id": 941,
+          "simulatedInstance": "net1",
+          "result": {
+            "id": 1568,
+            "url": "\/experiment_1198\/rawRecording.zip",
+            "type": "RECORDING"
+          },
+          "format": "RAW"
+        }
       ],
+      "startDate": 1516899449000,
+      "endDate": 1516899458000,
       "script": "\/script.js",
       "isPublic": false,
       "view": {
-        "id": 417,
+        "id": 1582,
         "viewStates": {
           "views": {
-            "Popup1": {
-              "widgetType": 1,
+            "Plot1": {
+              "widgetType": 0,
               "isWidget": true,
               "transparentBackground": false,
-              "showHistoryNavigationBar": true,
-              "name": "Model Description - Izhikevich Spiking Neuron Network",
-              "size": {
-                "height": 394,
-                "width": 490
-              },
-              "position": {
-                "left": 95,
-                "top": 140
-              },
-              "data": ["Model.neuroml.net1", ["HTMLType"]],
-              "componentSpecific": {
-                "customHandlers": [
-                  {
-                    "funct": "function customHandler(node, path, widget) {\n            var n;\n            try {\n                n = eval(path);\n                var metaType = n.getMetaType();\n                if (metaType == GEPPETTO.Resources.VARIABLE_NODE) {\n                    \/\/A plot function inside a channel\n                    G.addWidget(Widgets.PLOT).then(function (w) {\n                        return w.plotFunctionNode(n);\n                    });\n                } else if (metaType == GEPPETTO.Resources.VISUAL_GROUP_NODE) {\n                    \/\/A visual group\n                    n.show(true);\n                } else if (metaType == GEPPETTO.Resources.COMPOSITE_TYPE_NODE) {\n                    \/\/Another composite\n                    widget.setName('Information for ' + n.getId()).setData(n, [GEPPETTO.Resources.HTML_TYPE]);\n                }\n            } catch (ex) {\n                node = undefined;\n            }\n        }",
-                    "event": "click"
-                  }
-                ]
-              }
-            },
-            "Popup2": {
-              "widgetType": 1,
-              "isWidget": true,
-              "transparentBackground": false,
-              "name": "Info",
-              "size": {
-                "height": 160,
-                "width": 350
-              },
-              "position": {
-                "left": 1308.5,
-                "top": 154.5
-              },
-              "dataType": "string",
-              "data": "Example of set of cells using the  <a target='_blank' href='http:\/\/izhikevich.org\/publications\/whichmod.htm'>Izhikevich spiking neuron model<\/a>.<br\/><br\/> The <b>original OSB project<\/b> for this model is <a target='_blank' href='http:\/\/www.opensourcebrain.org\/projects\/izhikevichmodel'>here<\/a>.",
-              "componentSpecific": {
-                "customHandlers": [
-                  
-                ]
-              }
-            },
-            "Tutorial1": {
-              "widgetType": "TUTORIAL",
-              "isWidget": true,
-              "dataType": "array",
-              "data": [
-                
-              ],
-              "componentSpecific": {
-                "activeTutorial": "Open Source Brain Tutorial",
-                "currentStep": 0
-              },
+              "name": "Recorded variables: weakpop",
               "size": {
                 "height": 300,
                 "width": 350
               },
               "position": {
-                "left": "50%",
-                "top": "50%"
-              }
+                "left": 159,
+                "top": 476
+              },
+              "dataType": "object",
+              "data": [
+                "net1.weakpop[0].v"
+              ]
             },
-            "Tutorial2": {
+            "Plot2": {
+              "widgetType": 0,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Recorded variables: strongpop",
+              "size": {
+                "height": 300,
+                "width": 350
+              },
+              "position": {
+                "left": 158,
+                "top": 104
+              },
+              "dataType": "object",
+              "data": [
+                "net1.strongpop[0].v"
+              ]
+            },
+            "Plot3": {
+              "widgetType": 0,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Recorded variables: RS_pop",
+              "size": {
+                "height": 300,
+                "width": 350
+              },
+              "position": {
+                "left": 1468,
+                "top": 115
+              },
+              "dataType": "object",
+              "data": [
+                "net1.RS_pop[0].v"
+              ]
+            },
+            "Plot4": {
+              "widgetType": 0,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Recorded variables: LSpop",
+              "size": {
+                "height": 300,
+                "width": 350
+              },
+              "position": {
+                "left": 1467,
+                "top": 488
+              },
+              "dataType": "object",
+              "data": [
+                "net1.LSpop[0].v"
+              ]
+            },
+            "Popup1": {
+              "widgetType": 1,
+              "isWidget": true,
+              "transparentBackground": false,
+              "name": "Info",
+              "size": {
+                "height": 221.8,
+                "width": 495.8
+              },
+              "position": {
+                "left": 743,
+                "top": 106.5
+              },
+	      "dataType": "string",
+	      "data": "Example of set of cells using the  <a target='_blank' href='http:\/\/izhikevich.org\/publications\/whichmod.htm'>Izhikevich spiking neuron model<\/a>.<br\/><br\/> The <b>original OSB project<\/b> for this model is <a target='_blank' href='http:\/\/www.opensourcebrain.org\/projects\/izhikevichmodel'>here<\/a>. <br\/> Click Results -> Play Step by Step to replay the experiment.",
+	      "componentSpecific": {
+	          "customHandlers": []
+	      }
+            },
+            "Tutorial1": {
               "widgetType": "TUTORIAL",
               "isWidget": true,
               "dataType": "array",
@@ -114,22 +182,25 @@
               "isWidget": false,
               "dataType": "instances",
               "data": [
-                "izhikevich"
+                "net1"
               ],
               "componentSpecific": {
                 "cameraPosition": {
-                  "x": 110.619,
-                  "y": -1.666,
-                  "z": 101.74
+                  "x": 60,
+                  "y": 0,
+                  "z": 130.767
                 },
                 "cameraRotation": {
-                  "rx": 0.016,
-                  "ry": 0.045,
-                  "rz": 0.002,
-                  "radius": 102.131
+                  "rx": 0,
+                  "ry": 0,
+                  "rz": 0,
+                  "radius": 130.767
                 },
                 "colorMap": {
-                  
+                  "net1.weakpop": "#009900",
+                  "net1.RS_pop": "#009999",
+                  "net1.strongpop": "#000099",
+                  "net1.LSpop": "#999900"
                 },
                 "opacityMap": {
                   
@@ -145,26 +216,32 @@
       }
     }
   ],
-  "activeExperimentId": 656,
+  "activeExperimentId": 1198,
   "geppettoModel": {
-    "id": 1170,
+    "id": 1566,
     "url": "\/GeppettoModel.xmi",
     "type": "GEPPETTO_PROJECT"
   },
   "isPublic": false,
   "isReadOnly": false,
   "view": {
-    "id": 418,
+    "id": 1581,
     "viewStates": {
       "views": {
         "Canvas1": {
           "widgetType": "CANVAS",
           "componentSpecific": {
             "radiusMap": {
-              
+              "net1.weakpop": "5",
+              "net1.RS_pop": "5",
+              "net1.strongpop": "5",
+              "net1.LSpop": "5"
             },
             "colorMap": {
-              
+              "net1.weakpop": "#009900",
+              "net1.RS_pop": "#009999",
+              "net1.strongpop": "#000099",
+              "net1.LSpop": "#999900"
             }
           }
         }

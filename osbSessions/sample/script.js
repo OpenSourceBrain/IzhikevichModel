@@ -1,1 +1,1 @@
-initOSBGeppetto("network","izhikevich")
+initOSBGeppetto("network", net1);
