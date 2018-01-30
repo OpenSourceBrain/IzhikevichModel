@@ -148,7 +148,7 @@
                 "top": 50.5
               },
 	      "dataType": "string",
-	      "data": "Example of set of cells using the  <a target='_blank' href='http:\/\/izhikevich.org\/publications\/whichmod.htm'>Izhikevich spiking neuron model<\/a>.<br\/><br\/> The <b>original OSB project<\/b> for this model is <a target='_blank' href='http:\/\/www.opensourcebrain.org\/projects\/izhikevichmodel'>here<\/a>. <br\/> To replay the experiment, click Results -> Play Step by Step.",
+	      "data": "<span style='font-size:1.2em;'>Example of set of cells using the  <a target='_blank' href='http:\/\/izhikevich.org\/publications\/whichmod.htm'>Izhikevich spiking neuron model<\/a>.<br\/><br\/> The <b>original OSB project<\/b> for this model is <a target='_blank' href='http:\/\/www.opensourcebrain.org\/projects\/izhikevichmodel'>here<\/a>. <br\/> To replay the experiment, click Results -> 'Apply Voltage Colouring to Morphologies', then Results -> 'Play Step by Step'.</span>",
 	      "componentSpecific": {
 	          "customHandlers": []
 	      }
