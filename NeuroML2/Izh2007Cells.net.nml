@@ -44,6 +44,10 @@
     <pulseGenerator id="LSIext" delay="100ms" duration="500ms" amplitude="130 pA"/>
 
     <network id="net1">
+        <notes>A number of different Izhikevich spiking cells</notes>
+        <property tag="recommended_dt_ms" value="0.025"/>
+        <property tag="recommended_duration_ms" value="700"/>
+
         <population id="weakpop" component="weaklyAdapting" size="1" type="populationList">
             <property tag="color" value="0 0.6 0"/>
             <property tag="radius" value="5"/>

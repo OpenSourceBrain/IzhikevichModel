@@ -16,6 +16,10 @@
 
 
     <network id="Izh2007One">
+        <notes>A single Izhikevich spiking cell</notes>
+        <property tag="recommended_dt_ms" value="0.025"/>
+        <property tag="recommended_duration_ms" value="520"/>
+        
         <population id="RS_pop" component="RS" size="1" type="populationList">
             <property tag="color" value="0.6 0 0"/>
             <property tag="radius" value="5"/>
