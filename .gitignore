@@ -32,3 +32,6 @@ nnn/
 /NeuroML2/*.pov
 /NeuroML2/*.svg
 /NeuroML2/LEMS_2007One_brian.py
+/tests.log
+/NeuroML2/LEMS_iv_RS.xml
+/NeuroML2/iv_RS.net.nml
