@@ -14,7 +14,7 @@ cell = Cell(id='izhCell',
             neuroml2_cell='izhikevich2007Cell')
 cell.parameters = {}
 
-params = {'v0':'-160mV', 'C':'100 pF', 'k':'0.7 nS_per_mV', \
+params = {'v0':'-60mV', 'C':'100 pF', 'k':'0.7 nS_per_mV', \
           'vr':'-60 mV', 'vt':'-40 mV', 'vpeak':'35 mV', \
           'a':'0.03 per_ms', 'b':'-2 nS', 'c':'-50 mV', 'd':'100 pA'}
 
@@ -51,12 +51,15 @@ new_file = net.to_json_file('%s.json'%net.id)
 
 sim = Simulation(id='Sim%s'%net.id,
                  network=new_file,
-                 duration='1000',
+                 duration='700',
                  dt='0.025',
                  recordVariables={'v':{'all':'*'},
                                   'u':{'all':'*'}},
                  plots2D={'vu':{'x_axis':'izhPop[0]/v',
-                                 'y_axis':'izhPop[0]/u'}})
+                                 'y_axis':'izhPop[0]/u'}},
+                plots3D={'X-Y-Z':{'x_axis':'t',
+                  'y_axis':'izhPop[0]/u',
+                  'z_axis':'izhPop[0]/v'}})
                  
 sim.to_json_file()
 
