@@ -1,6 +1,6 @@
 ### Izhikevich spiking neuron model
 
-Initial implementation of model from: http://izhikevich.org/publications/whichmod.htm
+Implementation of the model from: http://izhikevich.org/publications/whichmod.htm
 
 ![](http://www.opensourcebrain.org/attachments/download/83/Selection_220.png)
 
