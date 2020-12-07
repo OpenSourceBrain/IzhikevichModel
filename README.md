@@ -6,7 +6,7 @@ Initial implementation of model from: http://izhikevich.org/publications/whichmo
 
 See the [Wiki](http://www.opensourcebrain.org/projects/izhikevichmodel/wiki/Wiki) for more details about current implementations.
 
-[![Build Status](https://travis-ci.org/OpenSourceBrain/IzhikevichModel.svg?branch=master)](https://travis-ci.org/OpenSourceBrain/IzhikevichModel)
+[![Build Status](https://travis-ci.com/OpenSourceBrain/IzhikevichModel.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/IzhikevichModel)
 
 [![DOI](https://www.zenodo.org/badge/4956319.svg)](https://www.zenodo.org/badge/latestdoi/4956319)
 
