@@ -15,12 +15,12 @@ addons:
     - libncurses5-dev
     - libgsl0-dev
     - cython
-    # Requirements for numba jit
-    - llvm
-    - build-essential
     # Requirements for Octave
     - octave
     - gnuplot
+    # Requirements for numba jit
+    - llvm
+    - build-essential
 
 language: python
 
@@ -45,8 +45,8 @@ env:
 install:
     # Requirements for numba jit
     - pip install numba
-    
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
 script:
     - omv all -V
+    - python numba/travis_run_numba_model.py
