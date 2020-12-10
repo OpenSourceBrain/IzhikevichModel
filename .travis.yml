@@ -5,7 +5,7 @@ sudo: false
 addons:
   apt:
     packages:
-       # Requirements for Brian & NEST
+    # Requirements for Brian & NEST
     - python-numpy
     - python-scipy
     - python-matplotlib
@@ -48,5 +48,6 @@ install:
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
 script:
-    - omv all -V
+    # quick test.
     - python numba/travis_run_numba_model.py
+    - omv all -V
