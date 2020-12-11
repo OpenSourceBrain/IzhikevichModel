@@ -19,7 +19,6 @@ addons:
     - octave
     - gnuplot
     # Requirements for numba jit
-    - llvm
     - build-essential
 
 language: python
@@ -44,7 +43,7 @@ env:
 
 install:
     # Requirements for numba jit
-    - pip install numba
+    - conda install numba
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
 script:
