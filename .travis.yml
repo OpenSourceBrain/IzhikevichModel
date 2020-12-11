@@ -40,13 +40,14 @@ env:
     - OMV_ENGINE=PyNN_NEURON
     - OMV_ENGINE=PyNN_Nest
     - OMV_ENGINE=PyNEURON
+    - OMV_ENGINE=Numba
 
 install:
     # Requirements for numba jit
     - conda install numba
-    - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+    - pip install git+https://github.com/russelljjarvis/osb-model-validation
 
 script:
     # quick test.
-    - python numba/travis_run_numba_model.py
     - omv all -V
+    -- python numba/travis_run_numba_model.py
