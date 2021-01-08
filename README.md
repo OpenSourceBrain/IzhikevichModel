@@ -7,7 +7,7 @@ Implementation of the model from: http://izhikevich.org/publications/whichmod.ht
 See the [Wiki](http://www.opensourcebrain.org/projects/izhikevichmodel/wiki/Wiki) for more details about current implementations.
 
 [![Build Status](https://travis-ci.com/OpenSourceBrain/IzhikevichModel.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/IzhikevichModel)
-
+[![Build Status](https://travis-ci.com/russelljjarvis/IzhikevichModel.svg?branch=master)](https://travis-ci.com/russelljjarvis/IzhikevichModel)
 [![DOI](https://www.zenodo.org/badge/4956319.svg)](https://www.zenodo.org/badge/latestdoi/4956319)
 
 ### Reusing this model

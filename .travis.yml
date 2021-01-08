@@ -5,27 +5,30 @@ sudo: false
 addons:
   apt:
     packages:
-       # Requirements for Brian & NEST
-    - python-numpy 
-    - python-scipy 
-    - python-matplotlib 
+    # Requirements for Brian & NEST
+    - python-numpy
+    - python-scipy
+    - python-matplotlib
     - python-sympy
-    - python-tables 
-    - libreadline6-dev 
-    - libncurses5-dev 
+    - python-tables
+    - libreadline6-dev
+    - libncurses5-dev
     - libgsl0-dev
     - cython
-        # Requirements for Octave
+    # Requirements for Octave
     - octave
     - gnuplot
-    
+    # Requirements for numba jit
+    - build-essential
+
 language: python
 
 python: 2.7
+python: 3.5
 
 virtualenv:
     system_site_packages: true
-    
+
 env:
     - OMV_ENGINE=jNeuroML
     - OMV_ENGINE=jNeuroML_NEURON
@@ -37,12 +40,14 @@ env:
     - OMV_ENGINE=PyNN_NEURON
     - OMV_ENGINE=PyNN_Nest
     - OMV_ENGINE=PyNEURON
+    - OMV_ENGINE=Numba
 
-install: 
-    - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+install:
+    # Requirements for numba jit
+    - conda install numba
+    - pip install git+https://github.com/russelljjarvis/osb-model-validation
 
 script:
+    # quick test.
     - omv all -V
-    
-    
-
+    -- python numba/travis_run_numba_model.py
