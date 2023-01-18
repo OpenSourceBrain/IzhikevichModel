@@ -1,0 +1,11 @@
+system: Test 2007 cells
+
+experiments:
+
+    rs:
+        expected:
+            spike times: [47.04, 120.46, 196.55, 272.54, 348.55, 424.53999999999996, 500.53999999999996]
+
+
+
+
