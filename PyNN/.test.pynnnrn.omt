@@ -14,7 +14,7 @@ experiments:
           scaling: [1, 1]
         spike detection: 
           method: threshold
-        tolerance: 0.0038089
+        tolerance: 0.0038088642659279584
   C_tonicbursting:
     observables:
       spike times:
@@ -23,4 +23,4 @@ experiments:
           scaling: [1, 1]
         spike detection: 
           method: threshold
-        tolerance: 0.083231
+        tolerance: 0.08323083230832312
