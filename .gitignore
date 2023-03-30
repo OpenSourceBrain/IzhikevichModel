@@ -13,6 +13,7 @@ NeuroML2/*.json
 *.pyc
 *i686
 *x86_64
+arm64
 generatedNEURON
 generatedGENESIS
 generatedNeuroML
