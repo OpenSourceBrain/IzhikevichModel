@@ -45,3 +45,5 @@ nnn/
 /NeuroML2/nmllite/IzhikevichTest.net.nml
 /NeuroML2/nmllite/LEMS_SimIzhikevichTest.xml
 /NeuroML2/nmllite/SimIzhikevichTest.json
+*code.gen.*
+*_eden.py
