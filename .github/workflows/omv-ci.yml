@@ -21,7 +21,6 @@ jobs:
             - jNeuroML_EDEN
             - jNeuroML_validate
             - jNeuroML_Brian2
-            - Octave
             - PyLEMS_NeuroML2
             - PyNN_NEURON
             - PyNN_Nest
