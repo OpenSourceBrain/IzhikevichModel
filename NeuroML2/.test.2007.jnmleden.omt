@@ -1,7 +1,7 @@
 # Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
  
 target: LEMS_2007One.xml 
-engine: jNeuroML_NEURON
+engine: jNeuroML_EDEN
 mep: ../MATLAB/results/.test.2007.mep
 experiments:
   RS2007_100:
@@ -14,4 +14,4 @@ experiments:
         spike detection: 
           method: threshold
           threshold: 0
-        tolerance: 0.0001191993471544449
+        tolerance: 5.317599532243251e-05

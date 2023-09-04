@@ -12,4 +12,4 @@ experiments:
           path: results/RS2007_100.dat
         spike detection: 
           method: threshold
-        tolerance: 0.00994   # High tolerance due to tau=0.25. Actual values in mep worked out with tau=0.0025
+        tolerance: 0.009939935151225241   # High tolerance due to tau=0.25. Actual values in mep worked out with tau=0.0025

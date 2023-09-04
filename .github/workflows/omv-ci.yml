@@ -14,14 +14,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.7 ]
-        engine: [ jNeuroML, jNeuroML_NEURON, jNeuroML_validate, PyLEMS_NeuroML2, PyNN_NEURON, PyNN_Nest, PyNEURON ]
+        python-version: [ 3.9 ]
+        engine: [ jNeuroML, jNeuroML_NEURON, jNeuroML_EDEN, jNeuroML_validate, PyLEMS_NeuroML2, PyNN_NEURON, PyNN_Nest, "PyNEURON:8.1", "PyNEURON:7.8.2" ]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Set up Python  ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version:  ${{ matrix.python-version }}
         
@@ -29,6 +29,9 @@ jobs:
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
+                
+        pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
+
         
     - name: Run OMV tests on engine ${{ matrix.engine }}
       run: |
