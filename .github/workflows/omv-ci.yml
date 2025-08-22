@@ -10,7 +10,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # for eden & nest...
     strategy:
       fail-fast: false
       matrix:
@@ -24,8 +24,7 @@ jobs:
             - PyLEMS_NeuroML2
             - PyNN_NEURON
             - PyNN_Nest
-            - "PyNEURON:8.1"
-            - "PyNEURON:7.8.2"
+            - PyNEURON
 
     steps:
     - uses: actions/checkout@v4
