@@ -10,18 +10,27 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # for eden & nest...
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.9 ]
-        engine: [ jNeuroML, jNeuroML_NEURON, jNeuroML_EDEN, jNeuroML_validate, PyLEMS_NeuroML2, PyNN_NEURON, PyNN_Nest, "PyNEURON:8.1", "PyNEURON:7.8.2" ]
+        python-version: [ "3.11" ]
+        engine: 
+            - jNeuroML
+            - jNeuroML_NEURON
+            - jNeuroML_EDEN
+            - jNeuroML_validate
+            - jNeuroML_Brian2
+            - PyLEMS_NeuroML2
+            - PyNN_NEURON
+            - PyNN_Nest
+            - PyNEURON
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up Python  ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version:  ${{ matrix.python-version }}
         
@@ -29,9 +38,8 @@ jobs:
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
-                
-        pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
 
+        pip install setuptools --upgrade # needed for eden on Python 3.12
         
     - name: Run OMV tests on engine ${{ matrix.engine }}
       run: |
