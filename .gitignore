@@ -49,3 +49,4 @@ nnn/
 *_eden.py
 /NeuroML2/nmllite/*_nrn.py
 /NeuroML2/nmllite/*.mod
+/.DS_Store
